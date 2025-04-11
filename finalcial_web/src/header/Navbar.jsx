@@ -4,6 +4,7 @@ import styles from '../assets/scss/Navbar.module.scss';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +36,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             <a href="/" className={`${styles.navLink} hover:text-secondary`}>Home</a>
             <a href="/about" className={`${styles.navLink} hover:text-secondary`}>About Us</a>
             <div className="relative group">
@@ -56,7 +57,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={toggleMenu}
               className="outline-none mobile-menu-button"
@@ -79,34 +80,39 @@ const Navbar = () => {
           </div>
 
           {/* CTA Buttons - Desktop */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <a href="/login" className={`${styles.loginBtn} px-4 py-2 rounded-md`}>Client Login</a>
             <a href="/contact" className={`${styles.ctaBtn} px-6 py-2 rounded-md`}>Get Started</a>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`${styles.mobileNav} ${isOpen ? 'block' : 'hidden'} md:hidden`}>
+        <div className={`${styles.mobileNav} ${isOpen ? 'block' : 'hidden'} lg:hidden`}>
           <div className="px-2 pt-2 pb-4 space-y-1">
             <a href="/" className="block px-3 py-2 rounded-md text-base font-medium">Home</a>
             <a href="/about" className="block px-3 py-2 rounded-md text-base font-medium">About Us</a>
             <div className="relative">
-              <button className="w-full text-left px-3 py-2 rounded-md text-base font-medium flex justify-between items-center">
-                Services <span>▼</span>
-              </button>
-              <div className="pl-4 mt-1">
-                <a href="/services/private-banking" className="block px-3 py-2 rounded-md text-base font-medium">Private Banking</a>
-                <a href="/services/investment" className="block px-3 py-2 rounded-md text-base font-medium">Investment Management</a>
-                <a href="/services/wealth" className="block px-3 py-2 rounded-md text-base font-medium">Wealth Planning</a>
-              </div>
-            </div>
+  <button
+    onClick={() => setIsServicesOpen(!isServicesOpen)}
+    className="w-full text-left px-3 py-2 rounded-md text-base font-medium flex justify-between items-center"
+  >
+    Services <span>{isServicesOpen ? '▲' : '▼'}</span>
+  </button>
+  {isServicesOpen && (
+    <div className="pl-4 mt-1">
+      <a href="/services/private-banking" className="block px-3 py-2 rounded-md text-base font-medium">Private Banking</a>
+      <a href="/services/investment" className="block px-3 py-2 rounded-md text-base font-medium">Investment Management</a>
+      <a href="/services/wealth" className="block px-3 py-2 rounded-md text-base font-medium">Wealth Planning</a>
+    </div>
+  )}
+</div>
             <a href="/careers" className="block px-3 py-2 rounded-md text-base font-medium">Careers</a>
             <a href="/resources" className="block px-3 py-2 rounded-md text-base font-medium">Resources</a>
             <a href="/contact" className="block px-3 py-2 rounded-md text-base font-medium">Contact</a>
           </div>
           <div className="px-2 py-4 border-t border-gray-200">
             <a href="/login" className="block w-full px-3 py-2 rounded-md text-center font-medium mb-2">Client Login</a>
-            <a href="/contact" className="block w-full px-3 py-2 rounded-md text-center font-medium bg-primary text-white">Get Started</a>
+            <a href="/contact" className="block w-full px-3 py-2 rounded-md text-center font-medium bg-primary text-dark">Get Started</a>
           </div>
         </div>
       </div>
