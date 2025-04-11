@@ -1,7 +1,27 @@
 import React from 'react';
 import { FaChartLine, FaPiggyBank, FaShieldAlt, FaHandshake } from 'react-icons/fa';
+import { Chart as ChartJS, RadialLinearScale, ArcElement, Tooltip, Legend } from 'chart.js';
+import { PolarArea } from 'react-chartjs-2';
+// Register ChartJS components
+ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
 const Home = () => {
+  const chartData = {
+    labels: ['Wealth Mgmt', 'Investments', 'Risk', 'Banking', 'Retirement'],
+    datasets: [{
+      label: 'Service Distribution',
+      data: [10, 20, 30, 40, 50],
+      backgroundColor: [
+        'rgba(0, 35, 102, 0.7)',   // $primary-color
+        'rgba(0, 102, 204, 0.7)',  // $secondary-color
+        'rgba(255, 107, 0, 0.7)',  // $accent-color
+        'rgba(40, 167, 69, 0.7)',  // $success-color
+        'rgba(220, 53, 69, 0.7)'    // $danger-color
+      ],
+      borderWidth: 1,
+      borderColor: 'rgba(255, 255, 255, 0.5)'
+    }]
+  };
   const services = [
     {
       icon: <FaChartLine className="text-4xl mb-4 text-blue-600" />,
@@ -37,25 +57,67 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative bg-blue-900 text-white">
         <div className="absolute inset-0 bg-black/30"></div>
-        <div className="container mx-auto px-6 py-24 md:py-32 relative z-10">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Your Trusted Partner in <span className="text-orange-400">Financial Growth</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8">
-              Personalized wealth management solutions to help you achieve your financial goals with confidence and clarity.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                Get Started Today
-              </button>
-              <button className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold px-8 py-3 rounded-lg transition duration-300">
-                Learn More
-              </button>
+        <div className="container mx-auto px-6 py-16 md:py-24 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            {/* Left Column - Unchanged */}
+            <div className="lg:w-1/2">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                Your Trusted Partner in <span className="text-orange-400">Financial Growth</span>
+              </h1>
+              <p className="text-xl md:text-2xl mb-8">
+                Personalized wealth management solutions to help you achieve your financial goals with confidence and clarity.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg transition duration-300 transform hover:-translate-y-1">
+                  Get Started Today
+                </button>
+                <button className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold px-8 py-3 rounded-lg transition duration-300">
+                  Learn More
+                </button>
+              </div>
+            </div>
+
+            {/* Right Column - Now with Chart */}
+            <div className="lg:w-1/2">
+              <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm border border-white/20">
+                <div className="h-64 md:h-80">
+                  <PolarArea
+                    data={chartData}
+                    options={{
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      plugins: {
+                        legend: {
+                          position: 'bottom',
+                          labels: {
+                            color: 'white',
+                            font: { size: 12 },
+                            padding: 20
+                          }
+                        },
+                        tooltip: {
+                          backgroundColor: 'rgba(0,0,0,0.8)',
+                          titleColor: '#ff6b00', // $accent-color
+                          bodyColor: 'white'
+                        }
+                      },
+                      scales: {
+                        r: {
+                          grid: { color: 'rgba(255,255,255,0.2)' },
+                          angleLines: { color: 'rgba(255,255,255,0.2)' },
+                          pointLabels: { color: 'white' },
+                          ticks: { display: false }
+                        }
+                      }
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Services Overview */}
       <section className="py-16 bg-gray-50">
@@ -66,11 +128,11 @@ const Home = () => {
               Tailored solutions designed to meet your unique financial needs and aspirations.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all hover:-translate-y-2"
               >
                 {service.icon}
@@ -94,7 +156,7 @@ const Home = () => {
               Our commitment to excellence has been recognized by leading industry authorities.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {awards.map((award, index) => (
               <div key={index} className="text-center p-4">
@@ -106,7 +168,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="mt-16 bg-blue-800 text-white rounded-xl p-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div>
