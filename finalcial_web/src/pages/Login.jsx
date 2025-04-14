@@ -192,7 +192,7 @@ function Login() {
                   onResolve={({ provider, data }) => {
                     setProvider(provider);
                     // Make sure setProfile is defined or modify this
-                    // setProfile(data);
+                    setProfile(data);
                   }}
                   onReject={err => {
                     console.log(err);
