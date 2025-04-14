@@ -33,7 +33,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className={styles['footer-links']}>
+            <div className='ms-0 lg:ms-15'>
               <h4>Quick Links</h4>
               <ul>
                 <li><a href="/about">About Us</a></li>
@@ -58,21 +58,21 @@ const Footer = () => {
             <div className={styles['footer-contact']}>
               <h4>Contact Info</h4>
               <ul>
-                <li>
-                  <FaMapMarkerAlt />
-                  <span>123 Financial District, New York, NY 10005</span>
+                <li className='flex align-center'>
+                  <FaMapMarkerAlt style={{ fontSize: '1.5rem' }}/>
+                  <span className='ms-4'>123 Financial District, New York, NY 10005</span>
                 </li>
-                <li>
-                  <FaPhone />
-                  <span>+1 (800) 555-1234</span>
+                <li className='flex align-center'>
+                  <FaPhone style={{ fontSize: '1.3rem' }}/>
+                  <span className='ms-4'>+1 (800) 555-1234</span>
                 </li>
-                <li>
-                  <FaEnvelope />
-                  <span>info@globalfinance.com</span>
+                <li className='flex align-center'>
+                  <FaEnvelope style={{ fontSize: '1.3rem' }}/>
+                  <span className='ms-4'>info@globalfinance.com</span>
                 </li>
-                <li>
-                  <FaClock />
-                  <span>Mon-Fri: 9:00 AM - 5:00 PM</span>
+                <li className='flex align-center'>
+                  <FaClock style={{ fontSize: '1.3rem' }}/>
+                  <span className='ms-4'>Mon-Fri: 9:00 AM - 5:00 PM</span>
                 </li>
               </ul>
             </div>

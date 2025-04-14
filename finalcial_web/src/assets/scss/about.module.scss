@@ -93,6 +93,9 @@
     .valueItem {
       text-align: center;
       padding: $spacing-unit * 2;
+      background: white;
+      color: #002366;
+      border-radius: 10px;
 
       .valueIcon {
         font-size: 2.5rem;
