@@ -13,6 +13,7 @@ import {
   FaTag
 } from 'react-icons/fa';
 import "../assets/scss/News.scss";
+import Navbar from '../header/Navbar';
 
 const NewsPage = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -123,6 +124,7 @@ const NewsPage = () => {
   
   return (
     <div className="news-page">
+      <Navbar />
       {/* Hero Section */}
       <section className="hero-section">
         <div className="overlay"></div>

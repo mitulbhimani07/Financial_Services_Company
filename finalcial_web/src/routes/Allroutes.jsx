@@ -3,11 +3,11 @@ import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
 import About from '../pages/About'
 import News from '../pages/News'
-import Service from '../pages/Service'
 import Careers from '../pages/Careers'
 import WhatWeOffer from '../pages/WhatWeOffer'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
+import { Contact } from 'lucide-react'
 
 export default function Allroutes() {
   return (
@@ -15,8 +15,7 @@ export default function Allroutes() {
          <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/about' element={<About/>} />
-            <Route path='/contact' element={<News/>} />
-            <Route path='/service' element={<Service/>} />
+            <Route path='/contact' element={<Contact/>} />
             <Route path='/careers' element={<Careers/>} />
             <Route path='/news' element={<News/>} />
 
