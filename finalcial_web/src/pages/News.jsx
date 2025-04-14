@@ -13,6 +13,8 @@ import {
   FaTag
 } from 'react-icons/fa';
 import "../assets/scss/News.scss";
+import Navbar from '../header/Navbar';
+import Footer from '../header/Footer';
 
 const NewsPage = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -122,6 +124,9 @@ const NewsPage = () => {
     : newsArticles.filter(article => article.category === activeCategory && !article.featured);
   
   return (
+   <>
+    <Navbar/>
+
     <div className="news-page">
       {/* Hero Section */}
       <section className="hero-section">
@@ -450,6 +455,9 @@ const NewsPage = () => {
         </div>
       </section>
     </div>
+
+    <Footer/>
+   </>
   );
 };
 
