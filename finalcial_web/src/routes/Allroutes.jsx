@@ -16,6 +16,8 @@ export default function Allroutes() {
             <Route path='/contact' element={<News/>} />
             <Route path='/service' element={<Service/>} />
             <Route path='/careers' element={<Careers/>} />
+            <Route path='/news' element={<News/>} />
+
             <Route path='/whatWeOffer' element={<WhatWeOffer/>} />
             
         </Routes>
