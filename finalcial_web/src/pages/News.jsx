@@ -128,6 +128,7 @@ const NewsPage = () => {
     <Navbar/>
 
     <div className="news-page">
+      <Navbar />
       {/* Hero Section */}
       <section className="hero-section">
         <div className="overlay"></div>

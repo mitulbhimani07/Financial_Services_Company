@@ -1,0 +1,212 @@
+@import '../scss/variables.scss';
+
+.about {
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    font-family: var(--font-primary);
+  }
+
+  p {
+    color: var(--text-color);
+    font-family: var(--font-secondary);
+  }
+}
+
+.aboutHero {
+  background-color: $primary-color;
+  color: white;
+  padding: 6rem 0;
+  position: relative;
+
+  @media (max-width: $breakpoint-md) {
+    padding: 4rem 0;
+  }
+
+  h1 {
+    color: white;
+    margin-bottom: $spacing-unit;
+  }
+
+  .highlight {
+    color: $accent-color;
+  }
+}
+
+.teamSection {
+  background-color: white;
+  padding: 4rem 0;
+
+  .teamCard {
+    background-color: var(--card-bg);
+  color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: $box-shadow;
+    transition: all 0.3s ease;
+    margin-bottom: $spacing-unit * 2;
+
+    &:hover {
+      box-shadow: $box-shadow-lg;
+      transform: translateY(-5px);
+    }
+
+    .teamImage {
+      border-bottom: 3px solid $accent-color;
+    }
+
+    .teamName {
+      color: $primary-color;
+    }
+
+    .teamPosition {
+      color: $secondary-color;
+    }
+  }
+}
+
+.valuesSection {
+  background-color: $light-color;
+  padding: 4rem 0;
+
+  .valueCard {
+    background-color: white;
+    border-radius: 8px;
+    padding: $spacing-unit * 2;
+    box-shadow: $box-shadow;
+    border-top: 4px solid $secondary-color;
+
+    .valueIcon {
+      color: $accent-color;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-unit;
+    }
+  }
+}
+
+.historySection {
+  background-color: white;
+  padding: 4rem 0;
+
+  .timeline {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background-color: $secondary-color;
+      transform: translateX(-50%);
+
+      @media (max-width: $breakpoint-md) {
+        left: $spacing-unit;
+      }
+    }
+
+    .timelineItem {
+      position: relative;
+      margin-bottom: $spacing-unit * 3;
+
+      .timelineDot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: $accent-color;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        @media (max-width: $breakpoint-md) {
+          left: $spacing-unit;
+        }
+      }
+    }
+  }
+}
+
+.ctaSection {
+  background-color: $primary-color;
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+
+  .ctaTitle {
+    color: white;
+    margin-bottom: $spacing-unit * 2;
+  }
+
+  .ctaButton {
+    background-color: $accent-color;
+    color: white;
+    border: none;
+    padding: $spacing-unit $spacing-unit * 2;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: darken($accent-color, 10%);
+      transform: translateY(-2px);
+      box-shadow: $box-shadow;
+    }
+  }
+
+  .secondaryButton {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    margin-left: $spacing-unit;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.testimonials {
+  background-color: $light-color;
+  padding: 4rem 0;
+
+  .testimonialCard {
+    background-color: white;
+    border-radius: 8px;
+    padding: $spacing-unit * 2;
+    box-shadow: $box-shadow;
+    border-left: 4px solid $accent-color;
+
+    .testimonialText {
+      color: $dark-color;
+      font-style: italic;
+    }
+
+    .testimonialAuthor {
+      color: $primary-color;
+      font-weight: 600;
+    }
+
+    .testimonialPosition {
+      color: $secondary-color;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.awardsRecognition {
+  background-color: white;
+  padding: 4rem 0;
+
+  .awardBadge {
+    background-color: rgba($primary-color, 0.1);
+    color: $primary-color;
+    padding: $spacing-unit;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto $spacing-unit;
+    font-size: 1.5rem;
+  }
+}

@@ -52,7 +52,6 @@ const Navbar = () => {
               </div>
             </div>
             <a href="/careers" className={`${styles.navLink} hover:text-secondary`}>Careers</a>
-            <a href="/resources" className={`${styles.navLink} hover:text-secondary`}>Resources</a>
             <a href="/news" className={`${styles.navLink} hover:text-secondary`}>News</a>
 
             <a href="/contact" className={`${styles.navLink} hover:text-secondary`}>Contact</a>
