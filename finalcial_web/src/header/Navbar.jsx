@@ -53,6 +53,8 @@ const Navbar = () => {
             </div>
             <a href="/careers" className={`${styles.navLink} hover:text-secondary`}>Careers</a>
             <a href="/resources" className={`${styles.navLink} hover:text-secondary`}>Resources</a>
+            <a href="/news" className={`${styles.navLink} hover:text-secondary`}>News</a>
+
             <a href="/contact" className={`${styles.navLink} hover:text-secondary`}>Contact</a>
           </div>
 
@@ -108,6 +110,7 @@ const Navbar = () => {
 </div>
             <a href="/careers" className="block px-3 py-2 rounded-md text-base font-medium">Careers</a>
             <a href="/resources" className="block px-3 py-2 rounded-md text-base font-medium">Resources</a>
+
             <a href="/contact" className="block px-3 py-2 rounded-md text-base font-medium">Contact</a>
           </div>
           <div className="px-2 py-4 border-t border-gray-200">
