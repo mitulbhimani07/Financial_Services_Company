@@ -2,6 +2,8 @@ import React from 'react';
 import { FaChartLine, FaPiggyBank, FaShieldAlt, FaHandshake } from 'react-icons/fa';
 import { Chart as ChartJS, RadialLinearScale, ArcElement, Tooltip, Legend } from 'chart.js';
 import { PolarArea } from 'react-chartjs-2';
+import Footer from '../header/Footer';
+import Navbar from '../header/Navbar';
 // Register ChartJS components
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
@@ -53,7 +55,10 @@ const Home = () => {
   ];
 
   return (
-    <div className="text-gray-800">
+    <>
+
+    <Navbar/>
+      <div className="text-gray-800">
       {/* Hero Section */}
       <section className="relative bg-blue-900 text-white">
         <div className="absolute inset-0 bg-black/30"></div>
@@ -206,6 +211,9 @@ const Home = () => {
         </div>
       </section>
     </div>
+
+    <Footer/>
+    </>
   );
 };
 

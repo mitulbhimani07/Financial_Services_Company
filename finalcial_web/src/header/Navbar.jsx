@@ -41,7 +41,7 @@ const Navbar = () => {
             <a href="/about" className={`${styles.navLink} hover:text-secondary`}>About Us</a>
             <div className="relative group">
               <button className={`${styles.navLink} hover:text-secondary flex items-center`}>
-                Services <span className="ml-1">▼</span>
+                What We Offer <span className="ml-1">▼</span>
               </button>
               <div className={`${styles.dropdown} absolute hidden group-hover:block pt-2`}>
                 <div className="bg-white shadow-lg rounded-md py-2 w-48">
@@ -96,7 +96,7 @@ const Navbar = () => {
     onClick={() => setIsServicesOpen(!isServicesOpen)}
     className="w-full text-left px-3 py-2 rounded-md text-base font-medium flex justify-between items-center"
   >
-    Services <span>{isServicesOpen ? '▲' : '▼'}</span>
+    What We Offer <span>{isServicesOpen ? '▲' : '▼'}</span>
   </button>
   {isServicesOpen && (
     <div className="pl-4 mt-1">

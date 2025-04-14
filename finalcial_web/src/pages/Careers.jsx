@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaBriefcase, FaUsers, FaLaptopCode, FaGlobeAmericas } from 'react-icons/fa';
 import "../assets/scss/Careers.scss"; 
+import Footer from '../header/Footer';
+import Navbar from '../header/Navbar';
 
 const Careers = () => {
   const cultureValues = [
@@ -71,7 +73,10 @@ const Careers = () => {
   ];
 
   return (
-    <div>
+    <>
+
+    <Navbar/>
+      <div>
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-overlay"></div>
@@ -208,6 +213,9 @@ const Careers = () => {
         </div>
       </section>
     </div>
+
+    <Footer/>
+    </>
   );
 };
 

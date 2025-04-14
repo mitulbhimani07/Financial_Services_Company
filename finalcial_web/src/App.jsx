@@ -7,9 +7,9 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Allroutes />
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from '../assets/scss/About.module.scss';
 import { FaShieldAlt, FaChartLine, FaHandshake, FaUsers } from 'react-icons/fa';
+import Navbar from '../header/Navbar';
+import Footer from '../header/Footer';
 
 export default function About() {
   const teamMembers = [
@@ -50,7 +52,10 @@ export default function About() {
   ];
 
   return (
-    <div className={styles.about}>
+    
+    <>
+      <Navbar/>
+      <div className={styles.about}>
       <div className={styles.header}>
         <h1>About Our Financial Firm</h1>
         <p>
@@ -67,8 +72,10 @@ export default function About() {
         </p>
       </div>
 
+
+      <h1 className='text-center mb-8' style={{fontSize:'30px'}}>Meet Our Leadership Team</h1>
       <div className={styles.team}>
-        <h2>Meet Our Leadership Team</h2>
+        
         {teamMembers.map((member, index) => (
           <div key={index} className={styles.member}>
             <h3>{member.name}</h3>
@@ -79,11 +86,11 @@ export default function About() {
       </div>
 
       <div className={styles.values}>
-        <h2>Our Core Values</h2>
+        <h2 style={{fontSize:'30px'}}>Our Core Values</h2>
         <div className={styles.valueList}>
           {values.map((value, index) => (
             <div key={index} className={styles.valueItem}>
-              {value.icon}
+              <div className='flex justify-center'>{value.icon}</div>
               <h3>{value.title}</h3>
               <p>{value.description}</p>
             </div>
@@ -91,5 +98,9 @@ export default function About() {
         </div>
       </div>
     </div>
+
+
+    <Footer/>
+    </>
   );
 }

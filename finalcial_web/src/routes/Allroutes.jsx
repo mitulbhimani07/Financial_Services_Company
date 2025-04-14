@@ -6,6 +6,8 @@ import News from '../pages/News'
 import Service from '../pages/Service'
 import Careers from '../pages/Careers'
 import WhatWeOffer from '../pages/WhatWeOffer'
+import Login from '../pages/Login'
+import Signup from '../pages/Signup'
 
 export default function Allroutes() {
   return (
@@ -17,7 +19,8 @@ export default function Allroutes() {
             <Route path='/service' element={<Service/>} />
             <Route path='/careers' element={<Careers/>} />
             <Route path='/whatWeOffer' element={<WhatWeOffer/>} />
-            
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/signup' element={<Signup/>}/>
         </Routes>
     </div>
   )
