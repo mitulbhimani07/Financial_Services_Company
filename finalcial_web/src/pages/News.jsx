@@ -12,9 +12,9 @@ import {
   FaShieldAlt,
   FaTag
 } from 'react-icons/fa';
-import "../assets/scss/News.scss";
 import Navbar from '../header/Navbar';
 import Footer from '../header/Footer';
+import '../assets/scss/News.scss'
 
 const NewsPage = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -127,43 +127,114 @@ const NewsPage = () => {
    <>
     <Navbar/>
 
-    <div className="news-page">
-      <Navbar />
+    <div className="text-gray-800">
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="overlay"></div>
-        <div className="container">
-          <div className="hero-content">
-            <h1>
-              News & <span>Insights</span>
+      <section className="relative text-white">
+        <div className="absolute inset-0 bg-primary bg-opacity-30"></div>
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl font-bold mb-6 leading-tight md:text-5xl lg:text-6xl">
+              News & <span className="text-accent">Insights</span>
             </h1>
-            <p>
+            <p className="text-xl mb-8 md:text-2xl">
               Stay informed with the latest financial market insights, company updates, and expert perspectives.
             </p>
             
             {/* Search Bar */}
-            <div className="search-bar">
+            <div className="relative max-w-xl">
               <input 
                 type="text" 
+                className="w-full bg-white bg-opacity-10 backdrop-blur-sm border border-white border-opacity-20 rounded-lg py-3 px-5 pr-12 text-dark placeholder-dark placeholder-opacity-70 focus:outline-none focus:border-accent" 
                 placeholder="Search news and articles..." 
               />
-              <button>
-                <FaSearch className="icon" />
+              <button className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                <FaSearch className="text-dark text-opacity-70" />
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* News Categories */}
-      <section className="categories-section">
-        <div className="container">
-          <div className="categories-wrapper">
+      {/* News Categories
+      <section className="py-8 bg-white border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
               <button 
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`category-button ${activeCategory === category.id ? 'active' : ''}`}
+                className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                  activeCategory === category.id 
+                    ? 'bg-primary text-white' 
+                    : 'bg-gray-100 text-gray-800 hover:bg-blue-100'
+                }`}
+              >
+                {category.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
+      {/* Featured Articles */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 md:text-4xl">Featured Articles</h2>
+          
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {featuredArticles.map((article) => (
+              <div key={article.id} className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col transition-all hover:shadow-lg hover:-translate-y-1">
+                <img src={article.image} alt={article.title} className="w-full h-64 object-cover" />
+                <div className="p-6 flex-grow">
+                  <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                    <span className="news-sec  px-3 py-1 rounded-full font-medium">
+                      {categories.find(cat => cat.id === article.category)?.name}
+                    </span>
+                    <span className="flex items-center">
+                      <FaCalendarAlt className="mr-1" /> {article.date}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{article.title}</h3>
+                  <p className="text-gray-600 mb-4">{article.excerpt}</p>
+                  <div className="flex items-center text-sm mb-4">
+                    <FaUser className="text-primary mr-2" />
+                    <span>{article.author}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {article.tags.map((tag, index) => (
+                      <span key={index} className="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="px-6 pb-6">
+                  <a href="#" className="text-primary font-medium inline-flex items-center transition-all hover:text-blue-800">
+                    Read Full Article
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* News Categories */}
+      <section className="py-8 bg-white border-gray-200">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-wrap justify-center gap-4">
+            {categories.map((category) => (
+              <button 
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                  activeCategory === category.id 
+                    ? 'bg-primary text-white' 
+                    : 'bg-gray-100 text-gray-800 hover:bg-blue-100'
+                }`}
               >
                 {category.name}
               </button>
@@ -172,94 +243,40 @@ const NewsPage = () => {
         </div>
       </section>
 
-      {/* Featured Articles */}
-      <section className="featured-section">
-        <div className="container">
-          <h2>Featured Articles</h2>
-          
-          <div className="featured-grid">
-            {featuredArticles.map((article) => (
-              <div key={article.id} className="article-card">
-                <img src={article.image} alt={article.title} className="article-image" />
-                <div className="article-content">
-                  <div className="article-meta">
-                    <span className="category-badge">
-                      {categories.find(cat => cat.id === article.category)?.name}
-                    </span>
-                    <span className="date">
-                      <FaCalendarAlt className="icon" /> {article.date}
-                    </span>
-                  </div>
-                  <h3>{article.title}</h3>
-                  <p>{article.excerpt}</p>
-                  <div className="author">
-                    <FaUser className="icon" />
-                    <span>{article.author}</span>
-                  </div>
-                  <div className="tags">
-                    {article.tags.map((tag, index) => (
-                      <span key={index} className="tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="article-footer">
-                  <a href="#" className="read-more">
-                    Read Full Article
-                    <svg className="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* All News Articles */}
-      <section className="all-news-section">
-        <div className="container">
-          <h2>
+      <section className="py-16 Articles-sec ">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold  mb-8 md:text-4xl">
             {activeCategory === 'all' ? 'Latest News & Articles' : `${categories.find(cat => cat.id === activeCategory)?.name}`}
           </h2>
           
-          <div className="articles-grid">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {filteredArticles.map((article) => (
-              <div key={article.id} className="article-card">
-                <img src={article.image} alt={article.title} className="article-image" />
-                <div className="article-content">
-                  <div className="article-meta">
-                    <span className="category-badge">
+              <div key={article.id} className="News rounded-xl shadow-md overflow-hidden flex flex-col transition-all hover:shadow-lg hover:-translate-y-1">
+                <img src={article.image} alt={article.title} className="w-full h-48 object-cover" />
+                <div className="p-6 flex-grow">
+                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                    <span className="news-sec  px-3 py-1 rounded-full font-medium">
                       {categories.find(cat => cat.id === article.category)?.name}
                     </span>
-                    <span className="date">
-                      <FaCalendarAlt className="icon" /> {article.date}
+                    <span className="flex items-center">
+                      <FaCalendarAlt className="mr-1" /> {article.date}
                     </span>
                   </div>
-                  <h3>{article.title}</h3>
-                  <p>{article.excerpt}</p>
-                  <div className="author">
-                    <FaUser className="icon" />
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{article.title}</h3>
+                  <p className="text-gray-600 mb-4 text-sm">{article.excerpt}</p>
+                  <div className="flex items-center text-sm">
+                    <FaUser className="text-primary mr-2" />
                     <span>{article.author}</span>
                   </div>
-                </div>
-                <div className="article-footer">
-                  <a href="#" className="read-more">
-                    Read More
-                    <svg className="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                  </a>
                 </div>
               </div>
             ))}
           </div>
           
           {/* Load More Button */}
-          <div className="load-more">
-            <button>
+          <div className="mt-12 text-center">
+            <button className="bg-primary text-white font-semibold py-3 px-8 rounded-lg transition-all hover:bg-blue-700">
               Load More Articles
             </button>
           </div>
@@ -267,191 +284,100 @@ const NewsPage = () => {
       </section>
       
       {/* Market Updates */}
-      <section className="market-updates-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Market Updates</h2>
-            <p>
+      <section className="py-16 market">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold  mb-4 md:text-4xl">Market Updates</h2>
+            <p className="text-lg text-gray-600 max-w-xl mx-auto">
               Stay informed with the latest financial market trends and analysis from our expert team.
             </p>
           </div>
           
-          <div className="market-card">
-            <div className="market-grid">
-              <div className="market-item">
-                <div className="market-header">
-                  <h3>S&P 500</h3>
-                  <span className="positive">+1.2%</span>
+          <div className="bg-primary  rounded-xl p-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              <div className="market-sec p-6 rounded-xl">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-bold">S&P 500</h3>
+                  <span className="text-success">+1.2%</span>
                 </div>
-                <p>Strong performance in technology and healthcare sectors driving market gains.</p>
-                <div className="updated">Updated: April 10, 2025</div>
+                <p className=" mb-4">Strong performance in technology and healthcare sectors driving market gains.</p>
+                <div className="text-xs ">Updated: April 10, 2025</div>
               </div>
               
-              <div className="market-item">
-                <div className="market-header">
-                  <h3>Bond Yields</h3>
-                  <span className="negative">-0.5%</span>
+              <div className="market-sec p-6 rounded-xl">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-bold">Bond Yields</h3>
+                  <span className="text-danger">-0.5%</span>
                 </div>
-                <p>Treasury yields decline as Federal Reserve signals continued accommodative policy.</p>
-                <div className="updated">Updated: April 9, 2025</div>
+                <p className=" mb-4">Treasury yields decline as Federal Reserve signals continued accommodative policy.</p>
+                <div className="text-xs ">Updated: April 9, 2025</div>
               </div>
               
-              <div className="market-item">
-                <div className="market-header">
-                  <h3>Global Markets</h3>
-                  <span className="positive">+0.8%</span>
+              <div className="market-sec p-6 rounded-xl">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-bold">Global Markets</h3>
+                  <span className="text-success">+0.8%</span>
                 </div>
-                <p>Asian and European markets show resilience despite ongoing supply chain challenges.</p>
-                <div className="updated">Updated: April 11, 2025</div>
+                <p className=" mb-4">Asian and European markets show resilience despite ongoing supply chain challenges.</p>
+                <div className="text-xs ">Updated: April 11, 2025</div>
               </div>
-            </div>
-            
-            <div className="market-footer">
-              <a href="#">
-                View Detailed Market Analysis
-                <svg className="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-              </a>
             </div>
           </div>
         </div>
       </section>
       
       {/* Newsletter Section */}
-      <section className="newsletter-section">
-        <div className="container">
-          <div className="newsletter-grid">
+      <section className="py-16 Newsletter-sec">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
             <div className="newsletter-content">
-              <h2>Stay Informed with Our Newsletter</h2>
-              <p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6 md:text-4xl">Stay Informed with Our Newsletter</h2>
+              <p className="text-lg text-gray-600 mb-6">
                 Subscribe to receive our latest financial insights, market updates, and exclusive content directly to your inbox.
               </p>
               
-              <div className="benefits">
-                <div className="benefit">
-                  <div className="icon-wrapper">
-                    <FaChartLine className="icon" />
+              <div className="flex flex-wrap items-center gap-6 mb-8">
+                <div className="flex items-center gap-3">
+                  <div className=" p-2 rounded-full">
+                    <FaChartLine className="text-primary" />
                   </div>
-                  <span>Market Updates</span>
+                  <span className="text-gray-700">Market Updates</span>
                 </div>
-                <div className="benefit">
-                  <div className="icon-wrapper">
-                    <FaNewspaper className="icon" />
+                <div className="flex items-center gap-3">
+                  <div className=" p-2 rounded-full">
+                    <FaNewspaper className="text-primary" />
                   </div>
-                  <span>Weekly Digest</span>
+                  <span className="text-gray-700">Weekly Digest</span>
                 </div>
-                <div className="benefit">
-                  <div className="icon-wrapper">
-                    <FaLightbulb className="icon" />
+                <div className="flex items-center gap-3">
+                  <div className=" p-2 rounded-full">
+                    <FaLightbulb className="text-primary" />
                   </div>
-                  <span>Expert Insights</span>
+                  <span className="text-gray-700">Expert Insights</span>
                 </div>
               </div>
               
-              <form className="newsletter-form">
-                <input 
-                  type="email" 
-                  placeholder="Your email address" 
-                />
-                <button>
-                  Subscribe Now
-                </button>
-              </form>
-              <p className="privacy-note">
+              <p className="mt-4 text-sm text-gray-500">
                 We respect your privacy. Unsubscribe at any time.
               </p>
             </div>
             
-            <div className="webinar-card">
-              <h3 className="webinar-header">
-                <FaHandshake className="icon" />
+            <div className="upcoming-sec p-8 rounded-xl border border-gray-200">
+              <h3 className="text-2xl font-bold  mb-6 flex items-center">
+                <FaHandshake className="text-primary mr-3" />
                 Upcoming Webinar
               </h3>
-              <img src="/api/placeholder/500/300" alt="Webinar thumbnail" className="webinar-image" />
-              <h4>Navigating Market Volatility: Strategies for Uncertain Times</h4>
-              <p>Join our panel of experts as they discuss practical approaches to managing investments during periods of market volatility.</p>
-              <div className="webinar-meta">
-                <span className="webinar-date">April 18, 2025 • 2:00 PM EST</span>
-                <span className="webinar-tag">Free Registration</span>
+              <img src="/api/placeholder/500/300" alt="Webinar thumbnail" className="w-full rounded-lg mb-6" />
+              <h4 className="text-xl font-bold text-gray-900 mb-2">Navigating Market Volatility: Strategies for Uncertain Times</h4>
+              <p className="text-gray-600 mb-4">Join our panel of experts as they discuss practical approaches to managing investments during periods of market volatility.</p>
+              <div className="flex justify-between items-center text-sm mb-6">
+                <span className="text-gray-500">April 18, 2025 • 2:00 PM EST</span>
+                <span className="bg-accent text-white px-3 py-1 rounded-full">Free Registration</span>
               </div>
-              <button className="register-btn">
+              <button className="w-full bg-primary text-white font-semibold py-3 px-6 rounded-lg transition-all hover:bg-blue-700">
                 Register Now
               </button>
             </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Popular Topics */}
-      <section className="topics-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Popular Topics</h2>
-            <p>
-              Explore our most frequently discussed financial topics and resources.
-            </p>
-          </div>
-          
-          <div className="topics-grid">
-            <a href="#" className="topic-card">
-              <div className="icon-wrapper">
-                <FaChartLine className="icon" />
-              </div>
-              <h3>Investment Strategies</h3>
-              <p>12 Articles</p>
-            </a>
-            
-            <a href="#" className="topic-card">
-              <div className="icon-wrapper">
-                <FaPiggyBank className="icon" />
-              </div>
-              <h3>Retirement Planning</h3>
-              <p>8 Articles</p>
-            </a>
-            
-            <a href="#" className="topic-card">
-              <div className="icon-wrapper">
-                <FaShieldAlt className="icon" />
-              </div>
-              <h3>Risk Management</h3>
-              <p>7 Articles</p>
-            </a>
-            
-            <a href="#" className="topic-card">
-              <div className="icon-wrapper">
-                <FaHandshake className="icon" />
-              </div>
-              <h3>Private Banking</h3>
-              <p>9 Articles</p>
-            </a>
-          </div>
-          
-          <div className="topics-footer">
-            <a href="#">
-              View All Topics
-              <svg className="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-      
-      {/* CTA Section */}
-      <section className="cta-section">
-        <div className="container">
-          <h2>Have Questions About Your Financial Future?</h2>
-          <p>
-            Our team of financial experts is ready to help you navigate your financial journey.
-          </p>
-          <div className="cta-buttons">
-            <button className="primary-btn">
-              Contact an Advisor
-            </button>
-            <button className="secondary-btn">
-              Browse FAQ
-            </button>
           </div>
         </div>
       </section>
