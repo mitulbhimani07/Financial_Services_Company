@@ -7,7 +7,7 @@ import Careers from '../pages/Careers'
 import WhatWeOffer from '../pages/WhatWeOffer'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
-import { Contact } from 'lucide-react'
+import Contact from '../pages/Contect'
 
 export default function Allroutes() {
   return (
@@ -18,7 +18,6 @@ export default function Allroutes() {
             <Route path='/contact' element={<Contact/>} />
             <Route path='/careers' element={<Careers/>} />
             <Route path='/news' element={<News/>} />
-
             <Route path='/whatWeOffer' element={<WhatWeOffer/>} />
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
