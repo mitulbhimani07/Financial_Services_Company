@@ -29,19 +29,19 @@
 }
 
 .bg-blue-100 {
-  background-color: lighten($primary-color, 40%);
+  background-color: $primary-color;
 }
 
 .text-blue-100 {
-  color: lighten($primary-color, 40%);
+  color: $primary-color;
 }
 
 .text-blue-200 {
-  color: lighten($primary-color, 30%);
+  color: $primary-color;
 }
 
 .bg-blue-700 {
-  background-color: darken($primary-color, 10%);
+  background-color: $primary-color;
 }
 
 // Other color utilities
@@ -50,7 +50,7 @@
 }
 
 .hover\:bg-blue-700:hover {
-  background-color: darken($primary-color, 10%);
+  background-color: $primary-color;
 }
 
 .focus\:border-accent:focus {
