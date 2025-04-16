@@ -168,7 +168,7 @@ export default function Contact() {
           $primaryColor="#002366"
           $gray600="#4b5563"
         >
-          <h1>Contact Us</h1>
+          <h1 style={{marginTop:'40px'}}>Contact Us</h1>
           <p>Have questions or need assistance? We're here to help. Reach out to our team through any of the methods below or send us a message directly.</p>
         </ContactHeader>
 
