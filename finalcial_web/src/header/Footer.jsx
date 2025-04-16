@@ -9,7 +9,7 @@ import {
   FaEnvelope, 
   FaClock 
 } from 'react-icons/fa';
-import styles from '../assets/scss/footer.module.scss';
+import styles from '../assets/scss/Footer.module.scss';
 
 const Footer = () => {
   return (
