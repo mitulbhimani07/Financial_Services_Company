@@ -1,266 +1,91 @@
 import React from 'react';
 import Navbar from '../header/Navbar';
-import styled from 'styled-components';
-
-const ContactContainer = styled.div`
-  max-width: ${props => props.$maxWidth};
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  font-family: ${props => props.$fontPrimary};
-`;
-
-const ContactHeader = styled.div`
-  text-align: center;
-  margin-bottom: 3rem;
-
-  h1 {
-    color: ${props => props.$primaryColor};
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    color: ${props => props.$gray600};
-    font-size: 1.1rem;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-`;
-
-const ContactGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-
-  @media (max-width: ${props => props.$breakpointMd}) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const ContactCard = styled.div`
-  background: ${props => props.$white};
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: ${props => props.$boxShadow};
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: ${props => props.$boxShadowLg};
-  }
-
-  svg {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 1.5rem;
-    color: ${props => props.$primaryColor};
-  }
-
-  h3 {
-    color: ${props => props.$primaryColor};
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-
-  p {
-    color: ${props => props.$gray600};
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-
-  a {
-    color: ${props => props.$secondaryColor};
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: ${props => props.$accentColor};
-      text-decoration: underline;
-    }
-  }
-`;
-
-const ContactForm = styled.form`
-  background: ${props => props.$white};
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: ${props => props.$boxShadow};
-  max-width: 800px;
-  margin: 0 auto;
-
-  h2 {
-    color: ${props => props.$primaryColor};
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-  }
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: 1.5rem;
-
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: ${props => props.$gray800};
-    font-weight: 500;
-  }
-
-  input,
-  textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid ${props => props.$gray500};
-    border-radius: 4px;
-    font-family: ${props => props.$fontPrimary};
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
-    &:focus {
-      outline: none;
-      border-color: ${props => props.$primaryColor};
-      box-shadow: 0 0 0 3px rgba(0, 35, 102, 0.1);
-    }
-  }
-
-  textarea {
-    min-height: 150px;
-    resize: vertical;
-  }
-`;
-
-const SubmitButton = styled.button`
-  background-color: ${props => props.$primaryColor};
-  color: ${props => props.$white};
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 100%;
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: ${props => props.$blue800};
-    transform: translateY(-2px);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-`;
+import  '../assets/scss/Contact.scss';
 
 export default function Contact() {
   return (
-    <div>
+    <div className='contactContainer'>
       <Navbar />
-      <ContactContainer 
-        $maxWidth="1200px"
-        $fontPrimary="'Roboto', sans-serif"
-      >
-        <ContactHeader 
-          $primaryColor="#002366"
-          $gray600="#4b5563"
-        >
-          <h1 style={{marginTop:'40px'}}>Contact Us</h1>
-          <p>Have questions or need assistance? We're here to help. Reach out to our team through any of the methods below or send us a message directly.</p>
-        </ContactHeader>
+      <div className='contactHero'>
+        <div className='heroContent'>
+          <h1>Contact Our Financial Team</h1>
+          <p>We're here to help with all your financial needs. Reach out anytime.</p>
+        </div>
+      </div>
 
-        <ContactGrid $breakpointMd="768px">
-          <ContactCard 
-            $white="#ffffff"
-            $boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
-            $boxShadowLg="0 10px 15px rgba(0, 0, 0, 0.1)"
-            $primaryColor="#002366"
-            $gray600="#4b5563"
-            $secondaryColor="#0066cc"
-            $accentColor="#ff6b00"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <h3>Email Us</h3>
-            <p>Send us an email and we'll get back to you within 24 hours.</p>
-            <a href="mailto:support@example.com">support@example.com</a>
-          </ContactCard>
+      <div className='contactContent'>
+        <div className='contactGrid'>
+          <div className='contactCard'>
+            <div className='cardIcon'>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
+                <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
+              </svg>
+            </div>
+            <h3>Email Support</h3>
+            <p>Get quick answers from our support team</p>
+            <a href="mailto:support@finance.com">support@finance.com</a>
+          </div>
 
-          <ContactCard 
-            $white="#ffffff"
-            $boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
-            $boxShadowLg="0 10px 15px rgba(0, 0, 0, 0.1)"
-            $primaryColor="#002366"
-            $gray600="#4b5563"
-            $secondaryColor="#0066cc"
-            $accentColor="#ff6b00"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            <h3>Call Us</h3>
-            <p>Monday to Friday, 9am to 5pm EST</p>
+          <div className='contactCard'>
+            <div className='cardIcon'>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fillRule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <h3>Phone Support</h3>
+            <p>Mon-Fri: 8am-6pm EST</p>
             <a href="tel:+18005551234">+1 (800) 555-1234</a>
-          </ContactCard>
+          </div>
 
-          <ContactCard 
-            $white="#ffffff"
-            $boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
-            $boxShadowLg="0 10px 15px rgba(0, 0, 0, 0.1)"
-            $primaryColor="#002366"
-            $gray600="#4b5563"
-            $secondaryColor="#0066cc"
-            $accentColor="#ff6b00"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
+          <div className='contactCard'>
+            <div className='cardIcon'>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+              </svg>
+            </div>
             <h3>Visit Us</h3>
-            <p>Our headquarters in New York City</p>
-            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">123 Business Ave, NYC</a>
-          </ContactCard>
-        </ContactGrid>
+            <p>Our headquarters in New York</p>
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">123 Financial District, NYC</a>
+          </div>
+        </div>
 
-        <ContactForm 
-          $white="#ffffff"
-          $boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
-          $primaryColor="#002366"
-          $gray800="#1f2937"
-          $gray500="#6b7280"
-          $fontPrimary="'Roboto', sans-serif"
-        >
-          <h2>Send Us a Message</h2>
-          <FormGroup>
-            <label htmlFor="name">Full Name</label>
-            <input type="text" id="name" name="name" required />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="email">Email Address</label>
-            <input type="email" id="email" name="email" required />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="subject">Subject</label>
-            <input type="text" id="subject" name="subject" required />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="message">Your Message</label>
-            <textarea id="message" name="message" required></textarea>
-          </FormGroup>
-          <SubmitButton 
-            $primaryColor="#002366"
-            $white="#ffffff"
-            $blue800="#1e40af"
-            type="submit"
-          >
-            Send Message
-          </SubmitButton>
-        </ContactForm>
-      </ContactContainer>
+        <div className='contactFormWrapper'>
+          <div className='formHeader'>
+            <h2>Send Us a Message</h2>
+            <p>We'll respond within 24 hours</p>
+          </div>
+          <form className='contactForm'>
+            <div className='formRow'>
+              <div className='formGroup'>
+                <label htmlFor="name">Full Name</label>
+                <input type="text" id="name" placeholder="John Smith" required />
+              </div>
+              <div className='formGroup'>
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" placeholder="john@example.com" required />
+              </div>
+            </div>
+            <div className='formGroup'>
+              <label htmlFor="subject">Subject</label>
+              <select id="subject" required>
+                <option value="">Select a subject</option>
+                <option value="investment">Investment Inquiry</option>
+                <option value="banking">Banking Services</option>
+                <option value="loan">Loan Application</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className='formGroup'>
+              <label htmlFor="message">Your Message</label>
+              <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
+            </div>
+            <button type="submit" className='submitButton'>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
