@@ -22,23 +22,23 @@ function Signup() {
     e.preventDefault();
     console.log('Form submitted:', formData);
   };
-  
+
   return (
     <>
-      <div className="flex w-full bg-blue-50 min-h-screen">
+      <div className="flex w-full pt-0 md:pt-20">
         <div className="flex flex-col md:flex-row w-full max-w-4xl mx-auto my-8 rounded-xl overflow-hidden shadow-lg relative">
           {/* Background colors - desktop */}
           <div className="absolute inset-0 hidden md:block">
             <div className="absolute left-0 top-0 w-1/2 h-full bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800"></div>
             <div className="absolute right-0 top-0 w-1/2 h-full bg-white"></div>
           </div>
-          
+
           {/* Background colors - mobile */}
           <div className="absolute inset-0 md:hidden">
             <div className="absolute top-0 left-0 w-full h-1/2 bg-white"></div>
             <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800"></div>
           </div>
-          
+
           {/* Wave SVG divider - desktop */}
           <div className="absolute inset-0 pointer-events-none hidden md:block">
             <svg
@@ -62,7 +62,7 @@ function Signup() {
               </defs>
             </svg>
           </div>
-          
+
           {/* Wave SVG divider - mobile */}
           <div className="absolute inset-0 pointer-events-none md:hidden">
             <svg
@@ -86,7 +86,7 @@ function Signup() {
               </defs>
             </svg>
           </div>
-          
+
           {/* EasyPay section - top on mobile, right on desktop */}
           <div className="w-full md:w-1/2 order-1 md:order-2 p-10 flex flex-col justify-center items-center relative z-10">
             <div className="text-center space-y-6">
@@ -102,27 +102,27 @@ function Signup() {
               </p>
             </div>
           </div>
-          
+
           {/* Form section - bottom on mobile, left on desktop */}
           <div className="w-full md:w-1/2 order-2 md:order-1 p-10 z-10">
             <div className="space-y-8">
-            <div>
-  <h2 className="text-xl font-bold md:text-2xl text-white mb-1">Create your account</h2>
-</div>
-              
+              <div>
+                <h2 className="text-xl font-bold md:text-2xl text-white mb-1">Create your account</h2>
+              </div>
+
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="relative w-full">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-white text-lg">
                     <IoPersonOutline />
                   </div>
-                
+
                   <input
                     type="text"
                     id="name"
                     className="peer block w-full rounded-lg border border-white bg-transparent py-3 ps-10 pe-2.5 text-sm text-white appearance-none focus:outline-none focus:ring-0 focus:border-white"
                     placeholder=" "
                   />
-                
+
                   <label
                     htmlFor="name"
                     className="absolute start-10 top-3 z-10 origin-[0] -translate-y-4 scale-75 transform px-1 text-sm text-white transition-all duration-300
@@ -137,19 +137,19 @@ function Signup() {
                     Name
                   </label>
                 </div>
-                
+
                 <div className="relative w-full">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-white text-lg">
                     <CiMail />
                   </div>
-                
+
                   <input
                     type="text"
                     id="Email"
                     className="peer block w-full rounded-lg border border-white bg-transparent py-3 ps-10 pe-2.5 text-sm text-white appearance-none focus:outline-none focus:ring-0 focus:border-white"
                     placeholder=" "
                   />
-                
+
                   <label
                     htmlFor="Email"
                     className="absolute start-10 top-3 z-10 origin-[0] -translate-y-4 scale-75 transform px-1 text-sm text-white transition-all duration-300
@@ -164,19 +164,19 @@ function Signup() {
                     Email
                   </label>
                 </div>
-                
+
                 <div className="relative w-full">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-white text-lg">
                     <RiLockPasswordLine />
                   </div>
-                
+
                   <input
                     type="password"
                     id="password"
                     className="peer block w-full rounded-lg border border-white bg-transparent py-3 ps-10 pe-2.5 text-sm text-white appearance-none focus:outline-none focus:ring-0 focus:border-white"
                     placeholder=" "
                   />
-                
+
                   <label
                     htmlFor="password"
                     className="absolute start-10 top-3 z-10 origin-[0] -translate-y-4 scale-75 transform px-1 text-sm text-white transition-all duration-300
@@ -191,7 +191,7 @@ function Signup() {
                     Password
                   </label>
                 </div>
-                
+
                 <div className="flex items-center gap-2">
                   <input type="checkbox" id="terms" className="h-4 w-4" />
                   <label htmlFor="terms" className="text-xs text-white">By signing up, I agree to <span className="underline">Terms & Conditions</span></label>

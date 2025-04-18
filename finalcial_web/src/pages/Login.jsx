@@ -34,7 +34,7 @@ function Login() {
 
   return (
     <>
-      <div className="flex w-full bg-blue-50 min-h-screen pt-0 md:pt-20">
+      <div className="flex w-full  pt-0 md:pt-20">
         <div className="flex flex-col md:flex-row w-full max-w-4xl mx-auto my-0 md:my-8 rounded-xl overflow-hidden shadow-lg relative">
           {/* Background colors - adjusted for flex-col layout on mobile */}
           <div className="absolute inset-0 hidden md:block">
