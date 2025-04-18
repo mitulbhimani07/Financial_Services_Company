@@ -3,7 +3,7 @@ import '../assets/scss/Home.scss';
 import { FaChartLine, FaPiggyBank, FaShieldAlt, FaHandshake, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { BsBank2, BsFileEarmarkText, BsBuilding } from 'react-icons/bs';
 import { Chart as ChartJS, RadialLinearScale, ArcElement, Tooltip, Legend } from 'chart.js';
-import { PolarArea } from 'react-chartjs-2';
+// import { PolarArea } from 'react-chartjs-2';
 import Footer from '../header/Footer';
 import Navbar from '../header/Navbar';
 
@@ -98,10 +98,10 @@ const Home = () => {
     },
     {
       id: "lending-license",
-      title: "Lending License Services",
+      title: "License Services",
       icon: <BsFileEarmarkText className="text-5xl text-blue-600" />,
       shortDescription: "Regulatory compliance and licensing services for financial institutions.",
-      pitch: "Navigate complex regulatory landscapes with confidence through our comprehensive licensing solutions.",
+      pitch: "Navigate regulations confidently with our expert licensing solutions.",
       stats: [
         { value: "100%", label: "Success Rate" },
         { value: "30+", label: "Jurisdictions" },
@@ -206,7 +206,7 @@ const Home = () => {
       <div className="text-dark overflow-hidden">
         {selectedService ? (
           // Service Detail View
-          <section className="relative bg-blue-900 text-white">
+          <section className="relative bg-blue-900 text-white ">
             <div 
               className="absolute inset-0 bg-cover bg-center" 
               style={{ backgroundImage: `url(${selectedService.backgroundImage})` }}
@@ -269,7 +269,7 @@ const Home = () => {
           </section>
         ) : (
           // Main Slider View - Fixed to prevent horizontal scroll
-          <section className="relative h-[75vh] md:h-[80vh] lg:h-[85vh] overflow-hidden">
+          <section className="relative h-[600px] w-full overflow-hidden mt-18">
             {/* Slider content with background images */}
             <div 
               className="absolute inset-0 flex transition-transform duration-700 ease-in-out"
@@ -282,17 +282,17 @@ const Home = () => {
                 >
                   {/* Background Image */}
                   <div 
-                    className="absolute inset-0 bg-cover bg-center transition-opacity duration-700"
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: `url(${service.backgroundImage})` }}
                   ></div>
                   
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/60"></div>
+                  <div  className="absolute inset-0 bg-black/60"></div>
                   
                   {/* Content */}
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="container mx-auto px-4 md:px-6">
-                      <div className="flex flex-col md:flex-row items-center md:items-start">
+                  <div className="absolute inset-0 flex items-center h-[600px]">
+                    <div className="container mx-auto px-4 md:px-6 h-full flex items-center">
+                      <div className="flex flex-col md:flex-row items-center md:items-start w-full">
                         {/* Text Content with Animations */}
                         <div className="w-full md:w-1/2 text-white text-center md:text-left mb-8 md:mb-0">
                           <div className={`flex flex-col md:flex-row items-center md:items-start mb-6 ${animationActive ? 'animate-title-slide-in' : 'opacity-0'}`}>
