@@ -1,98 +1,106 @@
 @import '../scss/variables.scss';
 
 .navbar {
-  transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  transition: background-color 0.3s ease-in-out;
 
   &.scrolled {
-    background-color: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #333333; /* Darker background on scroll */
   }
 }
 
 .container {
-  max-width: $max-width;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 .logo {
-  span:first-child {
-    color: $primary-color;
-  }
-  span:last-child {
-    color: $secondary-color;
-  }
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+
+
 }
+
 .navLink {
-  color: $dark-color;
-  font-weight: 500;
-  transition: color 0.2s ease;
-  position: relative;
-  padding: 0.5rem 0;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 
   &:hover {
-    color: $secondary-color;
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: $secondary-color;
-    transition: width 0.3s ease;
-  }
-
-  &:hover::after {
-    width: 100%;
+    color: #f39c12; /* Amber color on hover */
   }
 }
 
 .dropdown {
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 50;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 10;
+
+  a {
+    display: block;
+    padding: 8px 16px;
+    color: #000;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+}
+
+.group:hover .dropdown {
+  display: block;
 }
 
 .loginBtn {
-  color: $primary-color;
-  border: 1px solid $primary-color;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 8px 16px;
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: rgba($primary-color, 0.1);
+    background-color: #fff;
+    color: #000;
   }
 }
 
 .ctaBtn {
-  background-color: $secondary-color;
-  color: white;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  background-color: #f39c12; /* Amber color */
+  color: #000;
+  padding: 8px 16px;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: darken($secondary-color, 10%);
-    transform: translateY(-1px);
-    box-shadow: $box-shadow;
+    background-color: #d35400; /* Darker amber */
   }
 }
 
 .mobileNav {
-  background-color: white;
-  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
+  background-color: #000;
+  color: #fff;
 
-// Responsive adjustments
-@media (max-width: $breakpoint-md) {
-  .navbar {
-    padding: 0.5rem 0;
+  a {
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+      color: #f39c12;
+    }
   }
-}
 
-@media (min-width: $breakpoint-xl) {
-  .container {
-    padding: 0 2rem;
+  button {
+    color: #fff;
   }
 }

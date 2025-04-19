@@ -1,5 +1,6 @@
   import React, { useState, useEffect } from 'react';
   import styles from '../assets/scss/Navbar.module.scss';
+  import Logo from '../assets/images/icon.png'; // Adjust the path to your logo image
 
   const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,10 +29,11 @@
         <div className={`${styles.container} container mx-auto px-4`}>
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
-            <div className="flex items-center">
+            <div className="flex  items-center">
               <a href="/" className={`${styles.logo} text-2xl font-bold`}>
-                <span className="text-primary">Global</span>
-                <span className="text-secondary">Finance</span>
+              <img src={Logo} alt="Logo" width='110px' height='40px'  />
+                <span className="text-amber-400">धन</span>
+                <span className="text-secondary">प्रवाह</span>
               </a>
             </div>
 
@@ -44,7 +46,7 @@
                   What We Offer <span className="ml-1">▼</span>
                 </button>
                 <div className={`${styles.dropdown} absolute hidden group-hover:block pt-2`}>
-                  <div className="bg-white shadow-lg rounded-md py-2 w-48">
+                  <div className="bg-white shadow-lg rounded-md py-2  w-178">
                     <a href="/services/private-banking" className="block px-4 py-2 hover:bg-gray-100">Private Banking</a>
                     <a href="/services/investment" className="block px-4 py-2 hover:bg-gray-100">Investment Management</a>
                     <a href="/services/wealth" className="block px-4 py-2 hover:bg-gray-100">Wealth Planning</a>
