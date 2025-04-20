@@ -261,7 +261,7 @@ const Home = () => {
       <div className="overflow-hidden">
         {selectedService ? (
           // Service Detail View
-          <section className="relative bg-blue-900 text-white ">
+          <section className="relative bg-blue-900 text-white " >
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${selectedService.backgroundImage})` }}
@@ -324,7 +324,7 @@ const Home = () => {
           </section>
         ) : (
           // Main Slider View - Fixed to prevent horizontal scroll
-          <section className="relative h-[600px] w-full overflow-hidden">
+          <section className="relative h-[600px] w-full overflow-hidden mt-21">
             {/* Slider content */}
             <div
               className="absolute inset-0 flex transition-transform duration-700 ease-in-out"

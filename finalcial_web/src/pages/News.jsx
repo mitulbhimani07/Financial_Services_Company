@@ -34,7 +34,7 @@ const NewsPage = () => {
       category: "market",
       date: "April 5, 2025",
       author: "Jonathan Winters",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       excerpt: "Our latest market analysis suggests cautious optimism for the second quarter, with strategic opportunities in emerging markets and technology sectors.",
       featured: true,
       tags: ["Market Analysis", "Investment Strategy", "Global Economy"]
@@ -45,7 +45,7 @@ const NewsPage = () => {
       category: "company",
       date: "March 28, 2025",
       author: "Sarah Mitchell",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       excerpt: "We're excited to announce our new digital wealth management platform that combines AI-driven insights with personalized advisory services.",
       featured: true,
       tags: ["Product Launch", "Digital Innovation", "Wealth Tech"]
@@ -56,7 +56,7 @@ const NewsPage = () => {
       category: "market",
       date: "March 20, 2025",
       author: "Michael Chen",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       excerpt: "The Federal Reserve's recent policy shifts signal a cautious approach to economic recovery. Here's what this means for your investments.",
       featured: false,
       tags: ["Federal Reserve", "Interest Rates", "Economic Policy"]
@@ -67,7 +67,7 @@ const NewsPage = () => {
       category: "finance",
       date: "March 15, 2025",
       author: "Elizabeth Taylor",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       excerpt: "Explore advanced tax strategies to optimize your retirement savings and minimize tax liability during your golden years.",
       featured: false,
       tags: ["Retirement Planning", "Tax Strategy", "Financial Planning"]
@@ -78,7 +78,7 @@ const NewsPage = () => {
       category: "company",
       date: "March 10, 2025",
       author: "Robert Wong",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       excerpt: "We're proud to announce the expansion of our private banking services in major Asian markets, with new offices in Singapore and Hong Kong.",
       featured: false,
       tags: ["Global Expansion", "Private Banking", "Asian Markets"]
@@ -89,7 +89,7 @@ const NewsPage = () => {
       category: "wealth",
       date: "March 5, 2025",
       author: "Amanda Johnson",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       excerpt: "A comprehensive guide to advanced ESG investment strategies and how they can enhance your portfolio performance while supporting sustainability.",
       featured: false,
       tags: ["ESG", "Sustainable Investing", "Portfolio Management"]
@@ -100,7 +100,7 @@ const NewsPage = () => {
       category: "finance",
       date: "February 28, 2025",
       author: "David Stevens",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       excerpt: "Learn about the latest cybersecurity threats facing financial services and how we're working to protect your sensitive financial information.",
       featured: false,
       tags: ["Cybersecurity", "Risk Management", "Digital Banking"]
@@ -111,7 +111,7 @@ const NewsPage = () => {
       category: "company",
       date: "February 20, 2025",
       author: "Jennifer Lopez",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       excerpt: "Save the date for our annual client appreciation gala, featuring keynote speakers and exclusive networking opportunities.",
       featured: false,
       tags: ["Events", "Networking", "Client Relations"]
@@ -154,27 +154,6 @@ const NewsPage = () => {
           </div>
         </div>
       </section>
-
-      {/* News Categories
-      <section className="py-8 bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <button 
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  activeCategory === category.id 
-                    ? 'bg-primary text-white' 
-                    : 'bg-gray-100 text-gray-800 hover:bg-blue-100'
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* Featured Articles */}
       <section className="py-16 bg-gray-50">
@@ -367,7 +346,7 @@ const NewsPage = () => {
                 <FaHandshake className="text-primary mr-3" />
                 Upcoming Webinar
               </h3>
-              <img src="/api/placeholder/500/300" alt="Webinar thumbnail" className="w-full rounded-lg mb-6" />
+              <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Webinar thumbnail" className="w-full rounded-lg mb-6" />
               <h4 className="text-xl font-bold text-gray-900 mb-2">Navigating Market Volatility: Strategies for Uncertain Times</h4>
               <p className="text-gray-600 mb-4">Join our panel of experts as they discuss practical approaches to managing investments during periods of market volatility.</p>
               <div className="flex justify-between items-center text-sm mb-6">
