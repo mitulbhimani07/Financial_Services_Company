@@ -19,8 +19,8 @@ const Footer = () => {
           <div className={styles['footer-grid']}>
             <div className={styles['footer-about']}>
               <h3 className={styles['footer-logo']}>
-                <span className={styles['logo-primary']}>Global</span>
-                <span className={styles['logo-secondary']}>Finance</span>
+                <span className='text-amber-400'>Dhan</span>
+                <span className='text-white-100'>Pravah</span>
               </h3>
               <p className={styles['footer-about-text']}>
                 Providing trusted financial services since 1995. We help individuals and businesses achieve their financial goals through expert advice and innovative solutions.

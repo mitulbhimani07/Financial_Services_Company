@@ -119,8 +119,8 @@ const Navbar = () => {
             <div className="flex items-center">
               <Link to="/" className={`${styles.logo} text-2xl font-bold`}>
                 <img src={Logo} alt="Logo" width='110px' height='40px' />
-                <span className="text-amber-400">धन</span>
-                <span className="text-secondary">प्रवाह</span>
+                <span className="text-amber-400">Dhan</span>
+                <span className="text-secondary">Pravah</span>
               </Link>
             </div>
 
