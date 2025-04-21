@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../header/Navbar';
-import  '../assets/scss/Contact.scss';
+import '../assets/scss/Contact.scss';
+import Footer from '../header/Footer';
 
 export default function Contact() {
   return (
@@ -50,42 +51,81 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className='contactFormWrapper'>
-          <div className='formHeader'>
-            <h2>Send Us a Message</h2>
-            <p>We'll respond within 24 hours</p>
+        <div className="contact-section">
+          {/* Left Side - Contact Form */}
+          <div className="contact-form-container">
+            <div className="form-header">
+              <h2>Send Us a Message</h2>
+              <p>We'll respond within 24 hours</p>
+            </div>
+            <form className="contact-form">
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="name">Full Name</label>
+                  <input type="text" id="name" placeholder="John Smith" required />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input type="email" id="email" placeholder="john@example.com" required />
+                </div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="subject">Subject</label>
+                <select id="subject" required>
+                  <option value="">Select a subject</option>
+                  <option value="investment">Investment Inquiry</option>
+                  <option value="banking">Banking Services</option>
+                  <option value="loan">Loan Application</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="message">Your Message</label>
+                <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
+              </div>
+              <button type="submit" className="submit-button">
+                Send Message
+              </button>
+            </form>
           </div>
-          <form className='contactForm'>
-            <div className='formRow'>
-              <div className='formGroup'>
-                <label htmlFor="name">Full Name</label>
-                <input type="text" id="name" placeholder="John Smith" required />
+          
+          {/* Right Side - Google Map */}
+          <div className="map-container">
+            <div className="map">
+              {/* Google Maps iframe embed */}
+              <div className="google-map">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2144705953036!2d-73.98677572432865!3d40.75946967126475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1681947264040!5m2!1sen!2sus" 
+                  width="100%" 
+                  height="300" 
+                  style={{border: 0}}
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Our Location"
+                  className="map-iframe">
+                </iframe>
+                <div className="map-overlay">
+                  <div className="pulse-dot"></div>
+                </div>
               </div>
-              <div className='formGroup'>
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="john@example.com" required />
+            </div>
+            <div className="location-info">
+              <h3>Visit Us</h3>
+              <p><strong>Address:</strong> Times Square, New York, NY 10036</p>
+              <p><strong>Phone:</strong> (555) 123-4567</p>
+              <p><strong>Hours:</strong> Monday-Friday, 9am-5pm</p>
+              <div className="directions-link">
+                <a href="https://goo.gl/maps/bF5JMX5TDFxJbvUv9" target="_blank" rel="noopener noreferrer" title="Get directions">
+                  <span className="directions-icon">↗</span>
+                  Get Directions
+                </a>
               </div>
             </div>
-            <div className='formGroup'>
-              <label htmlFor="subject">Subject</label>
-              <select id="subject" required>
-                <option value="">Select a subject</option>
-                <option value="investment">Investment Inquiry</option>
-                <option value="banking">Banking Services</option>
-                <option value="loan">Loan Application</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div className='formGroup'>
-              <label htmlFor="message">Your Message</label>
-              <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
-            </div>
-            <button type="submit" className='submitButton'>
-              Send Message
-            </button>
-          </form>
+          </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
