@@ -54,7 +54,7 @@ export default function Home() {
       <div className="font-sans text-gray-900 w-full">
         {/* Hero Section with full width design */}
         <div className="bg-gradient-to-r from-blue-900 to-blue-800 w-full">
-          <div className="w-full px-4 py-16 md:py-24">
+          <div className="w-full px-  4 py-16 md:py-24">
             <div className="container mx-auto">
               {/* Full section slider */}
               <Slider {...settings}>
