@@ -104,6 +104,8 @@ export default function Home() {
                               alt={slide.imageAlt} 
                               className="slide-image"
                             />
+
+                            
                           </div>
                         </div>
                       </div>
