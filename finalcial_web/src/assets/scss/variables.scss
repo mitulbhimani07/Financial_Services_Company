@@ -39,3 +39,9 @@ $breakpoint-xl: 1200px;
 // Shadows
 $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 $box-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+// In variables.scss
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

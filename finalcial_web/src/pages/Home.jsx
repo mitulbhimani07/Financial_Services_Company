@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../header/Navbar';
 import Footer from '../header/Footer';
 import Slider from "react-slick";
@@ -126,21 +126,32 @@ export default function Home() {
       title: "About Dhan-Pravah Finance",
       description: "For over 25 years, we've been helping clients navigate complex financial landscapes and achieve their goals. Our team of experienced professionals is dedicated to providing personalized service and expert guidance.",
       buttonText: "Our Services",
-      image: businesspeople,
-      imageAlt: "Financial advisors in consultation"
+      image: 'https://img.freepik.com/free-vector/team-concept-illustration_114360-678.jpg?t=st=1745310361~exp=1745313961~hmac=d6f02dc72a4d6d6988ce6e23c8b1741887246680eef24a4a9ebfb899a0a0cece&w=1380',
+      imageAlt: "Financial advisors in consultation",
+      bgImage: 'https://img.freepik.com/free-photo/abstract-luxury-soft-red-background-christmas-valentines-layout-designstudioroom-web-template-busine_1258-107785.jpg?t=st=1745311631~exp=1745315231~hmac=3f6aa280f74497c253772751e4a469c531afaf76f565703b6d4de9eb9e135126&w=1380', // Add background image
+      bgClass: "bg-blue-overlay" // Optional class for overlay
+    },
+    {
+      title: "About Dhan-Pravah Finance",
+      description: "For over 25 years, we've been helping clients navigate complex financial landscapes and achieve their goals. Our team of experienced professionals is dedicated to providing personalized service and expert guidance.",
+      buttonText: "Our Services",
+      image: 'https://img.freepik.com/free-photo/computer-screen-showcases-business-data-statistics-professional-boardroom_482257-113924.jpg?t=st=1745310402~exp=1745314002~hmac=8ca0f6c7909735d6dde608e9909b46bdf3abbf98690996ed8f9fcd791535ab82&w=1380',
+      imageAlt: "Financial advisors in consultation",
+      bgImage: 'https://img.freepik.com/free-photo/abstract-luxury-soft-red-background-christmas-valentines-layout-designstudioroom-web-template-busine_1258-107785.jpg?t=st=1745311631~exp=1745315231~hmac=3f6aa280f74497c253772751e4a469c531afaf76f565703b6d4de9eb9e135126&w=1380', // Add background image
+      bgClass: "bg-blue-overlay" // Optional class for overlay
     },
     {
       title: "Financial Excellence",
       description: "We pride ourselves on delivering exceptional financial solutions tailored to your unique needs. Our strategic approach ensures optimal results for individuals and businesses alike.",
       buttonText: "Learn More",
-      image: modernbusinesscenter,
+      image: modernbusinesscenter, // Local image import
       imageAlt: "Team analyzing financial data"
     },
     {
       title: "Trusted Advisors",
       description: "Join thousands of satisfied clients who trust Dhan-Pravah Finance with their most important financial decisions. Experience the difference of working with true experts.",
       buttonText: "Contact Us",
-      image: "/api/placeholder/600/400",
+      image: "/api/placeholder/600/400", // Using placeholder as external URLs might be restricted
       imageAlt: "Client meeting with financial advisor"
     }
   ];
@@ -189,24 +200,112 @@ export default function Home() {
     }
   ];
 
+
+  const [loanAmount, setLoanAmount] = useState(150000);
+  const [interestRate, setInterestRate] = useState(8.5);
+  const [loanTenure, setLoanTenure] = useState(12);
+  const [tenureType, setTenureType] = useState('months'); // months or years
+  const [downPayment, setDownPayment] = useState(15000);
+  
+  // State for calculated values
+  const [emi, setEmi] = useState(0);
+  const [totalInterest, setTotalInterest] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  // Handle slider and input changes
+  const handleLoanAmountChange = (e) => {
+    const value = parseFloat(e.target.value);
+    setLoanAmount(isNaN(value) ? 0 : value);
+  };
+
+  const handleInterestRateChange = (e) => {
+    const value = parseFloat(e.target.value);
+    setInterestRate(isNaN(value) ? 0 : value);
+  };
+
+  const handleLoanTenureChange = (e) => {
+    const value = parseInt(e.target.value);
+    setLoanTenure(isNaN(value) ? 0 : value);
+  };
+
+  const handleTenureTypeChange = (e) => {
+    setTenureType(e.target.value);
+  };
+
+  const handleDownPaymentChange = (e) => {
+    const value = parseFloat(e.target.value);
+    setDownPayment(isNaN(value) ? 0 : value);
+  };
+
+  // Calculate EMI, total interest, and total amount
+  useEffect(() => {
+    // Convert tenure to months if it's in years
+    const tenureInMonths = tenureType === 'years' ? loanTenure * 12 : loanTenure;
+    
+    // Convert interest rate from annual to monthly
+    const monthlyInterestRate = interestRate / 100 / 12;
+    
+    // Calculate principal after down payment
+    const principal = loanAmount - downPayment;
+    
+    if (principal > 0 && interestRate > 0 && tenureInMonths > 0) {
+      // EMI calculation formula: [P x R x (1+R)^N]/[(1+R)^N-1]
+      // Where, P = Principal loan amount, R = Monthly interest rate, N = Loan tenure in months
+      const emiValue = principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureInMonths) / 
+                      (Math.pow(1 + monthlyInterestRate, tenureInMonths) - 1);
+      
+      setEmi(emiValue);
+      setTotalAmount(emiValue * tenureInMonths);
+      setTotalInterest(emiValue * tenureInMonths - principal);
+    } else {
+      setEmi(0);
+      setTotalAmount(0);
+      setTotalInterest(0);
+    }
+  }, [loanAmount, interestRate, loanTenure, tenureType, downPayment]);
+
+  // Format currency function
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(amount);
+  };
+
+  // Data for donut chart
+  const chartData = [
+    { name: 'Principal Amount', value: loanAmount - downPayment, color: '#4169E1' },
+    { name: 'Interest Payable', value: Math.round(totalInterest), color: '#FFD700' },
+    { name: 'Taxes', value: Math.round(totalAmount * 0.05), color: '#32CD32' } // Assumed 5% of total as taxes
+  ];
+
+
   return (
     <div className="home-page w-full">
       <Navbar />
       <div className="font-sans text-gray-500 w-full">
         {/* Hero Section with full width design */}
         <div className="bg-white w-full text-black">
-          <div className="w-full px-4 md:px-8 py-16 md:py-24">
+          <div className="w-full  py-16 md:py-21">
             <div className="container mx-auto">
               {/* Full section slider */}
               <div className="slider-container">
                 <Slider {...settings}>
                   {sliderContent.map((slide, index) => (
-                    <div key={index} className="slide-item">
+                    <div key={index} className={`slide-item ${slide.bgClass || ''}`}>
+                      {/* Background image */}
+                      <div
+                        className="slide-background"
+                        style={{ backgroundImage: `url(${slide.bgImage})` }}
+                      ></div>
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                         {/* Left content */}
-                        <div className="text-center md:text-left p-6">
-                          <h1 className="text-black text-4xl md:text-5xl font-bold mb-6">{slide.title}</h1>
-                          <p className="text-lg text-black leading-relaxed mb-8">
+                        <div className="slide-content text-center md:text-left">
+                          <h1 className="text-4xl md:text-5xl font-bold mb-6">{slide.title}</h1>
+                          <p className="text-lg leading-relaxed mb-8">
                             {slide.description}
                           </p>
                           <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
