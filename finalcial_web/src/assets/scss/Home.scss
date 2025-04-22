@@ -5,7 +5,6 @@
   position: relative;
   margin-bottom: 2rem;
   /* Add padding on sides to make room for arrows */
-  padding: 0 80px;
   
   .slider-wrapper {
     position: relative;
@@ -41,23 +40,16 @@
   /* Image styles for slider */
   .slide-image-container {
     width: 100%;
-    height: 350px;
+margin: 20px;
     overflow: hidden;
     border-radius: 8px;
     // box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    border: 4px solid rgba(255, 255, 255, 0.1);
   }
   
   .slide-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* This ensures the image covers the container without distortion */
-    object-position: center; /* Centers the image */
-    transition: transform 0.3s ease;
-    
-    &:hover {
-      transform: scale(1.03);
-    }
+    // height: 100vh;
+    object-position: center; /* Centers the image */    
   }
   
   /* Custom arrows with icons */
@@ -93,11 +85,11 @@
   }
   
   .prev-arrow {
-    left: -70px; /* Position outside the container */
+    left: 70px; /* Position outside the container */
   }
   
   .next-arrow {
-    right: -70px; /* Position outside the container */
+    right: 70px; /* Position outside the container */
   }
   
   /* Add a subtle fade effect for slides */
@@ -184,6 +176,87 @@
     
     .slide-image-container {
       height: 200px;
+    }
+  }
+}
+/* Add these styles to your Home.scss */
+
+.slide-item {
+  position: relative;
+  min-height: 500px; /* Adjust as needed */
+  overflow: hidden;
+  
+  /* Grid container for content */
+  .grid {
+    position: relative;
+    z-index: 2; /* Ensure content stays above background */
+  }
+  
+  /* Background image styling */
+  .slide-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    
+    /* Optional overlay */
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      // background: rgba(0, 0, 0, 0.4); /* Semi-dark overlay */
+    }
+  }
+  
+
+}
+
+/* Adjust the slide content container */
+.slide-content {
+  padding: 3rem;
+  color: white; /* Text color for better contrast */
+  
+  h1, p {
+    color: inherit; /* Inherit white color */
+  }
+}
+@media (max-width: 768px) {
+  .slide-item {
+    min-height: 400px;
+    
+    .grid {
+      grid-template-columns: 1fr !important;
+    }
+    
+    .slide-content {
+      padding: 2rem;
+      order: 2; /* Move content below image on mobile */
+    }
+    
+    .slide-image-container {
+      order: 1; /* Move image above content on mobile */
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .slide-item {
+    min-height: 350px;
+    
+    .slide-content {
+      padding: 1.5rem;
+      
+      h1 {
+        font-size: 2rem;
+      }
     }
   }
 }
