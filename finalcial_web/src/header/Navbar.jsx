@@ -134,7 +134,7 @@ const Navbar = () => {
                   onClick={() => setIsServicesOpen(!isServicesOpen)}
                   className="w-full text-left px-3 py-2 rounded-md text-base font-medium flex justify-between items-center hover-underline-animation offer-underline-animation whitespace-nowrap"
                 >
-                  <span className='hover:text-amber-400'>What We Offer</span> <span className="ml-1">{isServicesOpen ? '▲' : '▼'}</span>
+                  <span className='hover:text-amber-400'>What We Offer</span>
                 </button>
 
                 {/* Enhanced dropdown with images - WIDER VERSION */}
@@ -229,9 +229,9 @@ const Navbar = () => {
                   aria-label="Account options"
                 >
                   <User size={20} color="#1e293b" />
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="#1e293b">
+                  {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="#1e293b">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
+                  </svg> */}
                 </button>
 
                 {/* Auth Dropdown Menu - HOVER style matching "What We Offer" */}
@@ -288,7 +288,7 @@ const Navbar = () => {
                   onClick={() => setIsServicesOpen(!isServicesOpen)}
                   className="w-full text-left px-3 py-2 rounded-md text-base font-medium flex justify-between items-center hover-underline-animation offer-underline-animation whitespace-nowrap"
                 >
-                  <span>What We Offer</span> <span className="ml-1">{isServicesOpen ? '▲' : '▼'}</span>
+                  <span>What We Offer</span> 
                 </button>
                 {isServicesOpen && (
                   <div className="pl-2 mt-1 bg-gray-800 rounded-md">

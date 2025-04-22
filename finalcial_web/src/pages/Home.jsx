@@ -315,29 +315,29 @@ export default function Home() {
               style={{ backgroundImage: `url(${slide.bgImage})` }}
             ></div>
 
-            {/* Overlay */}
-            <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
-          </div>
+                      {/* Overlay */}
+                      <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
+                    </div>
 
-          {/* Content */}
-          <div className="relative z-20 h-full w-full">
-            <div className="w-full px-4 h-full">
-              <div className="flex items-center justify-center h-full">
-                {/* Center Content - Increased Size */}
-                <div className="text-center text-white w-full max-w-4xl px-6">
-                  <h1 className="text-5xl md:text-6xl font-bold mb-8">{slide.title}</h1>
-                  <p className="text-xl md:text-2xl leading-relaxed mb-10 mx-auto max-w-3xl">
-                    {slide.description}
-                  </p>
-                  <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors duration-300 text-xl">
-                    {slide.buttonText}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+                    {/* Content */}
+                    <div className="relative z-20 h-full w-full">
+                      <div className="w-full px-4 h-full">
+                        <div className="flex items-center justify-center h-full">
+                          {/* Center Content - Increased Size */}
+                          <div className="text-center text-white w-full max-w-4xl px-6">
+                            <h1 className="text-5xl md:text-6xl font-bold mb-8">{slide.title}</h1>
+                            <p className="text-xl md:text-2xl leading-relaxed mb-10 mx-auto max-w-3xl">
+                              {slide.description}
+                            </p>
+                            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors duration-300 text-xl">
+                              {slide.buttonText}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
 
       {/* Desktop Vertical Navigation - Hidden on mobile/tablet */}
       <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 hidden lg:flex flex-col items-center">
@@ -349,22 +349,21 @@ export default function Home() {
           <ChevronUp size={24} />
         </button>
 
-        {/* Page Numbers */}
-        <div className="flex flex-col items-center space-y-4">
-          {sliderContent.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                currentSlide === index
-                  ? 'bg-orange-500 text-white'
-                  : 'bg-white text-gray-700 opacity-70 hover:opacity-100'
-              } transition-all duration-300`}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
+                  {/* Page Numbers */}
+                  <div className="flex flex-col items-center space-y-4">
+                    {sliderContent.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`w-8 h-8 flex items-center justify-center rounded-full ${currentSlide === index
+                            ? 'bg-orange-500 text-white'
+                            : 'bg-white text-gray-700 opacity-70 hover:opacity-100'
+                          } transition-all duration-300`}
+                      >
+                        {index + 1}
+                      </button>
+                    ))}
+                  </div>
 
         {/* Down Arrow - Below the numbers */}
         <button
@@ -396,7 +395,7 @@ export default function Home() {
               {/* End of slider */}
               {/* Services Section */}
               <div className="container mx-auto px-4 py-16">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Service Card 1 */}
                   <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-blue-200 transform hover:-translate-y-1 hover:bg-blue-600 group">
                     <div className="flex justify-center mb-4">
