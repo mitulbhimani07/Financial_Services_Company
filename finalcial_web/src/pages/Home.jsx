@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../header/Navbar';
 import Footer from '../header/Footer';
 import Slider from "react-slick";
-import { ChevronLeft, ChevronRight } from "lucide-react"; 
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "../assets/scss/Home.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,15 +12,19 @@ import { RiCustomerService2Line } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa6";
 import { FaCalculator } from "react-icons/fa";
 import { RiBankFill, RiMoneyDollarCircleLine, RiCalculatorLine, RiBriefcaseLine } from "react-icons/ri";
-import {  useRef } from 'react';
+import { useRef } from 'react';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { PieChart, Pie, Cell } from 'recharts';
+import { ChevronUp, ChevronDown } from 'lucide-react';
+
 
 export default function Home() {
 
   const [isHovered, setIsHovered] = useState(null);
   const [flippedCard, setFlippedCard] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -31,7 +35,7 @@ export default function Home() {
   const [loanTenure, setLoanTenure] = useState(12);
   const [tenureType, setTenureType] = useState('months'); // months or years
   const [downPayment, setDownPayment] = useState(15000);
-  
+
   // State for calculated values
   const [emi, setEmi] = useState(0);
   const [totalInterest, setTotalInterest] = useState(0);
@@ -66,19 +70,19 @@ export default function Home() {
   useEffect(() => {
     // Convert tenure to months if it's in years
     const tenureInMonths = tenureType === 'years' ? loanTenure * 12 : loanTenure;
-    
+
     // Convert interest rate from annual to monthly
     const monthlyInterestRate = interestRate / 100 / 12;
-    
+
     // Calculate principal after down payment
     const principal = loanAmount - downPayment;
-    
+
     if (principal > 0 && interestRate > 0 && tenureInMonths > 0) {
       // EMI calculation formula: [P x R x (1+R)^N]/[(1+R)^N-1]
       // Where, P = Principal loan amount, R = Monthly interest rate, N = Loan tenure in months
-      const emiValue = principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureInMonths) / 
-                      (Math.pow(1 + monthlyInterestRate, tenureInMonths) - 1);
-      
+      const emiValue = principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureInMonths) /
+        (Math.pow(1 + monthlyInterestRate, tenureInMonths) - 1);
+
       setEmi(emiValue);
       setTotalAmount(emiValue * tenureInMonths);
       setTotalInterest(emiValue * tenureInMonths - principal);
@@ -164,7 +168,7 @@ export default function Home() {
       transform: "rotateY(180deg)",
     }
   };
-  
+
   // Custom arrow components with React icons
   const PrevArrow = (props) => {
     const { onClick } = props;
@@ -204,34 +208,40 @@ export default function Home() {
   // Slider content with both text and images
   const sliderContent = [
     {
-      title: "About Dhan-Pravah Finance",
-      description: "For over 25 years, we've been helping clients navigate complex financial landscapes and achieve their goals. Our team of experienced professionals is dedicated to providing personalized service and expert guidance.",
-      buttonText: "Our Services",
-      image: 'https://img.freepik.com/free-vector/team-concept-illustration_114360-678.jpg?t=st=1745310361~exp=1745313961~hmac=d6f02dc72a4d6d6988ce6e23c8b1741887246680eef24a4a9ebfb899a0a0cece&w=1380',
-      imageAlt: "Financial advisors in consultation",
-      bgImage: 'https://img.freepik.com/free-photo/abstract-luxury-soft-red-background-christmas-valentines-layout-designstudioroom-web-template-busine_1258-107785.jpg?t=st=1745311631~exp=1745315231~hmac=3f6aa280f74497c253772751e4a469c531afaf76f565703b6d4de9eb9e135126&w=1380', // Add background image
-      bgClass: "bg-blue-overlay" // Optional class for overlay
+      title: "Smart Financial Solutions",
+      description: "Discover our comprehensive financial services designed to help you achieve your financial goals with confidence.",
+      buttonText: "Get Started",
+      image: "/api/placeholder/400/400", 
+      imageAlt: "Financial planning services",
+      // Online image of stock market charts
+      bgImage: "https://images.unsplash.com/photo-1620228885847-9eab2a1adddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     },
     {
-      title: "About Dhan-Pravah Finance",
-      description: "For over 25 years, we've been helping clients navigate complex financial landscapes and achieve their goals. Our team of experienced professionals is dedicated to providing personalized service and expert guidance.",
-      buttonText: "Our Services",
-      image: 'https://img.freepik.com/free-photo/computer-screen-showcases-business-data-statistics-professional-boardroom_482257-113924.jpg?t=st=1745310402~exp=1745314002~hmac=8ca0f6c7909735d6dde608e9909b46bdf3abbf98690996ed8f9fcd791535ab82&w=1380',
-      imageAlt: "Financial advisors in consultation",
-      bgImage: 'https://img.freepik.com/free-photo/abstract-luxury-soft-red-background-christmas-valentines-layout-designstudioroom-web-template-busine_1258-107785.jpg?t=st=1745311631~exp=1745315231~hmac=3f6aa280f74497c253772751e4a469c531afaf76f565703b6d4de9eb9e135126&w=1380', // Add background image
-      bgClass: "bg-blue-overlay" // Optional class for overlay
-    },
-    {
-      title: "Financial Excellence",
-      description: "We pride ourselves on delivering exceptional financial solutions tailored to your unique needs. Our strategic approach ensures optimal results for individuals and businesses alike.",
+      title: "Investment Strategies",
+      description: "Our expert advisors create personalized investment portfolios that align with your risk tolerance and financial objectives.",
       buttonText: "Learn More",
-      image: 'https://img.freepik.com/free-vector/online-certification-with-cap_23-2148599132.jpg?t=st=1745310793~exp=1745314393~hmac=3ed410140177a246aed5a0f36ad773a24c87fe01ebb04e526f87f8723a37f7af&w=1380',
-      imageAlt: "Team analyzing financial data",
-      bgImage: 'https://img.freepik.com/free-photo/abstract-luxury-soft-red-background-christmas-valentines-layout-designstudioroom-web-template-busine_1258-107785.jpg?t=st=1745311631~exp=1745315231~hmac=3f6aa280f74497c253772751e4a469c531afaf76f565703b6d4de9eb9e135126&w=1380', // Add background image
-      bgClass: "bg-orange-overlay" // Optional class for overlay
+      image: "/api/placeholder/400/400",
+      imageAlt: "Investment portfolio",
+      // Online image of financial district skyscrapers
+      bgImage: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     },
-    // ... other slides
+    {
+      title: "Secure Banking Solutions",
+      description: "Experience seamless banking with state-of-the-art security features and 24/7 access to your accounts from anywhere.",
+      buttonText: "Join Now",
+      image: "/api/placeholder/400/400",
+      imageAlt: "Mobile banking app",
+      // Online image of digital banking/fintech
+      bgImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+    }
   ];
+  const goToNextSlide = () => {
+    setCurrentSlide((prev) => (prev === sliderContent.length - 1 ? 0 : prev + 1));
+  };
+
+  const goToPrevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? sliderContent.length - 1 : prev - 1));
+  };
 
   const services = [
     {
@@ -278,7 +288,7 @@ export default function Home() {
   ];
 
 
- 
+
 
 
 
@@ -291,43 +301,94 @@ export default function Home() {
           <div className="w-full  py-16 md:py-21">
             <div className="container mx-auto">
               {/* Full section slider */}
-              <div className="slider-container">
-                <Slider {...settings}>
-                  {sliderContent.map((slide, index) => (
-                    <div key={index} className={`slide-item ${slide.bgClass || ''}`}>
-                      {/* Background image */}
-                      <div
-                        className="slide-background"
-                        style={{ backgroundImage: `url(${slide.bgImage})` }}
-                      ></div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                        {/* Left content */}
-                        <div className="slide-content text-center md:text-left">
-                          <h1 className="text-4xl md:text-5xl font-bold mb-6">{slide.title}</h1>
-                          <p className="text-lg leading-relaxed mb-8">
-                            {slide.description}
-                          </p>
-                          <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
-                            {slide.buttonText}
-                          </button>
-                        </div>
-
-                        {/* Right image */}
-                        <div className="flex justify-center md:justify-end">
-                          <div className="slide-image-container">
-                            <img
-                              src={slide.image}
-                              alt={slide.imageAlt}
-                              className="slide-image"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </Slider>
+              <div className="relative w-screen h-screen overflow-hidden">
+      {/* Slides */}
+      {sliderContent.map((slide, index) => (
+        <div 
+          key={index} 
+          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${
+            currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          }`}
+        >
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0 w-full h-full">
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 w-full h-full bg-cover bg-center"
+              style={{ backgroundImage: `url(${slide.bgImage})` }}
+            ></div>
+            
+            {/* Overlay */}
+            <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
+          </div>
+          
+          {/* Content */}
+          <div className="relative z-20 h-full">
+            <div className="container mx-auto px-4 h-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center h-full">
+                {/* Left Content */}
+                <div className="text-center md:text-left text-white">
+                  <h1 className="text-4xl md:text-5xl font-bold mb-6">{slide.title}</h1>
+                  <p className="text-lg leading-relaxed mb-8">
+                    {slide.description}
+                  </p>
+                  <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
+                    {slide.buttonText}
+                  </button>
+                </div>
+                
+                {/* Right Image */}
+                <div className="hidden md:flex justify-end items-center">
+                  <div className="relative">
+                    <img
+                      src={slide.image}
+                      alt={slide.imageAlt}
+                      className="max-w-full rounded-lg shadow-lg"
+                    />
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+      ))}
+      
+      {/* Vertical Navigation with Repositioned Arrows */}
+      <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 flex flex-col items-center">
+        {/* Up Arrow - Above the numbers */}
+        <button 
+          onClick={goToPrevSlide}
+          className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mb-4"
+        >
+          <ChevronUp size={24} />
+        </button>
+        
+        {/* Page Numbers */}
+        <div className="flex flex-col items-center space-y-4">
+          {sliderContent.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-8 h-8 flex items-center justify-center rounded-full ${
+                currentSlide === index 
+                  ? 'bg-orange-500 text-white' 
+                  : 'bg-white text-gray-700 opacity-70 hover:opacity-100'
+              } transition-all duration-300`}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+        
+        {/* Down Arrow - Below the numbers */}
+        <button 
+          onClick={goToNextSlide}
+          className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mt-4"
+        >
+          <ChevronDown size={24} />
+        </button>
+      </div>
+    </div>
               {/* End of slider */}
               {/* Services Section */}
               <div className="container mx-auto px-4 py-16">
@@ -380,52 +441,52 @@ export default function Home() {
 
               {/* End of Services Section */}
               {/* ================================= */}
-              <div style={{width:"100% !important"}} className='bg-gray-50'>
-              <div className=" py-16 px-4" >
-                <div className="container mx-auto px-4">
-                  <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Explore a range of services from Dhan-Pravah Finance</h2>
-                    <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                      As a leading Non-Banking Financial Company (NBFC), we provide financial solutions that
-                      match your needs and help you build a better future. Our services are trusted by over 10
-                      million customers.
-                    </p>
-                  </div>
+              <div style={{ width: "100% !important" }} className='bg-gray-50'>
+                <div className=" py-16 px-4" >
+                  <div className="container mx-auto px-4">
+                    <div className="text-center mb-12">
+                      <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Explore a range of services from Dhan-Pravah Finance</h2>
+                      <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
+                      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                        As a leading Non-Banking Financial Company (NBFC), we provide financial solutions that
+                        match your needs and help you build a better future. Our services are trusted by over 10
+                        million customers.
+                      </p>
+                    </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {services.map((service, index) => (
-                      <div
-                        key={index}
-                        className="relative overflow-hidden rounded-lg shadow-lg transition-all duration-500 group cursor-pointer transform hover:-translate-y-2"
-                      >
-                        {/* Glass effect background */}
-                        <div className="absolute inset-0 bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border border-white border-opacity-30"></div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                      {services.map((service, index) => (
+                        <div
+                          key={index}
+                          className="relative overflow-hidden rounded-lg shadow-lg transition-all duration-500 group cursor-pointer transform hover:-translate-y-2"
+                        >
+                          {/* Glass effect background */}
+                          <div className="absolute inset-0 bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border border-white border-opacity-30"></div>
 
-                        {/* Card content */}
-                        <div className="relative z-10 p-8 text-center h-64 flex flex-col items-center justify-center transition-all duration-300">
-                          {/* Icon container with glassmorphic circle */}
-                          <div className="mb-6 p-4 bg-white bg-opacity-30 rounded-full shadow-md transition-all duration-500 group-hover:bg-orange-500 group-hover:shadow-orange-300">
-                            <div className="text-orange-500 transition-all duration-300 group-hover:text-white transform group-hover:scale-110">
-                              {service.icon}
+                          {/* Card content */}
+                          <div className="relative z-10 p-8 text-center h-64 flex flex-col items-center justify-center transition-all duration-300">
+                            {/* Icon container with glassmorphic circle */}
+                            <div className="mb-6 p-4 bg-white bg-opacity-30 rounded-full shadow-md transition-all duration-500 group-hover:bg-orange-500 group-hover:shadow-orange-300">
+                              <div className="text-orange-500 transition-all duration-300 group-hover:text-white transform group-hover:scale-110">
+                                {service.icon}
+                              </div>
                             </div>
+
+                            <h3 className="text-2xl font-bold text-gray-800 mb-3 transition-all duration-300 group-hover:text-white">
+                              {service.title}
+                            </h3>
+                            <p className="text-gray-600 transition-all duration-300 group-hover:text-white group-hover:font-medium">
+                              {service.description}
+                            </p>
                           </div>
 
-                          <h3 className="text-2xl font-bold text-gray-800 mb-3 transition-all duration-300 group-hover:text-white">
-                            {service.title}
-                          </h3>
-                          <p className="text-gray-600 transition-all duration-300 group-hover:text-white group-hover:font-medium">
-                            {service.description}
-                          </p>
+                          {/* Animated gradient overlay */}
+                          <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-br from-orange-500 to-orange-600 transition-all duration-500 ease-out group-hover:h-full opacity-90"></div>
                         </div>
-
-                        {/* Animated gradient overlay */}
-                        <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-br from-orange-500 to-orange-600 transition-all duration-500 ease-out group-hover:h-full opacity-90"></div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
@@ -493,7 +554,7 @@ export default function Home() {
               </h3>
               <div className="w-16 h-1 bg-blue-500 mx-auto mb-8"></div>
 
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                 {statsData.map((stat) => (
                   <div key={stat.id} className="p-4">
@@ -502,19 +563,19 @@ export default function Home() {
                       <div className="relative">
                         <svg className="w-32 h-32 mx-auto" viewBox="0 0 100 100">
                           {/* Background circle */}
-                          <circle 
-                            cx="50" 
-                            cy="50" 
-                            r="45" 
-                            fill="none" 
-                            stroke="#f1f1f1" 
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="45"
+                            fill="none"
+                            stroke="#f1f1f1"
                             strokeWidth="10"
                           />
                           {/* Progress circle */}
-                          <circle 
-                            cx="50" 
-                            cy="50" 
-                            r="45" 
+                          <circle
+                            cx="50"
+                            cy="50"
+                            r="45"
                             fill="none"
                             stroke={stat.color}
                             strokeWidth="10"
@@ -525,12 +586,12 @@ export default function Home() {
                             className="transition-all duration-1000 ease-out"
                           />
                           {/* Center text */}
-                          <text 
-                            x="50" 
-                            y="50" 
-                            dominantBaseline="middle" 
-                            textAnchor="middle" 
-                            fontSize="20" 
+                          <text
+                            x="50"
+                            y="50"
+                            dominantBaseline="middle"
+                            textAnchor="middle"
+                            fontSize="20"
                             fontWeight="bold"
                             fill="#1e293b"
                           >
@@ -541,14 +602,14 @@ export default function Home() {
                     ) : (
                       // For regular numbers and decimal values (9852+ and 2.5k)
                       <div className="flex flex-col items-center justify-center">
-                        <div className="w-32 h-32 rounded-full bg-blue-50 border-8 border-opacity-20" 
-                             style={{ borderColor: stat.color }}>
+                        <div className="w-32 h-32 rounded-full bg-blue-50 border-8 border-opacity-20"
+                          style={{ borderColor: stat.color }}>
                           <div className="flex items-center justify-center h-full">
                             <div className="text-3xl font-bold" style={{ color: stat.color }}>
                               {inView ? (
-                                <CountUp 
+                                <CountUp
                                   start={0}
-                                  end={stat.value} 
+                                  end={stat.value}
                                   duration={2.5}
                                   decimals={stat.type === "decimal" ? 1 : 0}
                                   suffix={stat.suffix}
@@ -572,226 +633,226 @@ export default function Home() {
 
 
         <div className="bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto mb-5">
-      <h2 className="text-2xl font-bold text-blue-900 text-center mb-6">EMI Calculator</h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Left side - Input Form */}
-        <div className="space-y-6">
-          {/* Loan Amount */}
-          <div>
-            <div className="flex justify-between mb-2">
-              <label className="font-medium text-gray-700">Loan Amount</label>
-              <span className="text-blue-600 font-medium">{formatCurrency(loanAmount)}</span>
-            </div>
-            <input 
-              type="range" 
-              min="10000" 
-              max="500000" 
-              step="1000" 
-              value={loanAmount} 
-              onChange={handleLoanAmountChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
-            <div className="flex justify-between mt-1 text-xs text-gray-500">
-              <span>$10,000</span>
-              <span>$500,000</span>
-            </div>
-            <div className="mt-2">
-              <input 
-                type="number" 
-                value={loanAmount} 
-                onChange={handleLoanAmountChange}
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                min="10000"
-                max="500000"
-              />
-            </div>
-          </div>
-          
-          {/* Down Payment */}
-          <div>
-            <div className="flex justify-between mb-2">
-              <label className="font-medium text-gray-700">Down Payment</label>
-              <span className="text-blue-600 font-medium">{formatCurrency(downPayment)}</span>
-            </div>
-            <input 
-              type="range" 
-              min="0" 
-              max={loanAmount * 0.5} 
-              step="1000" 
-              value={downPayment} 
-              onChange={handleDownPaymentChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
-            <div className="flex justify-between mt-1 text-xs text-gray-500">
-              <span>$0</span>
-              <span>${Math.round(loanAmount * 0.5).toLocaleString()}</span>
-            </div>
-            <div className="mt-2">
-              <input 
-                type="number" 
-                value={downPayment} 
-                onChange={handleDownPaymentChange}
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                min="0"
-                max={loanAmount * 0.5}
-              />
-            </div>
-          </div>
-          
-          {/* Interest Rate */}
-          <div>
-            <div className="flex justify-between mb-2">
-              <label className="font-medium text-gray-700">Interest Rate (% per annum)</label>
-              <span className="text-blue-600 font-medium">{interestRate}%</span>
-            </div>
-            <input 
-              type="range" 
-              min="1" 
-              max="20" 
-              step="0.1" 
-              value={interestRate} 
-              onChange={handleInterestRateChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
-            <div className="flex justify-between mt-1 text-xs text-gray-500">
-              <span>1%</span>
-              <span>20%</span>
-            </div>
-            <div className="mt-2">
-              <input 
-                type="number" 
-                value={interestRate} 
-                onChange={handleInterestRateChange}
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                min="1"
-                max="20"
-                step="0.1"
-              />
-            </div>
-          </div>
-          
-          {/* Loan Tenure */}
-          <div>
-            <div className="flex justify-between mb-2">
-              <label className="font-medium text-gray-700">Loan Tenure</label>
-              <span className="text-blue-600 font-medium">{loanTenure} {tenureType}</span>
-            </div>
-            <div className="flex space-x-4 mb-2">
-              <label className="inline-flex items-center">
-                <input 
-                  type="radio" 
-                  value="months" 
-                  checked={tenureType === 'months'} 
-                  onChange={handleTenureTypeChange} 
-                  className="form-radio h-4 w-4 text-blue-600"
-                />
-                <span className="ml-2 text-gray-700">Months</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input 
-                  type="radio" 
-                  value="years" 
-                  checked={tenureType === 'years'} 
-                  onChange={handleTenureTypeChange} 
-                  className="form-radio h-4 w-4 text-blue-600"
-                />
-                <span className="ml-2 text-gray-700">Years</span>
-              </label>
-            </div>
-            <input 
-              type="range" 
-              min={tenureType === 'years' ? '1' : '1'} 
-              max={tenureType === 'years' ? '30' : '360'} 
-              step="1" 
-              value={loanTenure} 
-              onChange={handleLoanTenureChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
-            <div className="flex justify-between mt-1 text-xs text-gray-500">
-              <span>{tenureType === 'years' ? '1 Year' : '1 Month'}</span>
-              <span>{tenureType === 'years' ? '30 Years' : '360 Months'}</span>
-            </div>
-            <div className="mt-2">
-              <input 
-                type="number" 
-                value={loanTenure} 
-                onChange={handleLoanTenureChange}
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                min={tenureType === 'years' ? '1' : '1'}
-                max={tenureType === 'years' ? '30' : '360'}
-              />
-            </div>
-          </div>
-        </div>
-        
-        {/* Right side - Results with visualization */}
-        <div>
-          {/* EMI Card */}
-          <div className="bg-blue-600 rounded-lg p-6 text-white text-center mb-6">
-            <div className="text-3xl font-bold mb-1">{formatCurrency(Math.round(emi))}</div>
-            <div className="text-sm">EMI per month</div>
-          </div>
-          
-          {/* Chart Section */}
-          <div className="flex justify-center items-center mb-6">
-            <div className="relative">
-              <PieChart width={180} height={180}>
-                <Pie
-                  data={chartData}
-                  cx={90}
-                  cy={90}
-                  innerRadius={60}
-                  outerRadius={80}
-                  paddingAngle={2}
-                  dataKey="value"
-                >
-                  {chartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-              </PieChart>
-            </div>
-            <div className="ml-4">
-              {chartData.map((item, index) => (
-                <div key={index} className="flex items-center mb-2">
-                  <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: item.color }}></div>
-                  <div className="text-sm">
-                    <span className="font-medium">{item.name}</span>
-                    <span className="ml-2">{formatCurrency(item.value)}</span>
-                  </div>
+          <h2 className="text-2xl font-bold text-blue-900 text-center mb-6">EMI Calculator</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Left side - Input Form */}
+            <div className="space-y-6">
+              {/* Loan Amount */}
+              <div>
+                <div className="flex justify-between mb-2">
+                  <label className="font-medium text-gray-700">Loan Amount</label>
+                  <span className="text-blue-600 font-medium">{formatCurrency(loanAmount)}</span>
                 </div>
-              ))}
+                <input
+                  type="range"
+                  min="10000"
+                  max="500000"
+                  step="1000"
+                  value={loanAmount}
+                  onChange={handleLoanAmountChange}
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                />
+                <div className="flex justify-between mt-1 text-xs text-gray-500">
+                  <span>$10,000</span>
+                  <span>$500,000</span>
+                </div>
+                <div className="mt-2">
+                  <input
+                    type="number"
+                    value={loanAmount}
+                    onChange={handleLoanAmountChange}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    min="10000"
+                    max="500000"
+                  />
+                </div>
+              </div>
+
+              {/* Down Payment */}
+              <div>
+                <div className="flex justify-between mb-2">
+                  <label className="font-medium text-gray-700">Down Payment</label>
+                  <span className="text-blue-600 font-medium">{formatCurrency(downPayment)}</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max={loanAmount * 0.5}
+                  step="1000"
+                  value={downPayment}
+                  onChange={handleDownPaymentChange}
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                />
+                <div className="flex justify-between mt-1 text-xs text-gray-500">
+                  <span>$0</span>
+                  <span>${Math.round(loanAmount * 0.5).toLocaleString()}</span>
+                </div>
+                <div className="mt-2">
+                  <input
+                    type="number"
+                    value={downPayment}
+                    onChange={handleDownPaymentChange}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    min="0"
+                    max={loanAmount * 0.5}
+                  />
+                </div>
+              </div>
+
+              {/* Interest Rate */}
+              <div>
+                <div className="flex justify-between mb-2">
+                  <label className="font-medium text-gray-700">Interest Rate (% per annum)</label>
+                  <span className="text-blue-600 font-medium">{interestRate}%</span>
+                </div>
+                <input
+                  type="range"
+                  min="1"
+                  max="20"
+                  step="0.1"
+                  value={interestRate}
+                  onChange={handleInterestRateChange}
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                />
+                <div className="flex justify-between mt-1 text-xs text-gray-500">
+                  <span>1%</span>
+                  <span>20%</span>
+                </div>
+                <div className="mt-2">
+                  <input
+                    type="number"
+                    value={interestRate}
+                    onChange={handleInterestRateChange}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    min="1"
+                    max="20"
+                    step="0.1"
+                  />
+                </div>
+              </div>
+
+              {/* Loan Tenure */}
+              <div>
+                <div className="flex justify-between mb-2">
+                  <label className="font-medium text-gray-700">Loan Tenure</label>
+                  <span className="text-blue-600 font-medium">{loanTenure} {tenureType}</span>
+                </div>
+                <div className="flex space-x-4 mb-2">
+                  <label className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      value="months"
+                      checked={tenureType === 'months'}
+                      onChange={handleTenureTypeChange}
+                      className="form-radio h-4 w-4 text-blue-600"
+                    />
+                    <span className="ml-2 text-gray-700">Months</span>
+                  </label>
+                  <label className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      value="years"
+                      checked={tenureType === 'years'}
+                      onChange={handleTenureTypeChange}
+                      className="form-radio h-4 w-4 text-blue-600"
+                    />
+                    <span className="ml-2 text-gray-700">Years</span>
+                  </label>
+                </div>
+                <input
+                  type="range"
+                  min={tenureType === 'years' ? '1' : '1'}
+                  max={tenureType === 'years' ? '30' : '360'}
+                  step="1"
+                  value={loanTenure}
+                  onChange={handleLoanTenureChange}
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                />
+                <div className="flex justify-between mt-1 text-xs text-gray-500">
+                  <span>{tenureType === 'years' ? '1 Year' : '1 Month'}</span>
+                  <span>{tenureType === 'years' ? '30 Years' : '360 Months'}</span>
+                </div>
+                <div className="mt-2">
+                  <input
+                    type="number"
+                    value={loanTenure}
+                    onChange={handleLoanTenureChange}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    min={tenureType === 'years' ? '1' : '1'}
+                    max={tenureType === 'years' ? '30' : '360'}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Right side - Results with visualization */}
+            <div>
+              {/* EMI Card */}
+              <div className="bg-blue-600 rounded-lg p-6 text-white text-center mb-6">
+                <div className="text-3xl font-bold mb-1">{formatCurrency(Math.round(emi))}</div>
+                <div className="text-sm">EMI per month</div>
+              </div>
+
+              {/* Chart Section */}
+              <div className="flex justify-center items-center mb-6">
+                <div className="relative">
+                  <PieChart width={180} height={180}>
+                    <Pie
+                      data={chartData}
+                      cx={90}
+                      cy={90}
+                      innerRadius={60}
+                      outerRadius={80}
+                      paddingAngle={2}
+                      dataKey="value"
+                    >
+                      {chartData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </div>
+                <div className="ml-4">
+                  {chartData.map((item, index) => (
+                    <div key={index} className="flex items-center mb-2">
+                      <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: item.color }}></div>
+                      <div className="text-sm">
+                        <span className="font-medium">{item.name}</span>
+                        <span className="ml-2">{formatCurrency(item.value)}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Details */}
+              <div className="space-y-3">
+                <div className="flex justify-between py-2 border-b border-gray-200">
+                  <span className="text-gray-600">Total Amount</span>
+                  <span className="font-medium">{formatCurrency(Math.round(totalAmount))}</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-gray-200">
+                  <span className="text-gray-600">Down Payment</span>
+                  <span className="font-medium">{formatCurrency(downPayment)}</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-gray-200">
+                  <span className="text-gray-600">Tenure</span>
+                  <span className="font-medium">{loanTenure} {tenureType}</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-gray-200">
+                  <span className="text-gray-600">Interest rate</span>
+                  <span className="font-medium">{interestRate}%</span>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-4 px-6 rounded-md transition-colors duration-300 mt-6">
+                Choose your bank
+              </button>
             </div>
           </div>
-          
-          {/* Details */}
-          <div className="space-y-3">
-            <div className="flex justify-between py-2 border-b border-gray-200">
-              <span className="text-gray-600">Total Amount</span>
-              <span className="font-medium">{formatCurrency(Math.round(totalAmount))}</span>
-            </div>
-            <div className="flex justify-between py-2 border-b border-gray-200">
-              <span className="text-gray-600">Down Payment</span>
-              <span className="font-medium">{formatCurrency(downPayment)}</span>
-            </div>
-            <div className="flex justify-between py-2 border-b border-gray-200">
-              <span className="text-gray-600">Tenure</span>
-              <span className="font-medium">{loanTenure} {tenureType}</span>
-            </div>
-            <div className="flex justify-between py-2 border-b border-gray-200">
-              <span className="text-gray-600">Interest rate</span>
-              <span className="font-medium">{interestRate}%</span>
-            </div>
-          </div>
-          
-          {/* CTA Button */}
-          <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-4 px-6 rounded-md transition-colors duration-300 mt-6">
-            Choose your bank
-          </button>
         </div>
-      </div>
-    </div>
 
       </div>
       <Footer />
