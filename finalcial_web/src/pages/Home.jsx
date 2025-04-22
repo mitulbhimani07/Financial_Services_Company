@@ -12,7 +12,7 @@ import { RiCustomerService2Line } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa6";
 import { FaCalculator } from "react-icons/fa";
 import { RiBankFill, RiMoneyDollarCircleLine, RiCalculatorLine, RiBriefcaseLine } from "react-icons/ri";
-import { useEffect, useRef } from 'react';
+import {  useRef } from 'react';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 
