@@ -209,32 +209,24 @@ export default function Home() {
   const sliderContent = [
     {
       title: "Smart Financial Solutions",
-      description: "Discover our comprehensive financial services designed to help you achieve your financial goals with confidence.",
+      description: "Discover our comprehensive financial services designed to help you achieve your financial goals with confidence. Our team of experts will guide you through every step of your financial journey.",
       buttonText: "Get Started",
-      image: "/api/placeholder/400/400", 
-      imageAlt: "Financial planning services",
-      // Online image of stock market charts
       bgImage: "https://images.unsplash.com/photo-1620228885847-9eab2a1adddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     },
     {
       title: "Investment Strategies",
-      description: "Our expert advisors create personalized investment portfolios that align with your risk tolerance and financial objectives.",
+      description: "Our expert advisors create personalized investment portfolios that align with your risk tolerance and financial objectives. We leverage market insights and advanced analytics to optimize returns.",
       buttonText: "Learn More",
-      image: "/api/placeholder/400/400",
-      imageAlt: "Investment portfolio",
-      // Online image of financial district skyscrapers
       bgImage: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     },
     {
       title: "Secure Banking Solutions",
-      description: "Experience seamless banking with state-of-the-art security features and 24/7 access to your accounts from anywhere.",
+      description: "Experience seamless banking with state-of-the-art security features and 24/7 access to your accounts from anywhere. Our digital platform puts financial control at your fingertips.",
       buttonText: "Join Now",
-      image: "/api/placeholder/400/400",
-      imageAlt: "Mobile banking app",
-      // Online image of digital banking/fintech
       bgImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     }
   ];
+
   const goToNextSlide = () => {
     setCurrentSlide((prev) => (prev === sliderContent.length - 1 ? 0 : prev + 1));
   };
@@ -299,13 +291,13 @@ export default function Home() {
         {/* Hero Section with full width design */}
         <div className="bg-white w-full text-black">
           <div className="w-full  py-16 md:py-21">
-            <div className="container mx-auto">
+            <div className=" mx-auto">
               {/* Full section slider */}
-              <div className="relative w-screen h-screen overflow-hidden">
+              <div className="relative w-full h-full overflow-hidden" style={{ height: "100vh", width: "100% !important" }}>
       {/* Slides */}
       {sliderContent.map((slide, index) => (
-        <div 
-          key={index} 
+        <div
+          key={index}
           className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${
             currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}
@@ -313,56 +305,45 @@ export default function Home() {
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 w-full h-full">
             {/* Background Image */}
-            <div 
+            <div
               className="absolute inset-0 w-full h-full bg-cover bg-center"
               style={{ backgroundImage: `url(${slide.bgImage})` }}
             ></div>
-            
+
             {/* Overlay */}
             <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
           </div>
-          
+
           {/* Content */}
-          <div className="relative z-20 h-full">
-            <div className="container mx-auto px-4 h-full">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center h-full">
-                {/* Left Content */}
-                <div className="text-center md:text-left text-white">
-                  <h1 className="text-4xl md:text-5xl font-bold mb-6">{slide.title}</h1>
-                  <p className="text-lg leading-relaxed mb-8">
+          <div className="relative z-20 h-full w-full">
+            <div className="w-full px-4 h-full">
+              <div className="flex items-center justify-center h-full">
+                {/* Center Content - Increased Size */}
+                <div className="text-center text-white w-full max-w-4xl px-6">
+                  <h1 className="text-5xl md:text-6xl font-bold mb-8">{slide.title}</h1>
+                  <p className="text-xl md:text-2xl leading-relaxed mb-10 mx-auto max-w-3xl">
                     {slide.description}
                   </p>
-                  <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300">
+                  <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors duration-300 text-xl">
                     {slide.buttonText}
                   </button>
-                </div>
-                
-                {/* Right Image */}
-                <div className="hidden md:flex justify-end items-center">
-                  <div className="relative">
-                    <img
-                      src={slide.image}
-                      alt={slide.imageAlt}
-                      className="max-w-full rounded-lg shadow-lg"
-                    />
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       ))}
-      
+
       {/* Vertical Navigation with Repositioned Arrows */}
       <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 flex flex-col items-center">
         {/* Up Arrow - Above the numbers */}
-        <button 
+        <button
           onClick={goToPrevSlide}
           className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mb-4"
         >
           <ChevronUp size={24} />
         </button>
-        
+
         {/* Page Numbers */}
         <div className="flex flex-col items-center space-y-4">
           {sliderContent.map((_, index) => (
@@ -370,8 +351,8 @@ export default function Home() {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                currentSlide === index 
-                  ? 'bg-orange-500 text-white' 
+                currentSlide === index
+                  ? 'bg-orange-500 text-white'
                   : 'bg-white text-gray-700 opacity-70 hover:opacity-100'
               } transition-all duration-300`}
             >
@@ -379,9 +360,9 @@ export default function Home() {
             </button>
           ))}
         </div>
-        
+
         {/* Down Arrow - Below the numbers */}
-        <button 
+        <button
           onClick={goToNextSlide}
           className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mt-4"
         >
@@ -548,7 +529,7 @@ export default function Home() {
             </div>
 
             {/* Updated Testimonial Section with mixed stats */}
-            <div className="mt-16 p-10" ref={ref}>
+            <div className="mt-16 p-10 bg-gray-50" ref={ref}>
               <h3 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 text-center ">
                 Our Impact By The Numbers
               </h3>
