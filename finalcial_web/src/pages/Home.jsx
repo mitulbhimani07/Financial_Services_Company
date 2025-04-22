@@ -144,16 +144,12 @@ export default function Home() {
       title: "Financial Excellence",
       description: "We pride ourselves on delivering exceptional financial solutions tailored to your unique needs. Our strategic approach ensures optimal results for individuals and businesses alike.",
       buttonText: "Learn More",
-      image: modernbusinesscenter, // Local image import
-      imageAlt: "Team analyzing financial data"
+      image: 'https://img.freepik.com/free-vector/online-certification-with-cap_23-2148599132.jpg?t=st=1745310793~exp=1745314393~hmac=3ed410140177a246aed5a0f36ad773a24c87fe01ebb04e526f87f8723a37f7af&w=1380',
+      imageAlt: "Team analyzing financial data",
+      bgImage: 'https://img.freepik.com/free-photo/abstract-luxury-soft-red-background-christmas-valentines-layout-designstudioroom-web-template-busine_1258-107785.jpg?t=st=1745311631~exp=1745315231~hmac=3f6aa280f74497c253772751e4a469c531afaf76f565703b6d4de9eb9e135126&w=1380', // Add background image
+      bgClass: "bg-orange-overlay" // Optional class for overlay
     },
-    {
-      title: "Trusted Advisors",
-      description: "Join thousands of satisfied clients who trust Dhan-Pravah Finance with their most important financial decisions. Experience the difference of working with true experts.",
-      buttonText: "Contact Us",
-      image: "/api/placeholder/600/400", // Using placeholder as external URLs might be restricted
-      imageAlt: "Client meeting with financial advisor"
-    }
+    // ... other slides
   ];
 
   const services = [
