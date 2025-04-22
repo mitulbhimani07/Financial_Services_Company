@@ -2,22 +2,63 @@ import React, { useState } from 'react';
 import Navbar from '../header/Navbar';
 import Footer from '../header/Footer';
 import Slider from "react-slick";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // Import React icons
+import { ChevronLeft, ChevronRight } from "lucide-react"; 
 import "../assets/scss/Home.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import businesspeople from '../assets/images/businesspeople.png'; // Adjust the path as necessary
-import modernbusinesscenter from '../assets/images/business.jpg'; // Adjust the path as necessary
-import {  RiCustomerService2Line } from "react-icons/ri";
+import businesspeople from '../assets/images/businesspeople.png';
+import modernbusinesscenter from '../assets/images/business.jpg';
+import { RiCustomerService2Line } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa6";
 import { FaCalculator } from "react-icons/fa";
 import { RiBankFill, RiMoneyDollarCircleLine, RiCalculatorLine, RiBriefcaseLine } from "react-icons/ri";
-
+import { useEffect, useRef } from 'react';
+import CountUp from 'react-countup';
+import { useInView } from 'react-intersection-observer';
 
 export default function Home() {
 
   const [isHovered, setIsHovered] = useState(null);
   const [flippedCard, setFlippedCard] = useState(null);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Updated stats data with different counter types
+  const statsData = [
+    { id: 1, label: "SOC 2 Compliance", value: 87, suffix: "%", color: "#10b981", type: "percentage" },
+    { id: 2, label: "Happy Clients", value: 9852, suffix: "+", color: "#06b6d4", type: "percentage" },
+    { id: 3, label: "Projects Completed", value: 2.5, suffix: "k", color: "#f97316", type: "percentage" },
+    { id: 4, label: "ISO 27001", value: 93, suffix: "%", color: "#a855f7", type: "percentage" }
+  ];
+
+  const getColorClass = (color) => {
+    const colorMap = {
+      emerald: "text-emerald-500 border-emerald-400 bg-emerald-50",
+      cyan: "text-cyan-500 border-cyan-400 bg-cyan-50",
+      orange: "text-orange-500 border-orange-400 bg-orange-50",
+      purple: "text-purple-500 border-purple-400 bg-purple-50"
+    };
+    return colorMap[color] || "text-orange-500 border-orange-400 bg-orange-50";
+  };
 
   const styles = {
     flipCard: {
@@ -42,6 +83,7 @@ export default function Home() {
       transform: "rotateY(180deg)",
     }
   };
+  
   // Custom arrow components with React icons
   const PrevArrow = (props) => {
     const { onClick } = props;
@@ -84,21 +126,21 @@ export default function Home() {
       title: "About Dhan-Pravah Finance",
       description: "For over 25 years, we've been helping clients navigate complex financial landscapes and achieve their goals. Our team of experienced professionals is dedicated to providing personalized service and expert guidance.",
       buttonText: "Our Services",
-      image: businesspeople, // Local image import
+      image: businesspeople,
       imageAlt: "Financial advisors in consultation"
     },
     {
       title: "Financial Excellence",
       description: "We pride ourselves on delivering exceptional financial solutions tailored to your unique needs. Our strategic approach ensures optimal results for individuals and businesses alike.",
       buttonText: "Learn More",
-      image: modernbusinesscenter, // Local image import
+      image: modernbusinesscenter,
       imageAlt: "Team analyzing financial data"
     },
     {
       title: "Trusted Advisors",
       description: "Join thousands of satisfied clients who trust Dhan-Pravah Finance with their most important financial decisions. Experience the difference of working with true experts.",
       buttonText: "Contact Us",
-      image: "/api/placeholder/600/400", // Using placeholder as external URLs might be restricted
+      image: "/api/placeholder/600/400",
       imageAlt: "Client meeting with financial advisor"
     }
   ];
@@ -124,8 +166,7 @@ export default function Home() {
       title: "Career with a Financial Leader",
       description: "Join our team of financial experts and grow professionally"
     }
-  ];   
-
+  ];
 
   const features = [
     {
@@ -146,24 +187,6 @@ export default function Home() {
       title: "Customized Solutions",
       description: "We understand that no two clients are the same. Our personalized approach ensures that we create financial strategies uniquely suited to your goals and risk tolerance."
     }
-    // {
-    //   id: 4,
-    //   icon: "📊",
-    //   title: "Transparent Pricing",
-    //   description: "We believe in complete transparency. Our fee structure is straightforward with no hidden costs, so you always know exactly what you're paying for."
-    // },
-    // {
-    //   id: 5,
-    //   icon: "🚀",
-    //   title: "Innovative Approach",
-    //   description: "We leverage cutting-edge technology and the latest financial strategies to maximize your returns and minimize risks in an ever-changing market."
-    // },
-    // {
-    //   id: 6,
-    //   icon: "🌍",
-    //   title: "Global Perspective",
-    //   description: "Our international network and broad market insights help you capitalize on opportunities worldwide while navigating complex financial landscapes."
-    // }
   ];
 
   return (
@@ -199,8 +222,6 @@ export default function Home() {
                               alt={slide.imageAlt}
                               className="slide-image"
                             />
-
-
                           </div>
                         </div>
                       </div>
@@ -211,179 +232,245 @@ export default function Home() {
               {/* End of slider */}
               {/* Services Section */}
               <div className="container mx-auto px-4 py-16">
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-    {/* Service Card 1 */}
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-blue-200 transform hover:-translate-y-1 hover:bg-blue-600 group">
-      <div className="flex justify-center mb-4">
-        <div className="bg-blue-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
-          <RiBankFill size={32} className="text-blue-600 group-hover:text-blue-600" />
-        </div>
-      </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Banking</h3>
-      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Secure and convenient banking solutions</p>
-    </div>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                  {/* Service Card 1 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-blue-200 transform hover:-translate-y-1 hover:bg-blue-600 group">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-blue-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+                        <RiBankFill size={32} className="text-blue-600 group-hover:text-blue-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Banking</h3>
+                    <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Secure and convenient banking solutions</p>
+                  </div>
 
-    {/* Service Card 2 */}
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-green-200 transform hover:-translate-y-1 hover:bg-green-600 group">
-      <div className="flex justify-center mb-4">
-        <div className="bg-green-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
-          <FaAddressCard size={32} className="text-green-600 group-hover:text-green-600" />
-        </div>
-      </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Learning License</h3>
-      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Easy application process for your license</p>
-    </div>
+                  {/* Service Card 2 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-green-200 transform hover:-translate-y-1 hover:bg-green-600 group">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-green-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+                        <FaAddressCard size={32} className="text-green-600 group-hover:text-green-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Learning License</h3>
+                    <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Easy application process for your license</p>
+                  </div>
 
-    {/* Service Card 3 */}
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-purple-200 transform hover:-translate-y-1 hover:bg-purple-600 group">
-      <div className="flex justify-center mb-4">
-        <div className="bg-purple-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
-          <FaCalculator size={32} className="text-purple-600 group-hover:text-purple-600" />
-        </div>
-      </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Financial Tools</h3>
-      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Smart calculators for your needs</p>
-    </div>
+                  {/* Service Card 3 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-purple-200 transform hover:-translate-y-1 hover:bg-purple-600 group">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-purple-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+                        <FaCalculator size={32} className="text-purple-600 group-hover:text-purple-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Financial Tools</h3>
+                    <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Smart calculators for your needs</p>
+                  </div>
 
-    {/* Service Card 4 */}
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-orange-200 transform hover:-translate-y-1 hover:bg-orange-600 group">
-      <div className="flex justify-center mb-4">
-        <div className="bg-orange-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
-          <RiCustomerService2Line size={32} className="text-orange-600 group-hover:text-orange-600" />
-        </div>
-      </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Customer Support</h3>
-      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">24/7 assistance for all your queries</p>
-    </div>
-  </div>
-</div>
+                  {/* Service Card 4 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-orange-200 transform hover:-translate-y-1 hover:bg-orange-600 group">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-orange-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+                        <RiCustomerService2Line size={32} className="text-orange-600 group-hover:text-orange-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Customer Support</h3>
+                    <p className="text-gray-600 group-hover:text-white transition-colors duration-300">24/7 assistance for all your queries</p>
+                  </div>
+                </div>
+              </div>
 
               {/* End of Services Section */}
+              {/* ================================= */}
+              <div style={{width:"100% !important"}} className='bg-gray-50'>
+              <div className=" py-16 px-4" >
+                <div className="container mx-auto px-4">
+                  <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Explore a range of services from Dhan-Pravah Finance</h2>
+                    <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
+                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                      As a leading Non-Banking Financial Company (NBFC), we provide financial solutions that
+                      match your needs and help you build a better future. Our services are trusted by over 10
+                      million customers.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {services.map((service, index) => (
+                      <div
+                        key={index}
+                        className="relative overflow-hidden rounded-lg shadow-lg transition-all duration-500 group cursor-pointer transform hover:-translate-y-2"
+                      >
+                        {/* Glass effect background */}
+                        <div className="absolute inset-0 bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border border-white border-opacity-30"></div>
+
+                        {/* Card content */}
+                        <div className="relative z-10 p-8 text-center h-64 flex flex-col items-center justify-center transition-all duration-300">
+                          {/* Icon container with glassmorphic circle */}
+                          <div className="mb-6 p-4 bg-white bg-opacity-30 rounded-full shadow-md transition-all duration-500 group-hover:bg-orange-500 group-hover:shadow-orange-300">
+                            <div className="text-orange-500 transition-all duration-300 group-hover:text-white transform group-hover:scale-110">
+                              {service.icon}
+                            </div>
+                          </div>
+
+                          <h3 className="text-2xl font-bold text-gray-800 mb-3 transition-all duration-300 group-hover:text-white">
+                            {service.title}
+                          </h3>
+                          <p className="text-gray-600 transition-all duration-300 group-hover:text-white group-hover:font-medium">
+                            {service.description}
+                          </p>
+                        </div>
+
+                        {/* Animated gradient overlay */}
+                        <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-br from-orange-500 to-orange-600 transition-all duration-500 ease-out group-hover:h-full opacity-90"></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              </div>
             </div>
           </div>
         </div>
         {/* Rest of the component remains the same... */}
 
-
-
-        <div className="bg-gray-50 py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Regular Header Section */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
-            Why Choose Dhan-Pravah
-          </h2>
-          <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            We're committed to providing exceptional financial services with transparency, 
-            expertise, and personalized attention to help you achieve your financial goals.
-          </p>
-        </div>
-
-        {/* Features Grid with Flip Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature) => (
-            <div 
-              key={feature.id}
-              className="h-64 cursor-pointer"
-              style={styles.flipCard}
-              onMouseEnter={() => setFlippedCard(feature.id)}
-              onMouseLeave={() => setFlippedCard(null)}
-            >
-              <div 
-                className="relative w-full h-full" 
-                style={{
-                  ...styles.flipCardInner,
-                  ...(flippedCard === feature.id ? styles.flipCardInnerFlipped : {})
-                }}
-              >
-                {/* Front Side */}
-                <div 
-                  className="flex flex-col items-center justify-center rounded-lg bg-white border border-gray-200 p-8 shadow-md" 
-                  style={{...styles.flipCardFace}}
-                >
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-2xl mb-4">
-                    <span>{feature.icon}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 text-center">{feature.title}</h3>
-                </div>
-                
-                {/* Back Side */}
-                <div 
-                  className="flex items-center justify-center rounded-lg bg-amber-600 text-white p-8 shadow-md" 
-                  style={{...styles.flipCardFace, ...styles.flipCardBack}}
-                >
-                  <p className="text-center">{feature.description}</p>
-                </div>
-              </div>
+        <div className=" py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            {/* Regular Header Section */}
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+                Why Choose Dhan-Pravah
+              </h2>
+              <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
+              <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+                We're committed to providing exceptional financial services with transparency,
+                expertise, and personalized attention to help you achieve your financial goals.
+              </p>
             </div>
-          ))}
-        </div>
 
-        {/* Testimonial Section */}
-        <div className="mt-16 bg-blue-900 text-white rounded-lg p-10 text-center">
-          <h3 className="text-2xl font-bold mb-6">What Our Clients Say</h3>
-          <p className="text-lg italic max-w-3xl mx-auto mb-4">
-            "Dhan-Pravah transformed our business's financial strategy. Their expert team provided customized solutions that increased our profitability while reducing risk. The personalized service we received was beyond our expectations."
-          </p>
-          <p className="font-semibold">— Michael Johnson, CEO of TechGrowth Inc.</p>
-          
-          <a 
-            href="#contact" 
-            className="inline-block mt-8 px-8 py-4 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-600 transition-colors duration-300"
-          >
-            Schedule a Consultation
-          </a>
-        </div>
-      </div>
-    </div>
-      </div>
-      {/* ================================= */}
-      <div className="bg-gray-50 py-16">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Explore a range of services from Dhan-Pravah Finance</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            As a leading Non-Banking Financial Company (NBFC), we provide financial solutions that
-            match your needs and help you build a better future. Our services are trusted by over 10
-            million customers.
-          </p>
-        </div>
+            {/* Features Grid with Flip Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {features.map((feature) => (
+                <div
+                  key={feature.id}
+                  className="h-64 cursor-pointer"
+                  style={styles.flipCard}
+                  onMouseEnter={() => setFlippedCard(feature.id)}
+                  onMouseLeave={() => setFlippedCard(null)}
+                >
+                  <div
+                    className="relative w-full h-full"
+                    style={{
+                      ...styles.flipCardInner,
+                      ...(flippedCard === feature.id ? styles.flipCardInnerFlipped : {})
+                    }}
+                  >
+                    {/* Front Side */}
+                    <div
+                      className="flex flex-col items-center justify-center rounded-lg bg-white border border-gray-200 p-8 shadow-md"
+                      style={{ ...styles.flipCardFace }}
+                    >
+                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-2xl mb-4">
+                        <span>{feature.icon}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-800 text-center">{feature.title}</h3>
+                    </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
-            <div 
-              key={index} 
-              className="relative overflow-hidden rounded-lg shadow-lg transition-all duration-500 group cursor-pointer transform hover:-translate-y-2"
-            >
-              {/* Glass effect background */}
-              <div className="absolute inset-0 bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border border-white border-opacity-30"></div>
-              
-              {/* Card content */}
-              <div className="relative z-10 p-8 text-center h-64 flex flex-col items-center justify-center transition-all duration-300">
-                {/* Icon container with glassmorphic circle */}
-                <div className="mb-6 p-4 bg-white bg-opacity-30 rounded-full shadow-md transition-all duration-500 group-hover:bg-orange-500 group-hover:shadow-orange-300">
-                  <div className="text-orange-500 transition-all duration-300 group-hover:text-white transform group-hover:scale-110">
-                    {service.icon}
+                    {/* Back Side */}
+                    <div
+                      className="flex items-center justify-center rounded-lg bg-amber-600 text-white p-8 shadow-md"
+                      style={{ ...styles.flipCardFace, ...styles.flipCardBack }}
+                    >
+                      <p className="text-center">{feature.description}</p>
+                    </div>
                   </div>
                 </div>
-                
-                <h3 className="text-2xl font-bold text-gray-800 mb-3 transition-all duration-300 group-hover:text-white">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 transition-all duration-300 group-hover:text-white group-hover:font-medium">
-                  {service.description}
-                </p>
-              </div>
-              
-              {/* Animated gradient overlay */}
-              <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-br from-orange-500 to-orange-600 transition-all duration-500 ease-out group-hover:h-full opacity-90"></div>
+              ))}
             </div>
-          ))}
+
+            {/* Updated Testimonial Section with mixed stats */}
+            <div className="mt-16 p-10" ref={ref}>
+              <h3 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 text-center ">
+                Our Impact By The Numbers
+              </h3>
+              <div className="w-16 h-1 bg-blue-500 mx-auto mb-8"></div>
+
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                {statsData.map((stat) => (
+                  <div key={stat.id} className="p-4">
+                    {stat.type === "percentage" ? (
+                      // Circle progress for percentage values
+                      <div className="relative">
+                        <svg className="w-32 h-32 mx-auto" viewBox="0 0 100 100">
+                          {/* Background circle */}
+                          <circle 
+                            cx="50" 
+                            cy="50" 
+                            r="45" 
+                            fill="none" 
+                            stroke="#f1f1f1" 
+                            strokeWidth="10"
+                          />
+                          {/* Progress circle */}
+                          <circle 
+                            cx="50" 
+                            cy="50" 
+                            r="45" 
+                            fill="none"
+                            stroke={stat.color}
+                            strokeWidth="10"
+                            strokeDasharray="283"
+                            strokeDashoffset={inView ? 283 - (283 * stat.value) / 100 : 283}
+                            strokeLinecap="round"
+                            transform="rotate(-90 50 50)"
+                            className="transition-all duration-1000 ease-out"
+                          />
+                          {/* Center text */}
+                          <text 
+                            x="50" 
+                            y="50" 
+                            dominantBaseline="middle" 
+                            textAnchor="middle" 
+                            fontSize="20" 
+                            fontWeight="bold"
+                            fill="#1e293b"
+                          >
+                            {inView ? `${stat.value}${stat.suffix}` : "0%"}
+                          </text>
+                        </svg>
+                      </div>
+                    ) : (
+                      // For regular numbers and decimal values (9852+ and 2.5k)
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="w-32 h-32 rounded-full bg-blue-50 border-8 border-opacity-20" 
+                             style={{ borderColor: stat.color }}>
+                          <div className="flex items-center justify-center h-full">
+                            <div className="text-3xl font-bold" style={{ color: stat.color }}>
+                              {inView ? (
+                                <CountUp 
+                                  start={0}
+                                  end={stat.value} 
+                                  duration={2.5}
+                                  decimals={stat.type === "decimal" ? 1 : 0}
+                                  suffix={stat.suffix}
+                                  delay={0.2}
+                                />
+                              ) : (
+                                "0"
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    <p className="text-gray-800 font-medium mt-4">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  
       <Footer />
     </div>
   );
