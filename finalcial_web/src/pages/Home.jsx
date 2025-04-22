@@ -8,6 +8,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import businesspeople from '../assets/images/businesspeople.png'; // Adjust the path as necessary
 import modernbusinesscenter from '../assets/images/business.jpg'; // Adjust the path as necessary
+import { RiBankFill, RiCustomerService2Line } from "react-icons/ri";
+import { FaAddressCard } from "react-icons/fa6";
+import { FaCalculator } from "react-icons/fa";
 
 export default function Home() {
   // Custom arrow components with React icons
@@ -99,19 +102,68 @@ export default function Home() {
                         {/* Right image */}
                         <div className="flex justify-center md:justify-end">
                           <div className="slide-image-container">
-                            <img 
-                              src={slide.image} 
-                              alt={slide.imageAlt} 
+                            <img
+                              src={slide.image}
+                              alt={slide.imageAlt}
                               className="slide-image"
                             />
 
-                            
+
                           </div>
                         </div>
                       </div>
                     </div>
                   ))}
                 </Slider>
+              </div>
+              {/* End of slider */}
+              {/* Services Section */}
+              <div className="container mx-auto px-4 py-16">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                  {/* Service Card 1 */}
+                  <div className="bg-green rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center border border-gray-100 hover:border-blue-200 transform hover:-translate-y-1 transition-transform">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-blue-100 p-3 rounded-full">
+                        <RiBankFill size={32} className="text-blue-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Banking</h3>
+                    <p className="text-gray-600">Secure and convenient banking solutions</p>
+                  </div>
+
+                  {/* Service Card 2 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center border border-gray-100 hover:border-green-200 transform hover:-translate-y-1 transition-transform">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-green-100 p-3 rounded-full">
+                        <FaAddressCard size={32} className="text-green-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Learning License</h3>
+                    <p className="text-gray-600">Easy application process for your license</p>
+                  </div>
+
+                  {/* Service Card 3 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center border border-gray-100 hover:border-purple-200 transform hover:-translate-y-1 transition-transform">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-purple-100 p-3 rounded-full">
+                        <FaCalculator size={32} className="text-purple-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Financial Tools</h3>
+                    <p className="text-gray-600">Smart calculators for your needs</p>
+                  </div>
+
+                  {/* Service Card 4 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center border border-gray-100 hover:border-orange-200 transform hover:-translate-y-1 transition-transform">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-orange-100 p-3 rounded-full">
+                        <RiCustomerService2Line size={32} className="text-orange-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Customer Support</h3>
+                    <p className="text-gray-600">24/7 assistance for all your queries</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
