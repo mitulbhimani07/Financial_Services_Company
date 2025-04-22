@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../header/Navbar';
 import Footer from '../header/Footer';
 import Slider from "react-slick";
@@ -13,6 +13,33 @@ import { FaAddressCard } from "react-icons/fa6";
 import { FaCalculator } from "react-icons/fa";
 
 export default function Home() {
+
+  const [isHovered, setIsHovered] = useState(null);
+  const [flippedCard, setFlippedCard] = useState(null);
+
+  const styles = {
+    flipCard: {
+      perspective: "1000px",
+    },
+    flipCardInner: {
+      transformStyle: "preserve-3d",
+      transition: "transform 0.6s",
+    },
+    flipCardInnerFlipped: {
+      transform: "rotateY(180deg)",
+    },
+    flipCardFace: {
+      backfaceVisibility: "hidden",
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+    },
+    flipCardBack: {
+      transform: "rotateY(180deg)",
+    }
+  };
   // Custom arrow components with React icons
   const PrevArrow = (props) => {
     const { onClick } = props;
@@ -72,6 +99,46 @@ export default function Home() {
       image: "/api/placeholder/600/400", // Using placeholder as external URLs might be restricted
       imageAlt: "Client meeting with financial advisor"
     }
+  ];
+
+
+  const features = [
+    {
+      id: 1,
+      icon: "⭐",
+      title: "Industry Expertise",
+      description: "With over 25 years of experience in the financial industry, our team of certified professionals provides knowledgeable guidance tailored to your unique situation."
+    },
+    {
+      id: 2,
+      icon: "🔒",
+      title: "Security & Trust",
+      description: "Your financial security is our priority. We implement advanced security measures and maintain the highest ethical standards to protect your assets and information."
+    },
+    {
+      id: 3,
+      icon: "💼",
+      title: "Customized Solutions",
+      description: "We understand that no two clients are the same. Our personalized approach ensures that we create financial strategies uniquely suited to your goals and risk tolerance."
+    }
+    // {
+    //   id: 4,
+    //   icon: "📊",
+    //   title: "Transparent Pricing",
+    //   description: "We believe in complete transparency. Our fee structure is straightforward with no hidden costs, so you always know exactly what you're paying for."
+    // },
+    // {
+    //   id: 5,
+    //   icon: "🚀",
+    //   title: "Innovative Approach",
+    //   description: "We leverage cutting-edge technology and the latest financial strategies to maximize your returns and minimize risks in an ever-changing market."
+    // },
+    // {
+    //   id: 6,
+    //   icon: "🌍",
+    //   title: "Global Perspective",
+    //   description: "Our international network and broad market insights help you capitalize on opportunities worldwide while navigating complex financial landscapes."
+    // }
   ];
 
   return (
@@ -169,6 +236,80 @@ export default function Home() {
           </div>
         </div>
         {/* Rest of the component remains the same... */}
+
+
+
+        <div className="bg-gray-50 py-16 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Regular Header Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+            Why Choose Dhan-Pravah
+          </h2>
+          <div className="w-16 h-1 bg-blue-500 mx-auto mb-6"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            We're committed to providing exceptional financial services with transparency, 
+            expertise, and personalized attention to help you achieve your financial goals.
+          </p>
+        </div>
+
+        {/* Features Grid with Flip Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature) => (
+            <div 
+              key={feature.id}
+              className="h-64 cursor-pointer"
+              style={styles.flipCard}
+              onMouseEnter={() => setFlippedCard(feature.id)}
+              onMouseLeave={() => setFlippedCard(null)}
+            >
+              <div 
+                className="relative w-full h-full" 
+                style={{
+                  ...styles.flipCardInner,
+                  ...(flippedCard === feature.id ? styles.flipCardInnerFlipped : {})
+                }}
+              >
+                {/* Front Side */}
+                <div 
+                  className="flex flex-col items-center justify-center rounded-lg bg-white border border-gray-200 p-8 shadow-md" 
+                  style={{...styles.flipCardFace}}
+                >
+                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-2xl mb-4">
+                    <span>{feature.icon}</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 text-center">{feature.title}</h3>
+                </div>
+                
+                {/* Back Side */}
+                <div 
+                  className="flex items-center justify-center rounded-lg bg-amber-600 text-white p-8 shadow-md" 
+                  style={{...styles.flipCardFace, ...styles.flipCardBack}}
+                >
+                  <p className="text-center">{feature.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Testimonial Section */}
+        <div className="mt-16 bg-blue-900 text-white rounded-lg p-10 text-center">
+          <h3 className="text-2xl font-bold mb-6">What Our Clients Say</h3>
+          <p className="text-lg italic max-w-3xl mx-auto mb-4">
+            "Dhan-Pravah transformed our business's financial strategy. Their expert team provided customized solutions that increased our profitability while reducing risk. The personalized service we received was beyond our expectations."
+          </p>
+          <p className="font-semibold">— Michael Johnson, CEO of TechGrowth Inc.</p>
+          
+          <a 
+            href="#contact" 
+            className="inline-block mt-8 px-8 py-4 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-600 transition-colors duration-300"
+          >
+            Schedule a Consultation
+          </a>
+        </div>
+      </div>
+    </div>
       </div>
       <Footer />
     </div>
