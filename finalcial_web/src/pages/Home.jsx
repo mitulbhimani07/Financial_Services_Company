@@ -24,11 +24,16 @@ export default function Home() {
   const [isHovered, setIsHovered] = useState(null);
   const [flippedCard, setFlippedCard] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const intervalRef = useRef(null);
+
 
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
+  
 
   const [loanAmount, setLoanAmount] = useState(150000);
   const [interestRate, setInterestRate] = useState(8.5);
@@ -293,7 +298,7 @@ export default function Home() {
           <div className="w-full  py-16 md:py-21">
             <div className=" mx-auto">
               {/* Full section slider */}
-              <div className="relative w-full h-full overflow-hidden" style={{ height: "100vh", width: "100% !important" }}>
+              <div className="relative w-full h-full overflow-hidden" style={{ height: "100vh", width: "100%" }}>
       {/* Slides */}
       {sliderContent.map((slide, index) => (
         <div
@@ -334,8 +339,8 @@ export default function Home() {
         </div>
       ))}
 
-      {/* Vertical Navigation with Repositioned Arrows */}
-      <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 flex flex-col items-center">
+      {/* Desktop Vertical Navigation - Hidden on mobile/tablet */}
+      <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 hidden lg:flex flex-col items-center">
         {/* Up Arrow - Above the numbers */}
         <button
           onClick={goToPrevSlide}
@@ -368,6 +373,24 @@ export default function Home() {
         >
           <ChevronDown size={24} />
         </button>
+      </div>
+
+      {/* Mobile/Tablet Bottom Dots Navigation */}
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center lg:hidden z-30">
+        <div className="flex space-x-4">
+          {sliderContent.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                currentSlide === index
+                  ? 'bg-orange-500'
+                  : 'bg-white opacity-70 hover:opacity-100'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            ></button>
+          ))}
+        </div>
       </div>
     </div>
               {/* End of slider */}
