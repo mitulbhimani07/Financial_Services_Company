@@ -8,9 +8,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import businesspeople from '../assets/images/businesspeople.png'; // Adjust the path as necessary
 import modernbusinesscenter from '../assets/images/business.jpg'; // Adjust the path as necessary
-import { RiBankFill, RiCustomerService2Line } from "react-icons/ri";
+import {  RiCustomerService2Line } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa6";
 import { FaCalculator } from "react-icons/fa";
+import { RiBankFill, RiMoneyDollarCircleLine, RiCalculatorLine, RiBriefcaseLine } from "react-icons/ri";
+
 
 export default function Home() {
   // Custom arrow components with React icons
@@ -74,6 +76,29 @@ export default function Home() {
     }
   ];
 
+  const services = [
+    {
+      icon: <RiBankFill size={40} />,
+      title: "Loans",
+      description: "Flexible loan options tailored to meet your financial needs"
+    },
+    {
+      icon: <RiMoneyDollarCircleLine size={40} />,
+      title: "Investment",
+      description: "Strategic investment solutions for long-term growth"
+    },
+    {
+      icon: <RiCalculatorLine size={40} />,
+      title: "EMI Calculator",
+      description: "Plan your finances with our easy-to-use calculators"
+    },
+    {
+      icon: <RiBriefcaseLine size={40} />,
+      title: "Career with a Financial Leader",
+      description: "Join our team of financial experts and grow professionally"
+    }
+  ];   
+
   return (
     <div className="home-page w-full">
       <Navbar />
@@ -119,57 +144,105 @@ export default function Home() {
               {/* End of slider */}
               {/* Services Section */}
               <div className="container mx-auto px-4 py-16">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                  {/* Service Card 1 */}
-                  <div className="bg-green rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center border border-gray-100 hover:border-blue-200 transform hover:-translate-y-1 transition-transform">
-                    <div className="flex justify-center mb-4">
-                      <div className="bg-blue-100 p-3 rounded-full">
-                        <RiBankFill size={32} className="text-blue-600" />
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Banking</h3>
-                    <p className="text-gray-600">Secure and convenient banking solutions</p>
-                  </div>
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    {/* Service Card 1 */}
+    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-blue-200 transform hover:-translate-y-1 hover:bg-blue-600 group">
+      <div className="flex justify-center mb-4">
+        <div className="bg-blue-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+          <RiBankFill size={32} className="text-blue-600 group-hover:text-blue-600" />
+        </div>
+      </div>
+      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Banking</h3>
+      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Secure and convenient banking solutions</p>
+    </div>
 
-                  {/* Service Card 2 */}
-                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center border border-gray-100 hover:border-green-200 transform hover:-translate-y-1 transition-transform">
-                    <div className="flex justify-center mb-4">
-                      <div className="bg-green-100 p-3 rounded-full">
-                        <FaAddressCard size={32} className="text-green-600" />
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Learning License</h3>
-                    <p className="text-gray-600">Easy application process for your license</p>
-                  </div>
+    {/* Service Card 2 */}
+    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-green-200 transform hover:-translate-y-1 hover:bg-green-600 group">
+      <div className="flex justify-center mb-4">
+        <div className="bg-green-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+          <FaAddressCard size={32} className="text-green-600 group-hover:text-green-600" />
+        </div>
+      </div>
+      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Learning License</h3>
+      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Easy application process for your license</p>
+    </div>
 
-                  {/* Service Card 3 */}
-                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center border border-gray-100 hover:border-purple-200 transform hover:-translate-y-1 transition-transform">
-                    <div className="flex justify-center mb-4">
-                      <div className="bg-purple-100 p-3 rounded-full">
-                        <FaCalculator size={32} className="text-purple-600" />
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Financial Tools</h3>
-                    <p className="text-gray-600">Smart calculators for your needs</p>
-                  </div>
+    {/* Service Card 3 */}
+    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-purple-200 transform hover:-translate-y-1 hover:bg-purple-600 group">
+      <div className="flex justify-center mb-4">
+        <div className="bg-purple-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+          <FaCalculator size={32} className="text-purple-600 group-hover:text-purple-600" />
+        </div>
+      </div>
+      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Financial Tools</h3>
+      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Smart calculators for your needs</p>
+    </div>
 
-                  {/* Service Card 4 */}
-                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center border border-gray-100 hover:border-orange-200 transform hover:-translate-y-1 transition-transform">
-                    <div className="flex justify-center mb-4">
-                      <div className="bg-orange-100 p-3 rounded-full">
-                        <RiCustomerService2Line size={32} className="text-orange-600" />
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Customer Support</h3>
-                    <p className="text-gray-600">24/7 assistance for all your queries</p>
-                  </div>
-                </div>
-              </div>
+    {/* Service Card 4 */}
+    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-orange-200 transform hover:-translate-y-1 hover:bg-orange-600 group">
+      <div className="flex justify-center mb-4">
+        <div className="bg-orange-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+          <RiCustomerService2Line size={32} className="text-orange-600 group-hover:text-orange-600" />
+        </div>
+      </div>
+      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Customer Support</h3>
+      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">24/7 assistance for all your queries</p>
+    </div>
+  </div>
+</div>
+
+              {/* End of Services Section */}
             </div>
           </div>
         </div>
         {/* Rest of the component remains the same... */}
       </div>
+      {/* ================================= */}
+      <div className="bg-gray-50 py-16">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">Explore a range of services from Dhan-Pravah Finance</h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            As a leading Non-Banking Financial Company (NBFC), we provide financial solutions that
+            match your needs and help you build a better future. Our services are trusted by over 10
+            million customers.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, index) => (
+            <div 
+              key={index} 
+              className="relative overflow-hidden rounded-lg shadow-lg transition-all duration-500 group cursor-pointer transform hover:-translate-y-2"
+            >
+              {/* Glass effect background */}
+              <div className="absolute inset-0 bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border border-white border-opacity-30"></div>
+              
+              {/* Card content */}
+              <div className="relative z-10 p-8 text-center h-64 flex flex-col items-center justify-center transition-all duration-300">
+                {/* Icon container with glassmorphic circle */}
+                <div className="mb-6 p-4 bg-white bg-opacity-30 rounded-full shadow-md transition-all duration-500 group-hover:bg-orange-500 group-hover:shadow-orange-300">
+                  <div className="text-orange-500 transition-all duration-300 group-hover:text-white transform group-hover:scale-110">
+                    {service.icon}
+                  </div>
+                </div>
+                
+                <h3 className="text-2xl font-bold text-gray-800 mb-3 transition-all duration-300 group-hover:text-white">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 transition-all duration-300 group-hover:text-white group-hover:font-medium">
+                  {service.description}
+                </p>
+              </div>
+              
+              {/* Animated gradient overlay */}
+              <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-br from-orange-500 to-orange-600 transition-all duration-500 ease-out group-hover:h-full opacity-90"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  
       <Footer />
     </div>
   );
