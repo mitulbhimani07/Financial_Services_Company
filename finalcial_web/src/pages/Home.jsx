@@ -15,6 +15,7 @@ import { RiBankFill, RiMoneyDollarCircleLine, RiCalculatorLine, RiBriefcaseLine 
 import {  useRef } from 'react';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
+import { PieChart, Pie, Cell } from 'recharts';
 
 export default function Home() {
 
@@ -24,6 +25,86 @@ export default function Home() {
     triggerOnce: true,
     threshold: 0.1
   });
+
+  const [loanAmount, setLoanAmount] = useState(150000);
+  const [interestRate, setInterestRate] = useState(8.5);
+  const [loanTenure, setLoanTenure] = useState(12);
+  const [tenureType, setTenureType] = useState('months'); // months or years
+  const [downPayment, setDownPayment] = useState(15000);
+  
+  // State for calculated values
+  const [emi, setEmi] = useState(0);
+  const [totalInterest, setTotalInterest] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  // Handle slider and input changes
+  const handleLoanAmountChange = (e) => {
+    const value = parseFloat(e.target.value);
+    setLoanAmount(isNaN(value) ? 0 : value);
+  };
+
+  const handleInterestRateChange = (e) => {
+    const value = parseFloat(e.target.value);
+    setInterestRate(isNaN(value) ? 0 : value);
+  };
+
+  const handleLoanTenureChange = (e) => {
+    const value = parseInt(e.target.value);
+    setLoanTenure(isNaN(value) ? 0 : value);
+  };
+
+  const handleTenureTypeChange = (e) => {
+    setTenureType(e.target.value);
+  };
+
+  const handleDownPaymentChange = (e) => {
+    const value = parseFloat(e.target.value);
+    setDownPayment(isNaN(value) ? 0 : value);
+  };
+
+  // Calculate EMI, total interest, and total amount
+  useEffect(() => {
+    // Convert tenure to months if it's in years
+    const tenureInMonths = tenureType === 'years' ? loanTenure * 12 : loanTenure;
+    
+    // Convert interest rate from annual to monthly
+    const monthlyInterestRate = interestRate / 100 / 12;
+    
+    // Calculate principal after down payment
+    const principal = loanAmount - downPayment;
+    
+    if (principal > 0 && interestRate > 0 && tenureInMonths > 0) {
+      // EMI calculation formula: [P x R x (1+R)^N]/[(1+R)^N-1]
+      // Where, P = Principal loan amount, R = Monthly interest rate, N = Loan tenure in months
+      const emiValue = principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureInMonths) / 
+                      (Math.pow(1 + monthlyInterestRate, tenureInMonths) - 1);
+      
+      setEmi(emiValue);
+      setTotalAmount(emiValue * tenureInMonths);
+      setTotalInterest(emiValue * tenureInMonths - principal);
+    } else {
+      setEmi(0);
+      setTotalAmount(0);
+      setTotalInterest(0);
+    }
+  }, [loanAmount, interestRate, loanTenure, tenureType, downPayment]);
+
+  // Format currency function
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(amount);
+  };
+
+  // Data for donut chart
+  const chartData = [
+    { name: 'Principal Amount', value: loanAmount - downPayment, color: '#4169E1' },
+    { name: 'Interest Payable', value: Math.round(totalInterest), color: '#FFD700' },
+    { name: 'Taxes', value: Math.round(totalAmount * 0.05), color: '#32CD32' } // Assumed 5% of total as taxes
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -197,85 +278,8 @@ export default function Home() {
   ];
 
 
-  const [loanAmount, setLoanAmount] = useState(150000);
-  const [interestRate, setInterestRate] = useState(8.5);
-  const [loanTenure, setLoanTenure] = useState(12);
-  const [tenureType, setTenureType] = useState('months'); // months or years
-  const [downPayment, setDownPayment] = useState(15000);
-  
-  // State for calculated values
-  const [emi, setEmi] = useState(0);
-  const [totalInterest, setTotalInterest] = useState(0);
-  const [totalAmount, setTotalAmount] = useState(0);
+ 
 
-  // Handle slider and input changes
-  const handleLoanAmountChange = (e) => {
-    const value = parseFloat(e.target.value);
-    setLoanAmount(isNaN(value) ? 0 : value);
-  };
-
-  const handleInterestRateChange = (e) => {
-    const value = parseFloat(e.target.value);
-    setInterestRate(isNaN(value) ? 0 : value);
-  };
-
-  const handleLoanTenureChange = (e) => {
-    const value = parseInt(e.target.value);
-    setLoanTenure(isNaN(value) ? 0 : value);
-  };
-
-  const handleTenureTypeChange = (e) => {
-    setTenureType(e.target.value);
-  };
-
-  const handleDownPaymentChange = (e) => {
-    const value = parseFloat(e.target.value);
-    setDownPayment(isNaN(value) ? 0 : value);
-  };
-
-  // Calculate EMI, total interest, and total amount
-  useEffect(() => {
-    // Convert tenure to months if it's in years
-    const tenureInMonths = tenureType === 'years' ? loanTenure * 12 : loanTenure;
-    
-    // Convert interest rate from annual to monthly
-    const monthlyInterestRate = interestRate / 100 / 12;
-    
-    // Calculate principal after down payment
-    const principal = loanAmount - downPayment;
-    
-    if (principal > 0 && interestRate > 0 && tenureInMonths > 0) {
-      // EMI calculation formula: [P x R x (1+R)^N]/[(1+R)^N-1]
-      // Where, P = Principal loan amount, R = Monthly interest rate, N = Loan tenure in months
-      const emiValue = principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureInMonths) / 
-                      (Math.pow(1 + monthlyInterestRate, tenureInMonths) - 1);
-      
-      setEmi(emiValue);
-      setTotalAmount(emiValue * tenureInMonths);
-      setTotalInterest(emiValue * tenureInMonths - principal);
-    } else {
-      setEmi(0);
-      setTotalAmount(0);
-      setTotalInterest(0);
-    }
-  }, [loanAmount, interestRate, loanTenure, tenureType, downPayment]);
-
-  // Format currency function
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(amount);
-  };
-
-  // Data for donut chart
-  const chartData = [
-    { name: 'Principal Amount', value: loanAmount - downPayment, color: '#4169E1' },
-    { name: 'Interest Payable', value: Math.round(totalInterest), color: '#FFD700' },
-    { name: 'Taxes', value: Math.round(totalAmount * 0.05), color: '#32CD32' } // Assumed 5% of total as taxes
-  ];
 
 
   return (
@@ -565,6 +569,230 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+
+        <div className="bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto mb-5">
+      <h2 className="text-2xl font-bold text-blue-900 text-center mb-6">EMI Calculator</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Left side - Input Form */}
+        <div className="space-y-6">
+          {/* Loan Amount */}
+          <div>
+            <div className="flex justify-between mb-2">
+              <label className="font-medium text-gray-700">Loan Amount</label>
+              <span className="text-blue-600 font-medium">{formatCurrency(loanAmount)}</span>
+            </div>
+            <input 
+              type="range" 
+              min="10000" 
+              max="500000" 
+              step="1000" 
+              value={loanAmount} 
+              onChange={handleLoanAmountChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+            <div className="flex justify-between mt-1 text-xs text-gray-500">
+              <span>$10,000</span>
+              <span>$500,000</span>
+            </div>
+            <div className="mt-2">
+              <input 
+                type="number" 
+                value={loanAmount} 
+                onChange={handleLoanAmountChange}
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                min="10000"
+                max="500000"
+              />
+            </div>
+          </div>
+          
+          {/* Down Payment */}
+          <div>
+            <div className="flex justify-between mb-2">
+              <label className="font-medium text-gray-700">Down Payment</label>
+              <span className="text-blue-600 font-medium">{formatCurrency(downPayment)}</span>
+            </div>
+            <input 
+              type="range" 
+              min="0" 
+              max={loanAmount * 0.5} 
+              step="1000" 
+              value={downPayment} 
+              onChange={handleDownPaymentChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+            <div className="flex justify-between mt-1 text-xs text-gray-500">
+              <span>$0</span>
+              <span>${Math.round(loanAmount * 0.5).toLocaleString()}</span>
+            </div>
+            <div className="mt-2">
+              <input 
+                type="number" 
+                value={downPayment} 
+                onChange={handleDownPaymentChange}
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                min="0"
+                max={loanAmount * 0.5}
+              />
+            </div>
+          </div>
+          
+          {/* Interest Rate */}
+          <div>
+            <div className="flex justify-between mb-2">
+              <label className="font-medium text-gray-700">Interest Rate (% per annum)</label>
+              <span className="text-blue-600 font-medium">{interestRate}%</span>
+            </div>
+            <input 
+              type="range" 
+              min="1" 
+              max="20" 
+              step="0.1" 
+              value={interestRate} 
+              onChange={handleInterestRateChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+            <div className="flex justify-between mt-1 text-xs text-gray-500">
+              <span>1%</span>
+              <span>20%</span>
+            </div>
+            <div className="mt-2">
+              <input 
+                type="number" 
+                value={interestRate} 
+                onChange={handleInterestRateChange}
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                min="1"
+                max="20"
+                step="0.1"
+              />
+            </div>
+          </div>
+          
+          {/* Loan Tenure */}
+          <div>
+            <div className="flex justify-between mb-2">
+              <label className="font-medium text-gray-700">Loan Tenure</label>
+              <span className="text-blue-600 font-medium">{loanTenure} {tenureType}</span>
+            </div>
+            <div className="flex space-x-4 mb-2">
+              <label className="inline-flex items-center">
+                <input 
+                  type="radio" 
+                  value="months" 
+                  checked={tenureType === 'months'} 
+                  onChange={handleTenureTypeChange} 
+                  className="form-radio h-4 w-4 text-blue-600"
+                />
+                <span className="ml-2 text-gray-700">Months</span>
+              </label>
+              <label className="inline-flex items-center">
+                <input 
+                  type="radio" 
+                  value="years" 
+                  checked={tenureType === 'years'} 
+                  onChange={handleTenureTypeChange} 
+                  className="form-radio h-4 w-4 text-blue-600"
+                />
+                <span className="ml-2 text-gray-700">Years</span>
+              </label>
+            </div>
+            <input 
+              type="range" 
+              min={tenureType === 'years' ? '1' : '1'} 
+              max={tenureType === 'years' ? '30' : '360'} 
+              step="1" 
+              value={loanTenure} 
+              onChange={handleLoanTenureChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+            <div className="flex justify-between mt-1 text-xs text-gray-500">
+              <span>{tenureType === 'years' ? '1 Year' : '1 Month'}</span>
+              <span>{tenureType === 'years' ? '30 Years' : '360 Months'}</span>
+            </div>
+            <div className="mt-2">
+              <input 
+                type="number" 
+                value={loanTenure} 
+                onChange={handleLoanTenureChange}
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                min={tenureType === 'years' ? '1' : '1'}
+                max={tenureType === 'years' ? '30' : '360'}
+              />
+            </div>
+          </div>
+        </div>
+        
+        {/* Right side - Results with visualization */}
+        <div>
+          {/* EMI Card */}
+          <div className="bg-blue-600 rounded-lg p-6 text-white text-center mb-6">
+            <div className="text-3xl font-bold mb-1">{formatCurrency(Math.round(emi))}</div>
+            <div className="text-sm">EMI per month</div>
+          </div>
+          
+          {/* Chart Section */}
+          <div className="flex justify-center items-center mb-6">
+            <div className="relative">
+              <PieChart width={180} height={180}>
+                <Pie
+                  data={chartData}
+                  cx={90}
+                  cy={90}
+                  innerRadius={60}
+                  outerRadius={80}
+                  paddingAngle={2}
+                  dataKey="value"
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+              </PieChart>
+            </div>
+            <div className="ml-4">
+              {chartData.map((item, index) => (
+                <div key={index} className="flex items-center mb-2">
+                  <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: item.color }}></div>
+                  <div className="text-sm">
+                    <span className="font-medium">{item.name}</span>
+                    <span className="ml-2">{formatCurrency(item.value)}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Details */}
+          <div className="space-y-3">
+            <div className="flex justify-between py-2 border-b border-gray-200">
+              <span className="text-gray-600">Total Amount</span>
+              <span className="font-medium">{formatCurrency(Math.round(totalAmount))}</span>
+            </div>
+            <div className="flex justify-between py-2 border-b border-gray-200">
+              <span className="text-gray-600">Down Payment</span>
+              <span className="font-medium">{formatCurrency(downPayment)}</span>
+            </div>
+            <div className="flex justify-between py-2 border-b border-gray-200">
+              <span className="text-gray-600">Tenure</span>
+              <span className="font-medium">{loanTenure} {tenureType}</span>
+            </div>
+            <div className="flex justify-between py-2 border-b border-gray-200">
+              <span className="text-gray-600">Interest rate</span>
+              <span className="font-medium">{interestRate}%</span>
+            </div>
+          </div>
+          
+          {/* CTA Button */}
+          <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-4 px-6 rounded-md transition-colors duration-300 mt-6">
+            Choose your bank
+          </button>
+        </div>
+      </div>
+    </div>
+
       </div>
       <Footer />
     </div>
