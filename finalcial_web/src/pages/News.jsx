@@ -140,17 +140,7 @@ const NewsPage = () => {
               Stay informed with the latest financial market insights, company updates, and expert perspectives.
             </p>
             
-            {/* Search Bar */}
-            <div className="relative max-w-xl">
-              <input 
-                type="text" 
-                className="w-full bg-white bg-opacity-10 backdrop-blur-sm border border-white border-opacity-20 rounded-lg py-3 px-5 pr-12 text-dark placeholder-dark placeholder-opacity-70 focus:outline-none focus:border-accent" 
-                placeholder="Search news and articles..." 
-              />
-              <button className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                <FaSearch className="text-dark text-opacity-70" />
-              </button>
-            </div>
+            
           </div>
         </div>
       </section>
