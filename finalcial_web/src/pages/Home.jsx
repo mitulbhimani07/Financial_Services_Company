@@ -17,7 +17,6 @@ import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { PieChart, Pie, Cell } from 'recharts';
 import { ChevronUp, ChevronDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 
 export default function Home() {
@@ -214,24 +213,21 @@ export default function Home() {
   // Slider content with both text and images
   const sliderContent = [
     {
-      title: "Empowering Microfinance",
-      description: "Empowering small businesses and entrepreneurs with accessible microfinance solutions designed to build lasting financial stability.",
+      title: "Smart Financial Solutions",
+      description: "Discover our comprehensive financial services designed to help you achieve your financial goals with confidence. Our team of experts will guide you through every step of your financial journey.",
       buttonText: "Get Started",
-      buttonlink:'/microfinance',
       bgImage: "https://images.unsplash.com/photo-1620228885847-9eab2a1adddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     },
     {
-      title: "Financial Landing License",
-      description: "Enhance your financial knowledge with our comprehensive learning programs designed to build essential money management skills.",
+      title: "Investment Strategies",
+      description: "Our expert advisors create personalized investment portfolios that align with your risk tolerance and financial objectives. We leverage market insights and advanced analytics to optimize returns.",
       buttonText: "Learn More",
-      buttonlink:'/landinglicense',
       bgImage: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     },
     {
-      title: "Comprehensive NBFC Solutions",
-      description: "Access flexible lending solutions, investment opportunities, and specialized financial services through our NBFC division designed to meet diverse financial needs beyond traditional banking.",
-      buttonText: "Get Started",
-      buttonlink:'/nbfc',
+      title: "Secure Banking Solutions",
+      description: "Experience seamless banking with state-of-the-art security features and 24/7 access to your accounts from anywhere. Our digital platform puts financial control at your fingertips.",
+      buttonText: "Join Now",
       bgImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     }
   ];
@@ -332,11 +328,9 @@ export default function Home() {
                             <p className="text-xl md:text-2xl leading-relaxed mb-10 mx-auto max-w-3xl">
                               {slide.description}
                             </p>
-                            <Link to={slide.buttonlink}>
                             <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors duration-300 text-xl">
                               {slide.buttonText}
                             </button>
-                            </Link>
                           </div>
                         </div>
                       </div>

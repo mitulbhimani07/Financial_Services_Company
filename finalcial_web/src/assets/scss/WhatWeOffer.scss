@@ -1,0 +1,195 @@
+@import './variables.scss';
+
+.what-we-offer-page {
+  .hero-section {
+    background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+    color: $white;
+    padding: 100px 0;
+    text-align: center;
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+  }
+
+  .services-section {
+    padding: 80px 0;
+    background-color: $light-color;
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .service-card {
+      background: $white;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: $box-shadow;
+
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: $box-shadow-lg;
+      }
+
+      .icon-container {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $light-color;
+        transition: background-color 0.3s ease;
+
+        svg {
+          color: $primary-color;
+          transition: color 0.3s ease;
+        }
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: $dark-color;
+      }
+
+      p {
+        color: $gray-600;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      .learn-more-btn {
+        background: $primary-color;
+        color: $white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background: $secondary-color;
+        }
+      }
+
+      &.blue .icon-container {
+        background: rgba($blue-600, 0.1);
+        svg { color: $blue-600; }
+      }
+
+      &.green .icon-container {
+        background: rgba($success-color, 0.1);
+        svg { color: $success-color; }
+      }
+
+      &.purple .icon-container {
+        background: rgba($blue-800, 0.1);
+        svg { color: $blue-800; }
+      }
+
+      &.orange .icon-container {
+        background: rgba($orange-500, 0.1);
+        svg { color: $orange-500; }
+      }
+
+      &.cyan .icon-container {
+        background: rgba($secondary-color, 0.1);
+        svg { color: $secondary-color; }
+      }
+
+      &.amber .icon-container {
+        background: rgba($warning-color, 0.1);
+        svg { color: $warning-color; }
+      }
+    }
+  }
+
+  .features-section {
+    padding: 80px 0;
+    background-color: $white;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: $primary-color;
+      margin-bottom: 50px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 30px;
+      border-radius: 15px;
+      background: $light-color;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        color: $primary-color;
+        margin-bottom: 15px;
+      }
+
+      p {
+        color: $gray-600;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .what-we-offer-page {
+    .hero-section {
+      padding: 60px 0;
+
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    .services-section,
+    .features-section {
+      padding: 40px 0;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .what-we-offer-page {
+    .hero-section {
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+} 
