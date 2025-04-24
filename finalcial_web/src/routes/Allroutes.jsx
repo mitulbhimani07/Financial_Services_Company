@@ -8,6 +8,9 @@ import WhatWeOffer from '../pages/WhatWeOffer'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
 import Contact from '../pages/Contect'
+import HomeMicrofinanace from '../microfinance/HomeMicrofinanace'
+import Main from '../landinglicense/main'
+import MainNBFC from '../NBFC/MainNBFC'
 
 export default function Allroutes() {
   return (
@@ -21,6 +24,9 @@ export default function Allroutes() {
             <Route path='/whatWeOffer' element={<WhatWeOffer/>} />
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
+            <Route path='/microfinance' element={<HomeMicrofinanace/>}/>
+            <Route path='/landinglicense' element={<Main/>}/>
+            <Route path='/nbfc' element={<MainNBFC/>}/>
         </Routes>
     </div>
   )
