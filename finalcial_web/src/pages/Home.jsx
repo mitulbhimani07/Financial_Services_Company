@@ -18,6 +18,7 @@ import { useInView } from 'react-intersection-observer';
 import { PieChart, Pie, Cell } from 'recharts';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 
 export default function Home() {
@@ -34,7 +35,7 @@ export default function Home() {
     threshold: 0.1
   });
 
-
+  
 
   const [loanAmount, setLoanAmount] = useState(150000);
   const [interestRate, setInterestRate] = useState(8.5);
@@ -303,20 +304,21 @@ export default function Home() {
             <div className=" mx-auto">
               {/* Full section slider */}
               <div className="relative w-full h-full overflow-hidden" style={{ height: "100vh", width: "100%" }}>
-                {/* Slides */}
-                {sliderContent.map((slide, index) => (
-                  <div
-                    key={index}
-                    className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                      }`}
-                  >
-                    {/* Background Image with Overlay */}
-                    <div className="absolute inset-0 w-full h-full">
-                      {/* Background Image */}
-                      <div
-                        className="absolute inset-0 w-full h-full bg-cover bg-center"
-                        style={{ backgroundImage: `url(${slide.bgImage})` }}
-                      ></div>
+      {/* Slides */}
+      {sliderContent.map((slide, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${
+            currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          }`}
+        >
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0 w-full h-full">
+            {/* Background Image */}
+            <div
+              className="absolute inset-0 w-full h-full bg-cover bg-center"
+              style={{ backgroundImage: `url(${slide.bgImage})` }}
+            ></div>
 
                       {/* Overlay */}
                       <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
@@ -327,32 +329,67 @@ export default function Home() {
                       <div className="w-full px-4 h-full">
                         <div className="flex items-center justify-center h-full">
                           {/* Center Content - Increased Size */}
-                          <div className="text-center text-white w-full max-w-4xl px-6">
-                            <h1 className="text-5xl md:text-6xl font-bold mb-8">{slide.title}</h1>
-                            <p className="text-xl md:text-2xl leading-relaxed mb-10 mx-auto max-w-3xl">
-                              {slide.description}
-                            </p>
-                            <Link to={slide.buttonlink}>
-                            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors duration-300 text-xl">
-                              {slide.buttonText}
-                            </button>
-                            </Link>
-                          </div>
+                          
+
+  <motion.div
+    key={currentSlide} // re-triggers animation on slide change
+    initial={{ opacity: 0, y: 60 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -60 }}
+    transition={{
+      duration: 0.8,
+      ease: 'easeInOut',
+    }}
+    className="text-center text-white w-full max-w-4xl px-6"
+  >
+    <motion.h1
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, delay: 0.2 }}
+      className="text-5xl md:text-6xl font-bold mb-8"
+    >
+      {slide.title}
+    </motion.h1>
+
+    <motion.p
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, delay: 0.4 }}
+      className="text-xl md:text-2xl leading-relaxed mb-10 mx-auto max-w-3xl"
+    >
+      {slide.description}
+    </motion.p>
+
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, delay: 0.6 }}
+    >
+      <Link to={slide.buttonlink}>
+        <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors duration-300 text-xl">
+          {slide.buttonText}
+        </button>
+      </Link>
+    </motion.div>
+  </motion.div>
+
+
+
                         </div>
                       </div>
                     </div>
                   </div>
                 ))}
 
-                {/* Desktop Vertical Navigation - Hidden on mobile/tablet */}
-                <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 hidden lg:flex flex-col items-center">
-                  {/* Up Arrow - Above the numbers */}
-                  <button
-                    onClick={goToPrevSlide}
-                    className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mb-4"
-                  >
-                    <ChevronUp size={24} />
-                  </button>
+      {/* Desktop Vertical Navigation - Hidden on mobile/tablet */}
+      <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 hidden lg:flex flex-col items-center">
+        {/* Up Arrow - Above the numbers */}
+        <button
+          onClick={goToPrevSlide}
+          className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mb-4"
+        >
+          <ChevronUp size={24} />
+        </button>
 
                   {/* Page Numbers */}
                   <div className="flex flex-col items-center space-y-4">
@@ -361,8 +398,8 @@ export default function Home() {
                         key={index}
                         onClick={() => setCurrentSlide(index)}
                         className={`w-8 h-8 flex items-center justify-center rounded-full ${currentSlide === index
-                          ? 'bg-orange-500 text-white'
-                          : 'bg-white text-gray-700 opacity-70 hover:opacity-100'
+                            ? 'bg-orange-500 text-white'
+                            : 'bg-white text-gray-700 opacity-70 hover:opacity-100'
                           } transition-all duration-300`}
                       >
                         {index + 1}
@@ -370,36 +407,37 @@ export default function Home() {
                     ))}
                   </div>
 
-                  {/* Down Arrow - Below the numbers */}
-                  <button
-                    onClick={goToNextSlide}
-                    className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mt-4"
-                  >
-                    <ChevronDown size={24} />
-                  </button>
-                </div>
+        {/* Down Arrow - Below the numbers */}
+        <button
+          onClick={goToNextSlide}
+          className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mt-4"
+        >
+          <ChevronDown size={24} />
+        </button>
+      </div>
 
-                {/* Mobile/Tablet Bottom Dots Navigation */}
-                <div className="absolute bottom-8 left-0 right-0 flex justify-center lg:hidden z-30">
-                  <div className="flex space-x-4">
-                    {sliderContent.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
-                            ? 'bg-orange-500'
-                            : 'bg-white opacity-70 hover:opacity-100'
-                          }`}
-                        aria-label={`Go to slide ${index + 1}`}
-                      ></button>
-                    ))}
-                  </div>
-                </div>
-              </div>
+      {/* Mobile/Tablet Bottom Dots Navigation */}
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center lg:hidden z-30">
+        <div className="flex space-x-4">
+          {sliderContent.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                currentSlide === index
+                  ? 'bg-orange-500'
+                  : 'bg-white opacity-70 hover:opacity-100'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            ></button>
+          ))}
+        </div>
+      </div>
+    </div>
               {/* End of slider */}
               {/* Services Section */}
               <div className="container mx-auto px-4 py-16">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Service Card 1 */}
                   <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-blue-200 transform hover:-translate-y-1 hover:bg-blue-600 group">
                     <div className="flex justify-center mb-4">
