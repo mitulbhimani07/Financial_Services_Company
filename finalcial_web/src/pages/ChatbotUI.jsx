@@ -37,7 +37,7 @@ function ChatbotUI({ isOpen, toggleChat }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-20 right-4 flex flex-col h-110 w-90  rounded-lg shadow-lg bg-white">
+    <div className="fixed bottom-20 right-4 flex flex-col h-110 w-90  rounded-lg shadow-lg bg-white" style={{ zIndex: 9999 }}>
       {/* Header */}
       <div className="bg-amber-500 text-white p-3 rounded-t-lg flex justify-between items-center">
   <div className="flex items-center">
