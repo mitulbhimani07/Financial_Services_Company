@@ -1,0 +1,239 @@
+@import './variables.scss';
+
+.private-banking-page {
+  .hero-section {
+    background: linear-gradient(135deg, $primary-color 0%, $blue-800 100%);
+    color: $white;
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+      opacity: 0.1;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+      position: relative;
+    }
+  }
+
+  .benefits-section {
+    padding: 100px 0;
+    background-color: $light-color;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: $primary-color;
+      margin-bottom: 60px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .benefit-card {
+      background: $white;
+      border-radius: 15px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: $box-shadow;
+
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: $box-shadow-lg;
+      }
+
+      .icon-container {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+
+        svg {
+          color: $white;
+          transition: transform 0.3s ease;
+        }
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: $dark-color;
+      }
+
+      p {
+        color: $gray-600;
+        line-height: 1.6;
+      }
+
+      &.gold .icon-container {
+        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      }
+
+      &.blue .icon-container {
+        background: linear-gradient(135deg, $blue-600 0%, $blue-800 100%);
+      }
+
+      &.purple .icon-container {
+        background: linear-gradient(135deg, $blue-800 0%, $primary-color 100%);
+      }
+
+      &.green .icon-container {
+        background: linear-gradient(135deg, $success-color 0%, #2E7D32 100%);
+      }
+
+      &.orange .icon-container {
+        background: linear-gradient(135deg, $orange-500 0%, $orange-600 100%);
+      }
+
+      &.cyan .icon-container {
+        background: linear-gradient(135deg, $secondary-color 0%, $blue-600 100%);
+      }
+    }
+  }
+
+  .features-section {
+    padding: 100px 0;
+    background-color: $white;
+
+    .features-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .feature-text {
+      h2 {
+        font-size: 2.5rem;
+        color: $primary-color;
+        margin-bottom: 30px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 30px;
+
+        li {
+          padding: 15px 0;
+          border-bottom: 1px solid $gray-50;
+          color: $gray-800;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+
+          &::before {
+            content: '✓';
+            color: $success-color;
+            margin-right: 10px;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .contact-btn {
+        background: $primary-color;
+        color: $white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background: $secondary-color;
+        }
+      }
+    }
+
+    .feature-image {
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: $box-shadow-lg;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .private-banking-page {
+    .features-section {
+      .features-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .feature-image {
+        order: -1;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .private-banking-page {
+    .hero-section {
+      padding: 80px 0;
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+    }
+
+    .benefits-section,
+    .features-section {
+      padding: 60px 0;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .private-banking-page {
+    .hero-section {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+} 

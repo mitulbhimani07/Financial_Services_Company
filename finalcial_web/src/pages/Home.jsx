@@ -41,7 +41,7 @@ export default function Home() {
     threshold: 0.1
   });
 
-  
+
 
   const [loanAmount, setLoanAmount] = useState(150000);
   const [interestRate, setInterestRate] = useState(8.5);
@@ -221,24 +221,21 @@ export default function Home() {
   // Slider content with both text and images
   const sliderContent = [
     {
-      title: "Empowering Microfinance",
-      description: "Empowering small businesses and entrepreneurs with accessible microfinance solutions designed to build lasting financial stability.",
+      title: "Smart Financial Solutions",
+      description: "Discover our comprehensive financial services designed to help you achieve your financial goals with confidence. Our team of experts will guide you through every step of your financial journey.",
       buttonText: "Get Started",
-      buttonlink:'/microfinance',
       bgImage: "https://images.unsplash.com/photo-1620228885847-9eab2a1adddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     },
     {
-      title: "Financial Landing License",
-      description: "Enhance your financial knowledge with our comprehensive learning programs designed to build essential money management skills.",
+      title: "Investment Strategies",
+      description: "Our expert advisors create personalized investment portfolios that align with your risk tolerance and financial objectives. We leverage market insights and advanced analytics to optimize returns.",
       buttonText: "Learn More",
-      buttonlink:'/landinglicense',
       bgImage: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     },
     {
-      title: "Comprehensive NBFC Solutions",
-      description: "Access flexible lending solutions, investment opportunities, and specialized financial services through our NBFC division designed to meet diverse financial needs beyond traditional banking.",
-      buttonText: "Get Started",
-      buttonlink:'/nbfc',
+      title: "Secure Banking Solutions",
+      description: "Experience seamless banking with state-of-the-art security features and 24/7 access to your accounts from anywhere. Our digital platform puts financial control at your fingertips.",
+      buttonText: "Join Now",
       bgImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     }
   ];
@@ -310,21 +307,20 @@ export default function Home() {
             <div className=" mx-auto">
               {/* Full section slider */}
               <div className="relative w-full h-full overflow-hidden" style={{ height: "100vh", width: "100%" }}>
-      {/* Slides */}
-      {sliderContent.map((slide, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${
-            currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
-          }`}
-        >
-          {/* Background Image with Overlay */}
-          <div className="absolute inset-0 w-full h-full">
-            {/* Background Image */}
-            <div
-              className="absolute inset-0 w-full h-full bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide.bgImage})` }}
-            ></div>
+                {/* Slides */}
+                {sliderContent.map((slide, index) => (
+                  <div
+                    key={index}
+                    className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                      }`}
+                  >
+                    {/* Background Image with Overlay */}
+                    <div className="absolute inset-0 w-full h-full">
+                      {/* Background Image */}
+                      <div
+                        className="absolute inset-0 w-full h-full bg-cover bg-center"
+                        style={{ backgroundImage: `url(${slide.bgImage})` }}
+                      ></div>
 
                       {/* Overlay */}
                       <div className="absolute inset-0 w-full h-full bg-black opacity-50"></div>
@@ -335,67 +331,30 @@ export default function Home() {
                       <div className="w-full px-4 h-full">
                         <div className="flex items-center justify-center h-full">
                           {/* Center Content - Increased Size */}
-                          
-
-  <motion.div
-    key={currentSlide} // re-triggers animation on slide change
-    initial={{ opacity: 0, y: 60 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -60 }}
-    transition={{
-      duration: 0.8,
-      ease: 'easeInOut',
-    }}
-    className="text-center text-white w-full max-w-4xl px-6"
-  >
-    <motion.h1
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, delay: 0.2 }}
-      className="text-5xl md:text-6xl font-bold mb-8"
-    >
-      {slide.title}
-    </motion.h1>
-
-    <motion.p
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, delay: 0.4 }}
-      className="text-xl md:text-2xl leading-relaxed mb-10 mx-auto max-w-3xl"
-    >
-      {slide.description}
-    </motion.p>
-
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, delay: 0.6 }}
-    >
-      <Link to={slide.buttonlink}>
-        <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors duration-300 text-xl">
-          {slide.buttonText}
-        </button>
-      </Link>
-    </motion.div>
-  </motion.div>
-
-
-
+                          <div className="text-center text-white w-full max-w-4xl px-6">
+                            <h1 className="text-5xl md:text-6xl font-bold mb-8">{slide.title}</h1>
+                            <p className="text-xl md:text-2xl leading-relaxed mb-10 mx-auto max-w-3xl">
+                              {slide.description}
+                            </p>
+                            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors duration-300 text-xl">
+                              {slide.buttonText}
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 ))}
 
-      {/* Desktop Vertical Navigation - Hidden on mobile/tablet */}
-      <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 hidden lg:flex flex-col items-center">
-        {/* Up Arrow - Above the numbers */}
-        <button
-          onClick={goToPrevSlide}
-          className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mb-4"
-        >
-          <ChevronUp size={24} />
-        </button>
+                {/* Desktop Vertical Navigation - Hidden on mobile/tablet */}
+                <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 hidden lg:flex flex-col items-center">
+                  {/* Up Arrow - Above the numbers */}
+                  <button
+                    onClick={goToPrevSlide}
+                    className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mb-4"
+                  >
+                    <ChevronUp size={24} />
+                  </button>
 
                   {/* Page Numbers */}
                   <div className="flex flex-col items-center space-y-4">
@@ -404,8 +363,8 @@ export default function Home() {
                         key={index}
                         onClick={() => setCurrentSlide(index)}
                         className={`w-8 h-8 flex items-center justify-center rounded-full ${currentSlide === index
-                            ? 'bg-orange-500 text-white'
-                            : 'bg-white text-gray-700 opacity-70 hover:opacity-100'
+                          ? 'bg-orange-500 text-white'
+                          : 'bg-white text-gray-700 opacity-70 hover:opacity-100'
                           } transition-all duration-300`}
                       >
                         {index + 1}
@@ -413,33 +372,32 @@ export default function Home() {
                     ))}
                   </div>
 
-        {/* Down Arrow - Below the numbers */}
-        <button
-          onClick={goToNextSlide}
-          className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mt-4"
-        >
-          <ChevronDown size={24} />
-        </button>
-      </div>
+                  {/* Down Arrow - Below the numbers */}
+                  <button
+                    onClick={goToNextSlide}
+                    className="p-2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full transition-all duration-300 mt-4"
+                  >
+                    <ChevronDown size={24} />
+                  </button>
+                </div>
 
-      {/* Mobile/Tablet Bottom Dots Navigation */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center lg:hidden z-30">
-        <div className="flex space-x-4">
-          {sliderContent.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentSlide === index
-                  ? 'bg-orange-500'
-                  : 'bg-white opacity-70 hover:opacity-100'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            ></button>
-          ))}
-        </div>
-      </div>
-    </div>
+                {/* Mobile/Tablet Bottom Dots Navigation */}
+                <div className="absolute bottom-8 left-0 right-0 flex justify-center lg:hidden z-30">
+                  <div className="flex space-x-4">
+                    {sliderContent.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
+                            ? 'bg-orange-500'
+                            : 'bg-white opacity-70 hover:opacity-100'
+                          }`}
+                        aria-label={`Go to slide ${index + 1}`}
+                      ></button>
+                    ))}
+                  </div>
+                </div>
+              </div>
               {/* End of slider */}
               {/* Services Section */}
               <div className="container mx-auto px-4 py-16">
