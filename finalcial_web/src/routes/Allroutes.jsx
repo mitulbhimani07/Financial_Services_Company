@@ -1,5 +1,8 @@
 import React, { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import HomeMicrofinanace from '../microfinance/HomeMicrofinanace';
+import Main from '../landinglicense/main';
+import MainNBFC from '../NBFC/MainNBFC';
 
 // Lazy load components
 const Home = lazy(() => import('../pages/Home'));
@@ -28,6 +31,9 @@ export default function Allroutes() {
           <Route path='/whatWeOffer' element={<WhatWeOffer />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/microfinance' element={<HomeMicrofinanace/>}/>
+          <Route path='/landinglicense' element={<Main/>}/>
+          <Route path='/nbfc' element={<MainNBFC/>}/>
         </Routes>
       </Suspense>
     </div>
