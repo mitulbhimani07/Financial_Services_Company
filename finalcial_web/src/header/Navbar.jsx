@@ -6,6 +6,8 @@ import Drop2 from "../assets/images/drop2.jpg";
 import Drop3 from "../assets/images/drop3.jpg";
 import { Link } from 'react-router-dom';
 import { User, LogIn, UserPlus } from 'lucide-react';
+import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
+import "../assets/scss/Navbar.scss";
 
 // Add this CSS to your scss file or create a new style block
 const hoverUnderlineAnimation = `
@@ -42,6 +44,7 @@ const Navbar = () => {
   const [activeService, setActiveService] = useState('private-banking');
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [activeAuth, setActiveAuth] = useState('login');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Service images and content
   const serviceImages = {
@@ -90,7 +93,7 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const toggleAuthDropdown = () => {
@@ -142,6 +145,7 @@ const Navbar = () => {
                   <div className="flex w-full">
                     {/* Service menu items */}
                     <div className="w-80 bg-gray-50 py-4">
+                      <Link to="/PrivateBanking">
                       <div
                         className={`px-4 py-3 cursor-pointer transition-all ${activeService === 'private-banking' ? 'bg-amber-100 border-l-4 border-amber-400' : 'hover:bg-gray-100'}`}
                         onMouseEnter={() => handleServiceHover('private-banking')}
@@ -149,6 +153,8 @@ const Navbar = () => {
                         <h3 className="font-semibold text-gray-800">Private Banking</h3>
                         <p className="text-sm text-gray-600">Personalized financial solutions</p>
                       </div>
+                      </Link>
+                      <Link to="/wealthPlanning">
                       <div
                         className={`px-4 py-3 cursor-pointer transition-all ${activeService === 'investment' ? 'bg-amber-100 border-l-4 border-amber-400' : 'hover:bg-gray-100'}`}
                         onMouseEnter={() => handleServiceHover('investment')}
@@ -156,6 +162,8 @@ const Navbar = () => {
                         <h3 className="font-semibold text-gray-800">Investment Management</h3>
                         <p className="text-sm text-gray-600">Grow your wealth strategically</p>
                       </div>
+                      </Link>
+                      <Link to="/whatWeOffer">
                       <div
                         className={`px-4 py-3 cursor-pointer transition-all ${activeService === 'wealth' ? 'bg-amber-100 border-l-4 border-amber-400' : 'hover:bg-gray-100'}`}
                         onMouseEnter={() => handleServiceHover('wealth')}
@@ -163,6 +171,7 @@ const Navbar = () => {
                         <h3 className="font-semibold text-gray-800">Wealth Planning</h3>
                         <p className="text-sm text-gray-600">Secure your financial future</p>
                       </div>
+                      </Link>
                     </div>
 
                     {/* Service image and description - IMPROVED WIDTH */}
@@ -182,7 +191,7 @@ const Navbar = () => {
                           <p className="text-gray-600 my-4">{serviceImages[activeService].description}</p>
                           <p className="text-gray-600 mb-4">Experience tailored financial solutions that perfectly align with your unique financial goals and aspirations. Our expert advisors are ready to guide you.</p>
                           <Link
-                            to={`/services/${activeService}`}
+                            to={`/${activeService}`}
                             className="mt-3 inline-block px-6 py-2 bg-amber-400 text-gray-800 rounded hover:bg-amber-500 transition-colors"
                           >
                             Learn More
@@ -212,7 +221,7 @@ const Navbar = () => {
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  {isOpen ? (
+                  {isMenuOpen ? (
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   ) : (
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -278,7 +287,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Navigation */}
-          <div className={`${styles.mobileNav} ${isOpen ? 'block' : 'hidden'} lg:hidden`}>
+          <div className={`${styles.mobileNav} ${isMenuOpen ? 'block' : 'hidden'} lg:hidden`}>
             <div className="px-2 pt-2 pb-4 space-y-1">
               <Link to="/" className="block px-3 py-2 rounded-md text-base font-medium hover-underline-animation">Home</Link>
               <Link to="/about" className="block px-3 py-2 rounded-md text-base font-medium hover-underline-animation">About Us</Link>

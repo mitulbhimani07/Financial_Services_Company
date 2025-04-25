@@ -139,7 +139,7 @@ export default function About() {
           <div className="max-w-full mx-auto">
             <div className="bg-white rounded-lg overflow-hidden">
               {/* Banner Content - Full width with expanded container */}
-              <div className="container mx-auto px-4 md:px-10 lg:px-16 py-8 md:py-12">
+              <div className="container mx-auto px-4 md:px-10 lg:px-16 py-8 md:py-12 mt-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   {/* Left content with additional information */}
                   <div className="flex flex-col justify-center">

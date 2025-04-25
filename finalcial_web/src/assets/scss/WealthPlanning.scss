@@ -1,0 +1,288 @@
+@import './variables.scss';
+
+.wealth-planning-page {
+  .hero-section {
+    background: linear-gradient(135deg, $primary-color 0%, $blue-800 100%);
+    color: $white;
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+      opacity: 0.1;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+      position: relative;
+    }
+  }
+
+  .services-section {
+    padding: 100px 0;
+    background-color: $light-color;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: $primary-color;
+      margin-bottom: 60px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: $white;
+      border-radius: 15px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: $box-shadow;
+
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: $box-shadow-lg;
+      }
+
+      .icon-container {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+
+        svg {
+          color: $white;
+          transition: transform 0.3s ease;
+        }
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: $dark-color;
+      }
+
+      p {
+        color: $gray-600;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .learn-more-btn {
+        background: $primary-color;
+        color: $white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background: $secondary-color;
+        }
+      }
+
+      &.blue .icon-container {
+        background: linear-gradient(135deg, $blue-600 0%, $blue-800 100%);
+      }
+
+      &.green .icon-container {
+        background: linear-gradient(135deg, $success-color 0%, #2E7D32 100%);
+      }
+
+      &.purple .icon-container {
+        background: linear-gradient(135deg, $blue-800 0%, $primary-color 100%);
+      }
+
+      &.orange .icon-container {
+        background: linear-gradient(135deg, $orange-500 0%, $orange-600 100%);
+      }
+
+      &.cyan .icon-container {
+        background: linear-gradient(135deg, $secondary-color 0%, $blue-600 100%);
+      }
+
+      &.amber .icon-container {
+        background: linear-gradient(135deg, $warning-color 0%, #F59E0B 100%);
+      }
+    }
+  }
+
+  .process-section {
+    padding: 100px 0;
+    background-color: $white;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: $primary-color;
+      margin-bottom: 60px;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: $gray-50;
+        z-index: 1;
+      }
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+
+      .step-number {
+        width: 60px;
+        height: 60px;
+        background: $primary-color;
+        color: $white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 auto 20px;
+      }
+
+      h3 {
+        font-size: 1.3rem;
+        color: $dark-color;
+        margin-bottom: 15px;
+      }
+
+      p {
+        color: $gray-600;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .cta-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, $primary-color 0%, $blue-800 100%);
+    color: $white;
+    text-align: center;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .contact-btn {
+      background: $white;
+      color: $primary-color;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .wealth-planning-page {
+    .process-section {
+      .process-steps {
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .wealth-planning-page {
+    .hero-section {
+      padding: 80px 0;
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+    }
+
+    .services-section,
+    .process-section {
+      padding: 60px 0;
+    }
+
+    .cta-section {
+      padding: 60px 0;
+
+      h2 {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .wealth-planning-page {
+    .hero-section {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+} 
