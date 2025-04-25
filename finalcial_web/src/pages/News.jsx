@@ -129,10 +129,10 @@ const NewsPage = () => {
 
     <div className="text-gray-800">
       {/* Hero Section */}
-      <section className="relative text-white">
+      <section className="relative text-white ">
         <div className="absolute inset-0 bg-primary bg-opacity-30"></div>
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mt-21">
             <h1 className="text-4xl font-bold mb-6 leading-tight md:text-5xl lg:text-6xl">
               News & <span className="text-accent">Insights</span>
             </h1>
