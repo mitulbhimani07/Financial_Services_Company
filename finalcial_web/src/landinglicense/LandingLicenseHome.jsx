@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Main() {
+function LandingLicenseHome() {
   return (
     <div className='text-4xl'>landing license</div>
   )
 }
 
-export default Main
+export default LandingLicenseHome
