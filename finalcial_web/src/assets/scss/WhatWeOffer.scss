@@ -27,9 +27,11 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
       gap: 30px;
       margin-top: 40px;
+      margin: 0 100px;
+
     }
 
     .service-card {
@@ -124,6 +126,7 @@
   .features-section {
     padding: 80px 0;
     background-color: $white;
+    margin:0 100px;
 
     h2 {
       text-align: center;
