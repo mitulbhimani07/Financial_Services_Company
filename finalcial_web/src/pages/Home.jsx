@@ -238,7 +238,7 @@ export default function Home() {
       title: "Comprehensive NBFC Solutions",
       description: "Access flexible lending solutions, investment opportunities, and specialized financial services through our NBFC division designed to meet diverse financial needs beyond traditional banking.",
       buttonText: "Get Started",
-      buttinlink:'/nbfc',
+      buttonlink:'/nbfc',
       bgImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     }
   ];
