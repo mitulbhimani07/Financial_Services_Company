@@ -4,11 +4,12 @@ import {
   FaTwitter, 
   FaFacebook, 
   FaYoutube, 
-  FaMapMarkerAlt, 
-  FaPhone, 
+  FaMapMarkerAlt , 
   FaEnvelope, 
   FaClock 
 } from 'react-icons/fa';
+import { IoCallSharp } from "react-icons/io5";
+
 import styles from '../assets/scss/Footer.module.scss';
 
 const Footer = () => {
@@ -63,7 +64,7 @@ const Footer = () => {
                   <span className='ms-4'>123 Financial District, New York, NY 10005</span>
                 </li>
                 <li className='flex align-center'>
-                  <FaPhone style={{ fontSize: '1.3rem' }}/>
+                  <IoCallSharp  style={{ fontSize: '1.3rem' }}/>
                   <span className='ms-4'>+1 (800) 555-1234</span>
                 </li>
                 <li className='flex align-center'>
