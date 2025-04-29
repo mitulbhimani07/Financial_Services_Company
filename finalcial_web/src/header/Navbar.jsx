@@ -285,13 +285,13 @@ const Navbar = () => {
             {/* Mobile menu buttons */}
             <div className="lg:hidden flex items-center space-x-4">
               {/* Account button for mobile */}
-              <button
+              {/* <button
                 onClick={toggleAuthDropdown}
                 className="auth-button p-2 rounded-full bg-amber-400 hover:bg-amber-500 transition-colors focus:outline-none flex items-center"
                 aria-label="Account options"
               >
                 <User size={20} color="#1e293b" />
-              </button>
+              </button> */}
               
               {/* Hamburger menu */}
               <button

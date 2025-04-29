@@ -1,3 +1,4 @@
+
 @import './variables.scss';
 
 .wealth-planning-page {
@@ -40,6 +41,13 @@
     padding: 100px 0;
     background-color: $light-color;
 
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
     h2 {
       text-align: center;
       font-size: 2.5rem;
@@ -49,14 +57,15 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 20px;
-      margin: 5px 100px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      width: 100%;
+      margin: 0 auto;
     }
 
     .service-card {
       background: $white;
-      border-radius: 50px;
+      border-radius: 15px;
       padding: 40px 30px;
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -104,6 +113,8 @@
         font-weight: 600;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        width: auto;
+        min-width: 150px;
 
         &:hover {
           background: $secondary-color;
@@ -140,6 +151,13 @@
     padding: 100px 0;
     background-color: $white;
 
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
     h2 {
       text-align: center;
       font-size: 2.5rem;
@@ -149,10 +167,11 @@
 
     .process-steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 30px;
       position: relative;
-      margin: 0 100px;
+      width: 100%;
+      margin: 0 auto;
       padding: 0 20px;
       z-index: 1;
       text-align: center;
@@ -162,8 +181,8 @@
         content: '';
         position: absolute;
         top: 30px;
-        left: 25px;
-        right: 25px;
+        left: 10%;
+        right: 10%;
         height: 2px;
         background: $primary-color;
         z-index: 1;
@@ -208,6 +227,13 @@
     color: $white;
     text-align: center;
 
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
     h2 {
       font-size: 2.5rem;
       margin-bottom: 20px;
@@ -229,6 +255,8 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
+      width: auto;
+      min-width: 200px;
 
       &:hover {
         transform: translateY(-3px);
@@ -238,18 +266,33 @@
   }
 }
 
+/* Large devices (laptops/desktops, up to 1200px) */
 @media (max-width: $breakpoint-lg) {
   .wealth-planning-page {
+    .services-section {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
     .process-section {
       .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 50px;
+        
         &::before {
           display: none;
+        }
+        
+        .step:nth-child(3), .step:nth-child(4) {
+          margin-top: 20px;
         }
       }
     }
   }
 }
 
+/* Medium devices (tablets, up to 992px) */
 @media (max-width: $breakpoint-md) {
   .wealth-planning-page {
     .hero-section {
@@ -267,6 +310,11 @@
     .services-section,
     .process-section {
       padding: 60px 0;
+      
+      h2 {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+      }
     }
 
     .cta-section {
@@ -275,20 +323,161 @@
       h2 {
         font-size: 2rem;
       }
+      
+      p {
+        font-size: 1.1rem;
+      }
     }
   }
 }
 
+/* Small devices (landscape phones, up to 768px) */
 @media (max-width: $breakpoint-sm) {
   .wealth-planning-page {
     .hero-section {
+      padding: 60px 0;
+      
       h1 {
         font-size: 2.5rem;
       }
 
       p {
         font-size: 1rem;
+        padding: 0 15px;
+      }
+    }
+    
+    .services-section {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .service-card {
+        padding: 30px 20px;
+        border-radius: 10px;
+        
+        .icon-container {
+          width: 70px;
+          height: 70px;
+          margin-bottom: 20px;
+        }
+        
+        h3 {
+          font-size: 1.3rem;
+        }
+      }
+    }
+    
+    .process-section {
+      .process-steps {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+    
+    .cta-section {
+      padding: 50px 0;
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+      
+      .contact-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
       }
     }
   }
-} 
+}
+
+/* Extra small devices (phones, up to 576px) */
+@media (max-width: 1200px) {
+  .wealth-planning-page {
+    .hero-section {
+      padding: 50px 0;
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      p {
+        font-size: 0.9rem;
+      }
+    }
+    
+    .services-section,
+    .process-section {
+      padding: 40px 0;
+      
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+      }
+    }
+    
+    .service-card {
+      .icon-container {
+        width: 60px;
+        height: 60px;
+        
+        svg {
+          transform: scale(0.8);
+        }
+      }
+      
+      h3 {
+        font-size: 1.2rem;
+      }
+      
+      p {
+        font-size: 0.9rem;
+      }
+      
+      .learn-more-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    .process-section {
+      .step {
+        .step-number {
+          width: 50px;
+          height: 50px;
+          font-size: 1.2rem;
+        }
+        
+        h3 {
+          font-size: 1.1rem;
+        }
+        
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    .cta-section {
+      padding: 40px 0;
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+      
+      p {
+        font-size: 0.9rem;
+      }
+      
+      .contact-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        min-width: 180px;
+      }
+    }
+  }
+}

@@ -46,6 +46,21 @@ export default function WhatWeOffer() {
     }
   ];
 
+  const features = [
+    {
+      title: "Expert Guidance",
+      description: "Our team of financial experts provides personalized advice and solutions."
+    },
+    {
+      title: "Secure Transactions",
+      description: "State-of-the-art security measures to protect your financial information."
+    },
+    {
+      title: "24/7 Support",
+      description: "Round-the-clock customer support to address your queries and concerns."
+    }
+  ];
+
   return (
     <div className="what-we-offer-page">
       <Navbar />
@@ -60,7 +75,8 @@ export default function WhatWeOffer() {
 
       {/* Services Grid */}
       <div className="services-section">
-        <div className="container mx-auto">
+        <div className="container">
+          <h2 className="text-center text-primary text-3xl mb-12">Our Services</h2>
           <div className="services-grid">
             {services.map((service, index) => (
               <div key={index} className={`service-card ${service.color}`}>
@@ -81,18 +97,12 @@ export default function WhatWeOffer() {
         <div className="container">
           <h2>Why Choose Us</h2>
           <div className="features-grid">
-            <div className="feature-card">
-              <h3>Expert Guidance</h3>
-              <p>Our team of financial experts provides personalized advice and solutions.</p>
-            </div>
-            <div className="feature-card">
-              <h3>Secure Transactions</h3>
-              <p>State-of-the-art security measures to protect your financial information.</p>
-            </div>
-            <div className="feature-card">
-              <h3>24/7 Support</h3>
-              <p>Round-the-clock customer support to address your queries and concerns.</p>
-            </div>
+            {features.map((feature, index) => (
+              <div key={index} className="feature-card">
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
