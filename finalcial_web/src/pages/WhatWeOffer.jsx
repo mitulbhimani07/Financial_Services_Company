@@ -60,7 +60,7 @@ export default function WhatWeOffer() {
 
       {/* Services Grid */}
       <div className="services-section">
-        <div className="container">
+        <div className="container mx-auto">
           <div className="services-grid">
             {services.map((service, index) => (
               <div key={index} className={`service-card ${service.color}`}>

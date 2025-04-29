@@ -306,7 +306,7 @@ export default function Home() {
       <div className="font-sans text-gray-500 w-full">
         {/* Hero Section with full width design */}
         <div className="bg-white w-full text-black">
-          <div className="w-full  py-16 md:py-21">
+          <div className="w-full ">
             <div className=" mx-auto">
               {/* Full section slider */}
               <div className="relative w-full h-full overflow-hidden" style={{ height: "100vh", width: "100%" }}>

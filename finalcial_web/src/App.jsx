@@ -31,7 +31,7 @@ function App() {
         </div>
       ) : (
         <div className={`content ${!isLoading ? 'show' : ''}`}>
-          <Navbar />
+          {/* <Navbar /> */}
           <Allroutes />
 
           {/* Chat toggle button - fixed to bottom right */}

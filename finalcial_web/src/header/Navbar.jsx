@@ -136,7 +136,7 @@ const Navbar = () => {
         {hoverUnderlineAnimation}
       </style>
 
-      <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} fixed w-full z-50`}>
+      <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} sticky top-0 w-full z-50`}>
         <div className={`${styles.container} container mx-auto px-4`}>
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
@@ -285,7 +285,6 @@ const Navbar = () => {
             {/* Mobile menu buttons */}
             <div className="lg:hidden flex items-center space-x-4">
               {/* Account button for mobile */}
-              <div className="hidden lg:flex items-center space-x-4">
               <button
                 onClick={toggleAuthDropdown}
                 className="auth-button p-2 rounded-full bg-amber-400 hover:bg-amber-500 transition-colors focus:outline-none flex items-center"
@@ -293,7 +292,6 @@ const Navbar = () => {
               >
                 <User size={20} color="#1e293b" />
               </button>
-              </div>
               
               {/* Hamburger menu */}
               <button
@@ -314,31 +312,36 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Navigation - Improved */}
+          {/* Mobile Navigation - Updated to match desktop experience */}
           <div className={`mobile-menu lg:hidden bg-white shadow-lg rounded-b-lg transition-all duration-300 ${isMenuOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible overflow-hidden'}`}>
             <div className="px-2 pt-2 pb-4 space-y-1">
               <Link to="/" className="block px-3 py-2 rounded-md text-black font-medium hover:bg-gray-100">Home</Link>
               <Link to="/about" className="block px-3 py-2 rounded-md text-black font-medium hover:bg-gray-100">About Us</Link>
               
-              {/* Services dropdown - Mobile */}
+              {/* Services dropdown - Mobile - Updated to match desktop experience */}
               <div className="relative">
                 <button
                   onClick={toggleServicesDropdown}
                   className="w-full text-left px-3 py-2 rounded-md text-black font-medium flex justify-between items-center hover:bg-gray-100"
                 >
                   <span>What We Offer</span>
-                  {/* <ChevronDown size={16} className={`transform transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} /> */}
+                  <ChevronDown size={16} className={`transform transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
                 </button>
                 
                 {isServicesOpen && (
-                  <div className="mt-1 rounded-md border border-gray-200">
-                    {Object.keys(serviceImages).map((serviceKey) => (
-                      <div key={serviceKey} className="border-b border-gray-200 last:border-b-0">
-                        <button
-                          onClick={() => setActiveService(serviceKey)}
-                          className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-gray-50"
+                  <div className="bg-white rounded-md shadow-md overflow-hidden">
+                    {/* Service menu items section */}
+                    <div className="bg-gray-50">
+                      {Object.keys(serviceImages).map((serviceKey) => (
+                        <Link 
+                          key={serviceKey}
+                          to={`/${serviceKey === 'private-banking' ? 'PrivateBanking' : 
+                                serviceKey === 'investment' ? 'wealthPlanning' : 'whatWeOffer'}`}
                         >
-                          <div>
+                          <div 
+                            className={`px-4 py-3 border-b border-gray-200 cursor-pointer transition-all ${activeService === serviceKey ? 'bg-amber-100 border-l-4 border-amber-400' : ''}`}
+                            onClick={() => setActiveService(serviceKey)}
+                          >
                             <h3 className="font-semibold text-gray-800">{serviceImages[serviceKey].title}</h3>
                             <p className="text-sm text-gray-600">
                               {serviceKey === 'private-banking' ? 'Personalized financial solutions' :
@@ -346,15 +349,34 @@ const Navbar = () => {
                                'Secure your financial future'}
                             </p>
                           </div>
-                          <Link
-                            to={`/${serviceKey}`}
-                            className="ml-2 px-3 py-1 bg-amber-400 text-gray-800 text-sm rounded hover:bg-amber-500 transition-colors"
-                          >
-                            View
-                          </Link>
-                        </button>
+                        </Link>
+                      ))}
+                    </div>
+                    
+                    {/* Service image and description section */}
+                    <div className="p-4 bg-white">
+                      <div className="mb-4 h-48 overflow-hidden rounded-lg">
+                        <img
+                          src={serviceImages[activeService].image}
+                          alt={serviceImages[activeService].title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                    ))}
+                      <h3 className="text-lg font-bold text-gray-800">{serviceImages[activeService].title}</h3>
+                      <p className="text-gray-600 my-3">{serviceImages[activeService].description}</p>
+                      <p className="text-gray-600 mb-3">Experience tailored financial solutions that perfectly align with your unique financial goals and aspirations.</p>
+                      <Link
+                        to={`/${activeService === 'private-banking' ? 'PrivateBanking' : 
+                              activeService === 'investment' ? 'wealthPlanning' : 'whatWeOffer'}`}
+                        className="inline-block px-6 py-2 bg-amber-400 text-gray-800 rounded hover:bg-amber-500 transition-colors"
+                        onClick={() => {
+                          setIsServicesOpen(false);
+                          setIsMenuOpen(false);
+                        }}
+                      >
+                        Learn More
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>

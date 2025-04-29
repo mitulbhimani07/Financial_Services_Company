@@ -196,3 +196,342 @@
     }
   }
 } 
+// WhatWeOffer.scss
+
+// Global container styles
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.what-we-offer-page {
+  width: 100%;
+  overflow-x: hidden; // Prevent horizontal scrolling
+  
+  // Hero Section
+  .hero-section {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+    text-align: center;
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    
+    p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #666;
+    }
+  }
+  
+  // Services Section
+  .services-section {
+    padding: 50px 0;
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+      
+      h2 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 10px;
+      }
+      
+      p {
+        color: #666;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      
+      .service-card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .icon-container {
+          margin-bottom: 15px;
+          color: #0066cc;
+        }
+        
+        h3 {
+          font-size: 1.4rem;
+          margin-bottom: 10px;
+          color: #333;
+        }
+        
+        p {
+          color: #666;
+          margin-bottom: 20px;
+        }
+        
+        .learn-more-btn {
+          background-color: #0066cc;
+          color: white;
+          border: none;
+          padding: 8px 16px;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          
+          &:hover {
+            background-color: #0055aa;
+          }
+        }
+        
+        // Service card color variations
+        &.blue .icon-container {
+          color: #0066cc;
+        }
+        
+        &.green .icon-container {
+          color: #28a745;
+        }
+        
+        &.purple .icon-container {
+          color: #6f42c1;
+        }
+        
+        &.orange .icon-container {
+          color: #fd7e14;
+        }
+        
+        &.cyan .icon-container {
+          color: #17a2b8;
+        }
+        
+        &.amber .icon-container {
+          color: #ffc107;
+        }
+      }
+    }
+    
+    // Wealth Planning Services section
+    .wealth-planning-services {
+      margin-top: 50px;
+      background-color: #f0f7ff;
+      border-radius: 10px;
+      padding: 30px;
+      
+      h2 {
+        font-size: 1.8rem;
+        color: #0066cc;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      
+      .wealth-services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        
+        .wealth-service-item {
+          background-color: white;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+          
+          h4 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+          }
+          
+          p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+          }
+        }
+      }
+    }
+  }
+  
+  // Features Section
+  .features-section {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+    
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      
+      .feature-card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        
+        h3 {
+          font-size: 1.3rem;
+          margin-bottom: 10px;
+          color: #333;
+        }
+        
+        p {
+          color: #666;
+        }
+      }
+    }
+  }
+}
+
+// Media queries for responsiveness
+@media (max-width: 768px) {
+  .what-we-offer-page {
+    .hero-section {
+      padding: 40px 0;
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+    }
+    
+    .services-section, .features-section {
+      padding: 30px 0;
+      
+      .services-grid, .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .section-title {
+        h2 {
+          font-size: 1.8rem;
+        }
+      }
+    }
+    
+    .services-section {
+      .service-card {
+        padding: 20px;
+      }
+      
+      .wealth-planning-services {
+        padding: 20px 15px;
+        margin-top: 30px;
+        
+        h2 {
+          font-size: 1.6rem;
+        }
+        
+        .wealth-services-grid {
+          grid-template-columns: 1fr;
+          
+          .wealth-service-item {
+            padding: 15px;
+            
+            h4 {
+              font-size: 1.1rem;
+            }
+            
+            p {
+              font-size: 0.9rem;
+            }
+          }
+        }
+      }
+    }
+    
+    .features-section {
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      .feature-card {
+        padding: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .what-we-offer-page {
+    .hero-section {
+      padding: 30px 0;
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+    
+    .services-section {
+      .service-card {
+        padding: 15px;
+      }
+      
+      .section-title {
+        h2 {
+          font-size: 1.6rem;
+        }
+        
+        p {
+          font-size: 0.9rem;
+        }
+      }
+      
+      .wealth-planning-services {
+        padding: 15px 12px;
+        
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 15px;
+        }
+        
+        .wealth-services-grid {
+          gap: 15px;
+          
+          .wealth-service-item {
+            padding: 12px;
+            
+            h4 {
+              font-size: 1rem;
+              margin-bottom: 8px;
+            }
+            
+            p {
+              font-size: 0.85rem;
+              line-height: 1.4;
+            }
+          }
+        }
+      }
+    }
+    
+    .features-section .feature-card {
+      padding: 15px;
+    }
+  }
+}
