@@ -91,7 +91,7 @@ export default function About() {
       name: "Sarah Johnson",
       position: "Financial Advisor",
       bio: "With over 15 years of experience, Sarah specializes in retirement planning and investment strategies.",
-      imageUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      imageUrl: "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTAxL3Jhd3BpeGVsX29mZmljZV8zM19waG90b19yZWFsX2luZGlhbl9idXNpbmVzc193b21hbl90aGVfaW1hZ2VfaV85Y2E0ZTUwYy02Yzg4LTQwNTYtODg5Mi1kYTk0MDY2YTc4NDRfMi5qcGc.jpg",
       social: {
         linkedin: "#",
         twitter: "#",
@@ -105,7 +105,7 @@ export default function About() {
       name: "Michael Chen",
       position: "Tax Specialist",
       bio: "Michael helps clients navigate complex tax situations with precision and expertise.",
-      imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      imageUrl: "https://static.vecteezy.com/system/resources/previews/024/354/242/non_2x/businessman-isolated-illustration-ai-generative-free-photo.jpg",
       social: {
         linkedin: "#",
         twitter: "#",
@@ -119,7 +119,7 @@ export default function About() {
       name: "Amanda Rivera",
       position: "Wealth Manager",
       bio: "Amanda creates personalized wealth management strategies tailored to each client's goals.",
-      imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+      imageUrl: "https://t4.ftcdn.net/jpg/06/12/73/89/360_F_612738927_LIcFCiKHQhHq9R1QhkVRKvT6RelYUmgv.jpg",
       social: {
         linkedin: "#",
         twitter: "#",
