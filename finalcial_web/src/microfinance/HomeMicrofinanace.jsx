@@ -33,7 +33,6 @@ function HomeMicrofinanace() {
     }
   ];
   
-
   const [currentSlide, setCurrentSlide] = useState(0);
   
   // Auto slide every 5 seconds
@@ -53,18 +52,15 @@ function HomeMicrofinanace() {
   };
 
   return (
-    <>
-        {/* <Navbar/> */}
-
-        <div className="font-sans bg-gray-50">
+    <div className="font-sans bg-gray-50">
       {/* Navigation - Full Width */}
-      <MicrofinanceNavbar/>
+      <MicrofinanceNavbar />
       
       {/* Hero Section - Full Width Background with Contained Content */}
-      <section className="bg-gradient-to-r from-blue-800 to-blue-600 text-white">
-        <div className="container max-w-7xl mx-auto px-6 py-24">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+      <section className="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-20">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="space-y-6 px-2">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Financial Solutions for Your Growth</h1>
               <p className="text-xl md:text-2xl opacity-90">Access affordable loans with flexible repayment terms to grow your business or meet personal needs.</p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -76,7 +72,7 @@ function HomeMicrofinanace() {
                 </button>
               </div>
             </div>
-            <div className="bg-white rounded-xl shadow-2xl p-8 text-gray-800 transform hover:scale-105 transition duration-300">
+            <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 text-gray-800 transform hover:scale-105 transition duration-300 mx-2 md:mx-0">
               <h2 className="text-2xl font-bold mb-6 text-blue-800">Quick Loan Calculator</h2>
               <div className="space-y-6">
                 <div>
@@ -112,26 +108,26 @@ function HomeMicrofinanace() {
       </section>
 
       {/* Features Section - Contained */}
-      <section className="py-24">
-        <div className="container max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">Why Choose MicroFin?</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-8 bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-blue-600">
+      <section className="py-16 md:py-24">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-800">Why Choose MicroFin?</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 px-2 md:px-0">
+            <div className="text-center p-6 md:p-8 bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-blue-600">
               <FaHandHoldingUsd className="text-blue-600 text-5xl mx-auto mb-6" />
               <h3 className="text-xl font-semibold mb-3">Affordable Rates</h3>
               <p className="text-gray-600">Competitive interest rates tailored for micro-businesses and individuals.</p>
             </div>
-            <div className="text-center p-8 bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-blue-600">
+            <div className="text-center p-6 md:p-8 bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-blue-600">
               <FaClock className="text-blue-600 text-5xl mx-auto mb-6" />
               <h3 className="text-xl font-semibold mb-3">Quick Approval</h3>
               <p className="text-gray-600">Get loan decisions within 24 hours of application submission.</p>
             </div>
-            <div className="text-center p-8 bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-blue-600">
+            <div className="text-center p-6 md:p-8 bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-blue-600">
               <FaCalculator className="text-blue-600 text-5xl mx-auto mb-6" />
               <h3 className="text-xl font-semibold mb-3">Flexible Terms</h3>
               <p className="text-gray-600">Customizable repayment plans that fit your cash flow.</p>
             </div>
-            <div className="text-center p-8 bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-blue-600">
+            <div className="text-center p-6 md:p-8 bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-blue-600">
               <FaShieldAlt className="text-blue-600 text-5xl mx-auto mb-6" />
               <h3 className="text-xl font-semibold mb-3">Secure Process</h3>
               <p className="text-gray-600">Your data and transactions are protected with bank-level security.</p>
@@ -141,10 +137,10 @@ function HomeMicrofinanace() {
       </section>
 
       {/* Loan Products Section - Full Width Background with Contained Content */}
-      <section className="bg-gradient-to-b from-gray-50 to-gray-100">
-        <div className="container max-w-7xl mx-auto px-6 py-24">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">Our Loan Products</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      <section className="bg-gradient-to-b from-gray-50 to-gray-100 py-16 md:py-24">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-800">Our Loan Products</h2>
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 px-2 md:px-0">
             {[
               {
                 title: "Business Growth Loan",
@@ -168,7 +164,7 @@ function HomeMicrofinanace() {
                 desc: "Support for farmers and agri-businesses"
               }
             ].map((product, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-t-4 border-blue-600">
+              <div key={index} className="bg-white p-6 md:p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-t-4 border-blue-600">
                 <h3 className="text-2xl font-bold mb-4 text-blue-800">{product.title}</h3>
                 <div className="space-y-3 mb-6">
                   <p className="flex justify-between"><span className="font-semibold">Amount:</span> <span className="text-gray-700">{product.amount}</span></p>
@@ -182,7 +178,7 @@ function HomeMicrofinanace() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-16">
+          <div className="text-center mt-12 md:mt-16">
             <button className="bg-blue-600 text-white px-8 py-4 rounded-md hover:bg-blue-700 transition duration-300 transform hover:-translate-y-1 font-medium">
               View All Products
             </button>
@@ -192,80 +188,80 @@ function HomeMicrofinanace() {
 
       {/* Testimonials Section - Slider */}
       <section className="py-16 bg-white">
-      <div className="container max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">What Our Clients Say</h2>
-        
-        <div className="relative mx-auto">
-          <div className="overflow-hidden rounded-lg bg-gray-50 shadow-md p-6">
-            <div className="text-blue-600 mb-2">
-              <FaQuoteLeft size={32} />
-            </div>
-            
-            <div className="relative h-48">
-              {testimonials.map((testimonial, index) => (
-                <div 
-                  key={index}
-                  className={`absolute top-0 left-0 w-full transition-all duration-500 ease-in-out ${
-                    index === currentSlide 
-                      ? "opacity-100 translate-x-0" 
-                      : "opacity-0 translate-x-20"
-                  }`}
-                  style={{ display: index === currentSlide ? 'block' : 'none' }}
-                >
-                  <p className="text-lg text-gray-700 italic mb-6">"{testimonial.quote}"</p>
-                  <div className="flex items-center">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name}
-                      className="w-10 h-10 rounded-full mr-3" 
-                    />
-                    <div>
-                      <div className="font-bold">{testimonial.name}</div>
-                      <div className="text-blue-600 text-sm">{testimonial.business}</div>
+        <div className="container max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">What Our Clients Say</h2>
+          
+          <div className="relative mx-auto px-2 md:px-0">
+            <div className="overflow-hidden rounded-lg bg-gray-50 shadow-md p-6 md:p-8">
+              <div className="text-blue-600 mb-2">
+                <FaQuoteLeft size={32} />
+              </div>
+              
+              <div className="relative h-48">
+                {testimonials.map((testimonial, index) => (
+                  <div 
+                    key={index}
+                    className={`absolute top-0 left-0 w-full transition-all duration-500 ease-in-out ${
+                      index === currentSlide 
+                        ? "opacity-100 translate-x-0" 
+                        : "opacity-0 translate-x-20"
+                    }`}
+                    style={{ display: index === currentSlide ? 'block' : 'none' }}
+                  >
+                    <p className="text-lg text-gray-700 italic mb-6">"{testimonial.quote}"</p>
+                    <div className="flex items-center">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="w-10 h-10 rounded-full mr-3" 
+                      />
+                      <div>
+                        <div className="font-bold">{testimonial.name}</div>
+                        <div className="text-blue-600 text-sm">{testimonial.business}</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              
+              {/* Indicator dots */}
+              <div className="flex justify-center mt-6 space-x-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === currentSlide ? "bg-blue-600 w-5" : "bg-gray-300 w-2"
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
             
-            {/* Indicator dots */}
-            <div className="flex justify-center mt-6 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`h-2 rounded-full transition-all ${
-                    index === currentSlide ? "bg-blue-600 w-5" : "bg-gray-300 w-2"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
+            {/* Navigation arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 bg-white p-2 rounded-full shadow-md hover:bg-blue-50 transition-all z-10"
+              aria-label="Previous testimonial"
+            >
+              <FaChevronLeft className="text-blue-600" size={16} />
+            </button>
+            
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 bg-white p-2 rounded-full shadow-md hover:bg-blue-50 transition-all z-10"
+              aria-label="Next testimonial"
+            >
+              <FaChevronRight className="text-blue-600" size={16} />
+            </button>
           </div>
-          
-          {/* Navigation arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 bg-white p-2 rounded-full shadow-md hover:bg-blue-50 transition-all z-10"
-            aria-label="Previous testimonial"
-          >
-            <FaChevronLeft className="text-blue-600" size={16} />
-          </button>
-          
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 bg-white p-2 rounded-full shadow-md hover:bg-blue-50 transition-all z-10"
-            aria-label="Next testimonial"
-          >
-            <FaChevronRight className="text-blue-600" size={16} />
-          </button>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* CTA Section - Full Width Background with Contained Content */}
-      <section className="bg-gradient-to-r from-blue-700 to-blue-500 text-white">
-        <div className="container max-w-7xl mx-auto px-6 py-24 text-center">
+      <section className="bg-gradient-to-r from-blue-700 to-blue-500 text-white py-16 md:py-24">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Grow With Us?</h2>
           <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">Start your application today and get a decision within 24 hours.</p>
           <button className="bg-white text-blue-600 px-10 py-4 rounded-md font-bold text-lg hover:bg-gray-100 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg">
@@ -275,10 +271,10 @@ function HomeMicrofinanace() {
       </section>
 
       {/* Footer - Full Width Background with Contained Content */}
-      <footer className="bg-gray-900 text-white">
-        <div className="container max-w-7xl mx-auto px-6 py-16">
+      <footer className="bg-gray-900 text-white pt-10">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
           <div className="grid md:grid-cols-4 gap-8">
-            <div>
+            <div className="px-2">
               <h3 className="text-2xl font-bold mb-6">MicroFin</h3>
               <p className="text-gray-400">Empowering communities through accessible financial solutions.</p>
               <div className="mt-6 flex space-x-4">
@@ -302,7 +298,7 @@ function HomeMicrofinanace() {
                 </a>
               </div>
             </div>
-            <div>
+            <div className="px-2">
               <h4 className="font-semibold mb-6 text-lg">Quick Links</h4>
               <ul className="space-y-3">
                 <li><a href="#" className="text-gray-400 hover:text-white transition duration-300">Home</a></li>
@@ -311,7 +307,7 @@ function HomeMicrofinanace() {
                 <li><a href="#" className="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
               </ul>
             </div>
-            <div>
+            <div className="px-2">
               <h4 className="font-semibold mb-6 text-lg">Contact Us</h4>
               <address className="not-italic text-gray-400 space-y-3">
                 <p className="flex items-center">
@@ -336,7 +332,7 @@ function HomeMicrofinanace() {
                 </p>
               </address>
             </div>
-            <div>
+            <div className="px-2">
               <h4 className="font-semibold mb-6 text-lg">Newsletter</h4>
               <p className="text-gray-400 mb-4">Subscribe for financial tips and updates</p>
               <div className="mt-4">
@@ -359,8 +355,6 @@ function HomeMicrofinanace() {
         </div>
       </footer>
     </div>
-        {/* <Footer/> */}
-    </>
   )
 }
 
