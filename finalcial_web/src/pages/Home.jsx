@@ -224,21 +224,21 @@ export default function Home() {
       title: "Empowering Microfinance",
       description: "Empowering small businesses and entrepreneurs with accessible microfinance solutions designed to build lasting financial stability.",
       buttonText: "Get Started",
-      buttonlink:'/mircofinanc',
+      buttonlink: '/mircofinanc',
       bgImage: "https://images.unsplash.com/photo-1620228885847-9eab2a1adddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     },
     {
       title: "Financial Landing License",
       description: "Enhance your financial knowledge with our comprehensive learning programs designed to build essential money management skills.",
       buttonText: "Get Started",
-      buttonlink:'/landinglincense',
+      buttonlink: '/landinglincense',
       bgImage: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     },
     {
       title: "Comprehensive NBFC Solutions",
       description: "Access flexible lending solutions, investment opportunities, and specialized financial services through our NBFC division designed to meet diverse financial needs beyond traditional banking.",
       buttonText: "Get Started",
-      buttonlink:'/nbfc',
+      buttonlink: '/nbfc',
       bgImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
     }
   ];
@@ -340,9 +340,9 @@ export default function Home() {
                               {slide.description}
                             </p>
                             <Link to={slide.buttonlink}>
-                            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors duration-300 text-xl">
-                              {slide.buttonText}
-                            </button>
+                              <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-lg transition-colors duration-300 text-xl">
+                                {slide.buttonText}
+                              </button>
                             </Link>
                           </div>
                         </div>
@@ -394,8 +394,8 @@ export default function Home() {
                         key={index}
                         onClick={() => setCurrentSlide(index)}
                         className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
-                            ? 'bg-orange-500'
-                            : 'bg-white opacity-70 hover:opacity-100'
+                          ? 'bg-orange-500'
+                          : 'bg-white opacity-70 hover:opacity-100'
                           }`}
                         aria-label={`Go to slide ${index + 1}`}
                       ></button>
@@ -406,52 +406,52 @@ export default function Home() {
               {/* End of slider */}
               {/* Services Section */}
               <div className="container mx-auto px-4 py-16">
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" data-aos="fade-up" data-aos-delay="400">
-    {/* Service Card 1 */}
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-blue-200 transform hover:-translate-y-1 hover:bg-blue-600 group">
-      <div className="flex justify-center mb-4">
-        <div className="bg-blue-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
-          <RiBankFill size={32} className="text-blue-600 group-hover:text-blue-600" />
-        </div>
-      </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Banking</h3>
-      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Secure and convenient banking solutions</p>
-    </div>
+                <div className="grid my-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" data-aos="fade-up" data-aos-delay="400">
+                  {/* Service Card 1 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-blue-200 transform hover:-translate-y-1 hover:bg-blue-600 group">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-blue-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+                        <RiBankFill size={32} className="text-blue-600 group-hover:text-blue-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Banking</h3>
+                    <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Secure and convenient banking solutions</p>
+                  </div>
 
-    {/* Service Card 2 */}
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-green-200 transform hover:-translate-y-1 hover:bg-green-600 group">
-      <div className="flex justify-center mb-4">
-        <div className="bg-green-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
-          <FaAddressCard size={32} className="text-green-600 group-hover:text-green-600" />
-        </div>
-      </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Learning License</h3>
-      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Easy application process for your license</p>
-    </div>
+                  {/* Service Card 2 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-green-200 transform hover:-translate-y-1 hover:bg-green-600 group">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-green-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+                        <FaAddressCard size={32} className="text-green-600 group-hover:text-green-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Learning License</h3>
+                    <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Easy application process for your license</p>
+                  </div>
 
-    {/* Service Card 3 */}
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-purple-200 transform hover:-translate-y-1 hover:bg-purple-600 group">
-      <div className="flex justify-center mb-4">
-        <div className="bg-purple-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
-          <FaCalculator size={32} className="text-purple-600 group-hover:text-purple-600" />
-        </div>
-      </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Financial Tools</h3>
-      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Smart calculators for your needs</p>
-    </div>
+                  {/* Service Card 3 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-purple-200 transform hover:-translate-y-1 hover:bg-purple-600 group">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-purple-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+                        <FaCalculator size={32} className="text-purple-600 group-hover:text-purple-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Financial Tools</h3>
+                    <p className="text-gray-600 group-hover:text-white transition-colors duration-300">Smart calculators for your needs</p>
+                  </div>
 
-    {/* Service Card 4 */}
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-orange-200 transform hover:-translate-y-1 hover:bg-orange-600 group">
-      <div className="flex justify-center mb-4">
-        <div className="bg-orange-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
-          <RiCustomerService2Line size={32} className="text-orange-600 group-hover:text-orange-600" />
-        </div>
-      </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Customer Support</h3>
-      <p className="text-gray-600 group-hover:text-white transition-colors duration-300">24/7 assistance for all your queries</p>
-    </div>
-  </div>
-</div>
+                  {/* Service Card 4 */}
+                  <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-100 hover:border-orange-200 transform hover:-translate-y-1 hover:bg-orange-600 group">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-orange-100 p-3 rounded-full group-hover:bg-white transition-colors duration-300">
+                        <RiCustomerService2Line size={32} className="text-orange-600 group-hover:text-orange-600" />
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-white transition-colors duration-300">Customer Support</h3>
+                    <p className="text-gray-600 group-hover:text-white transition-colors duration-300">24/7 assistance for all your queries</p>
+                  </div>
+                </div>
+              </div>
 
 
               {/* End of Services Section */}
