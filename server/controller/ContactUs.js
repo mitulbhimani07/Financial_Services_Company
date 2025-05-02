@@ -5,7 +5,12 @@ module.exports.createContactUs = async (req, res) => {
         // Validate the request body
         const ContactUsData = ContactUsModel.create(req.body);
         console.log(req.body);
-        res.status(200).json({ message: 'Contact Us data received successfully' },{ContactUsData});
+        res.status(200).json({ 
+            message: 'Contact Us data received successfully',
+            data:ContactUsData
+         }
+            
+        );
         
     } catch (error) {
         console.log(error);

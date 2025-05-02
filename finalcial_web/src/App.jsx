@@ -4,6 +4,7 @@ import Footer from './header/Footer';
 import Navbar from './header/Navbar';
 import ChatbotUI from './pages/ChatbotUI';
 import Allroutes from './routes/Allroutes';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +25,37 @@ function App() {
 
   return (
     <>
+
+<Toaster
+        position="top-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          className: '',
+          duration: 2000,
+          removeDelay: 1000,
+          style: {
+            background: 'white',
+            color: 'black',
+          },
+          success: {
+            duration: 2000,
+            iconTheme: {
+              primary: 'green',
+              secondary: 'black',
+            },
+          },
+          error: {
+            duration: 2000,
+            iconTheme: {
+              primary: 'red',
+              secondary: 'black',
+            },
+          },
+        }}
+      />
       {isLoading ? (
         // Loader
         <div className="flex justify-center items-center h-screen">
