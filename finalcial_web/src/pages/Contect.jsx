@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../header/Navbar';
 import '../assets/scss/Contact.scss';
 import Footer from '../header/Footer';
+import { contactus } from '../Api';
 
 export default function Contact() {
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await contactus(form); // send the form state
+      console.log("Response:", res);
+      alert('Message sent successfully!');
+      setForm({ name: '', email: '', subject: '', message: '' }); // Reset form
+    } catch (error) {
+      console.log("Error submitting form:", error);
+      alert('Failed to send message. Please try again.');
+    }
+  };
+  
+
   return (
     <div className='contactContainer'>
       <Navbar />
@@ -51,27 +78,27 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="contact-section">
+        <div className="contact-section" >
           {/* Left Side - Contact Form */}
           <div className="contact-form-container">
             <div className="form-header">
               <h2>Send Us a Message</h2>
               <p>We'll respond within 24 hours</p>
             </div>
-            <form className="contact-form">
+            <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name">Full Name</label>
-                  <input type="text" id="name" placeholder="John Smith" required />
+                  <input type="text" id="name" placeholder="John Smith" name='name' onChange={handleChange} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
-                  <input type="email" id="email" placeholder="john@example.com" required />
+                  <input type="email" id="email" name='email' placeholder="john@example.com" onChange={handleChange} />
                 </div>
               </div>
               <div className="form-group">
                 <label htmlFor="subject">Subject</label>
-                <select id="subject" required>
+                <select id="subject" name='subject' onChange={handleChange}>
                   <option value="">Select a subject</option>
                   <option value="investment">Investment Inquiry</option>
                   <option value="banking">Banking Services</option>
@@ -81,7 +108,7 @@ export default function Contact() {
               </div>
               <div className="form-group">
                 <label htmlFor="message">Your Message</label>
-                <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
+                <textarea id="message" rows="5" name='message' placeholder="How can we help you?" onChange={handleChange}></textarea>
               </div>
               <button type="submit" className="submit-button">
                 Send Message
