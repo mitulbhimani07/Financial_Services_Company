@@ -7,6 +7,8 @@ import Drop3 from "../assets/images/drop3.jpg";
 import { Link } from 'react-router-dom';
 import { User, LogIn, UserPlus, ChevronDown } from 'lucide-react';
 import "../assets/scss/Navbar.scss";
+import { useLocation } from 'react-router-dom';
+
 
 // Add this CSS to your scss file or create a new style block
 const hoverUnderlineAnimation = `
@@ -43,6 +45,12 @@ const Navbar = () => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [activeAuth, setActiveAuth] = useState('login');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Scroll to top when pathname changes
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   // Service images and content
   const serviceImages = {
